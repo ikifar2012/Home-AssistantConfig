@@ -1,0 +1,11 @@
+- platform: template
+  sensors:
+    kitchen_googlehometimer:
+      value_template: "{{ as_timestamp(states('sensor.kitchen_display_timer')) | timestamp_custom('%H:%M') }}"
+- platform: time_date
+  display_options:
+    - 'time'
+- platform: template
+  sensors:
+    kitchen_timer:
+      value_template: '{{ states("sensor.time") == states("sensor.kitchen_googlehometimer") }}'

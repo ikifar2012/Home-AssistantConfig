@@ -1,0 +1,22 @@
+- alias: 'Drone'
+  trigger: 
+    platform: webhook
+    webhook_id: drone_success
+  action: 
+    - service: notify.mobile_app_mathesons_iphone_8_plus
+      data_template:
+        message: "Home Assistant Build Suceeded!!!"
+    - service: notify.html5_matheson_pc
+      data_template:
+        message: "Home Assistant Build Suceeded!!!"
+- alias: 'Drone Fail'
+  trigger: 
+    platform: webhook
+    webhook_id: drone_fail
+  action: 
+    - service: notify.mobile_app_mathesons_iphone_8_plus
+      data_template:
+        message: "Home Assistant Build Failed!!!"
+    - service: notify.html5_matheson_pc
+      data_template:
+        message: "Home Assistant Build Failed!!!"

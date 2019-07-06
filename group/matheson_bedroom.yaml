@@ -1,0 +1,7 @@
+  Matheson_Bedroom:
+    name: Matheson's Bedroom
+    view: no
+    entities:
+      - switch.matheson_bedroom
+      - switch.matheson_bedroom_echo
+#      - switch.matheson_salt_lamp

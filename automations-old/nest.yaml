@@ -1,0 +1,32 @@
+- alias: 'Nest HVAC TTS'
+  trigger:
+    - platform: state
+      entity_id: sensor.hallway_thermostat_hvac_state
+      from: 'off'
+  action:
+    - service: script.say_sonos
+      data_template:
+        message: 'The Hallway thermostat has started to {{states("sensor.hallway_thermostat_operation_mode")}} the house with a current temperature of {{states("sensor.hallway_thermostat_temperature")|replace(".0", "")}} degrees and a target temperature of {{states("sensor.hallway_thermostat_target")|replace(".0", "")}} degrees'
+        entity_id: 'media_player.main_floor'
+- alias: 'Nest Away'
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: 'Extended Away'
+  action:
+    - service: script.nest_set_away
+- alias: 'Nest Home'
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      to: 'Home'
+  action:
+    - service: script.nest_set_home
+- alias: 'Nest Coming Home'
+  trigger:
+    - platform: state
+      entity_id: input_select.home_status
+      from: 'Extended Away'
+      to: 'Away'
+  action:
+    - service: script.nest_set_home

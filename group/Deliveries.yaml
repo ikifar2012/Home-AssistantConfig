@@ -1,0 +1,5 @@
+#  Deliveries:
+#    name: Deliveries
+#    view: no
+#    entities:
+#      - sensor.ups

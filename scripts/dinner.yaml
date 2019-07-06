@@ -1,0 +1,7 @@
+dinner:
+    alias: 'Dinner'
+    sequence:
+      - service: script.say_sonos
+        data:
+          entity_id: media_player.main_floor
+          message: "Dinner is ready"

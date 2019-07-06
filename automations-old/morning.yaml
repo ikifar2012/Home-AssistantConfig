@@ -1,0 +1,45 @@
+#   - - alias: 'Good Morning Matheson TTS'
+#     trigger:
+#      - platform: time
+#        at: '6:50:00'
+#     action:
+#       service: tts.google_translate_say
+#       entity_id: media_player.living_room
+#       data_template:
+#          message: "Hello Matheson It is 7:10 AM the travel to School will take {{ states('sensor.home_to_school') }} minutes, The Weather is {{ states('sensor.dark_sky_summary') }} with a {{ states('sensor.dark_sky_precip_probability') }}% chance of rain"
+#   - - alias: 'Good Morning Glenn'
+#     hide_entity: True
+#     trigger:
+#      - platform: time
+#        at: '7:10:00'
+#     action:
+#       service: notify.glenn
+#       data_template:
+#          message: "Hello Glenn It is 7:10 AM the travel to Work will take {{ states('sensor.home_to_work') }} minutes or if you take the train {{ states('sensor.home_to_work_using_transit') }} minutes , The Weather is {{ states('sensor.dark_sky_summary') }} with a {{ states('sensor.dark_sky_precip_probability') }}% chance of rain"
+#   - - alias: 'Good Morning Matheson'
+#     hide_entity: True
+#     trigger:
+#      - platform: time
+#        at: '7:10:00'
+#     action:
+#       service: notify.matheson
+#       data_template:
+#          message: "Hello Matheson It is 7:10 AM the travel to School will take {{ states('sensor.home_to_school') }} minutes, The Weather is {{ states('sensor.dark_sky_summary') }} with a {{ states('sensor.dark_sky_precip_probability') }}% chance of rain"
+# #  - - alias: 'Good Morning Matheson TV On'
+# #    hide_entity: True
+# #    trigger:
+# #     - platform: time
+# #       at: '7:10:00'
+# #    action:
+# #      - service: switch.turn_on
+# #        data:
+# #          entity_id: switch.matheson_tv
+#   - - alias: 'Good Morning Sandy'
+#     hide_entity: True
+#     trigger:
+#      - platform: time
+#        at: '7:10:00'
+#     action:
+#       service: notify.sandy
+#       data_template:
+#          message: "Hello Sandy It is 7:10 AM the travel to School will take {{ states('sensor.home_to_school') }} minutes, The Weather is {{ states('sensor.dark_sky_summary') }} with a {{ states('sensor.dark_sky_precip_probability') }}% chance of rain"

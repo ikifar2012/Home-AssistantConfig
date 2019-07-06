@@ -1,0 +1,24 @@
+  vacation:
+    name: 'Vacation Mode'
+    initial: off
+  tv_off:
+    name: 'TV Off'
+    initial: off
+  tv_on:
+    name: 'TV On'
+    initial: off
+  tv:
+    name: 'TV'
+    initial: off
+  speech:
+    name: 'Speech'
+    initial: on
+  in_bed:
+    name: 'In Bed'
+    initial: off
+  night:
+    name: 'Night'
+    initial: off
+  movie_time:
+    name: 'Movie Time'
+    initial: off

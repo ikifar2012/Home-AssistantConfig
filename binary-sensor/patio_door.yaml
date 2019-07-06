@@ -1,0 +1,8 @@
+    - platform: mqtt
+      name: "Patio Door"
+      state_topic: "tele/RF_Bridge/RESULT"
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: "331F0A"
+      payload_off: "331F0E"
+      device_class: Door
+      qos: 1

@@ -1,0 +1,11 @@
+  # time:
+  #   name: Time and Date
+  #   view: no
+  #   entities:
+  #     - sensor.date
+  #     - sensor.time
+  #     - sensor.time__date
+  #     - sensor.date__time
+  #     - sensor.time_utc
+  #     - sensor.internet_time
+  #     - sensor.time_2

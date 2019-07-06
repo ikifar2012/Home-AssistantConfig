@@ -1,0 +1,44 @@
+- alias: "Kitchen Timer Finished"
+  trigger: 
+    platform: event
+    event_type: timer.finished
+    event_data:
+      entity_id: timer.google_kitchen
+  action: 
+    - service: homeassistant.toggle
+      data_template:
+        entity_id: switch.kitchen_cabinet_lights
+    - delay: "00:00:01"
+    - service: homeassistant.toggle
+      data_template:
+        entity_id: switch.kitchen_cabinet_lights
+    - delay: "00:00:01"
+    - service: homeassistant.toggle
+      data_template:
+        entity_id: switch.kitchen_cabinet_lights
+    - delay: "00:00:01"
+    - service: homeassistant.toggle
+      data_template:
+        entity_id: switch.kitchen_cabinet_lights
+    - delay: "00:00:01"
+    - service: homeassistant.toggle
+      data_template:
+        entity_id: switch.kitchen_cabinet_lights
+    - delay: "00:00:01"
+    - service: homeassistant.toggle
+      data_template:
+        entity_id: switch.kitchen_cabinet_lights
+# - alias: 'Set the Kitchen Timer'
+#   trigger:
+#     platform: state
+#     entity_id: sensor.kitchen_display_timer
+#   condition:
+#     condition: numeric_state
+#     above: 0
+#     entity_id: sensor.kitchen_display_timer
+#     value_template: "{{ (as_timestamp(strptime(states('sensor.kitchen_display_timer'), '%Y-%m-%dT%H:%M:%S+00:00')) - as_timestamp(now()))|int }}"
+#   action:
+#     service: timer.start
+#     data_template:
+#       entity_id: timer.google_kitchen
+#       duration: "{{ (as_timestamp(strptime(states('sensor.kitchen_display_timer'), '%Y-%m-%dT%H:%M:%S+00:00')) - as_timestamp(now()))|int }}"

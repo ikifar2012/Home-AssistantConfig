@@ -1,0 +1,13 @@
+- alias: 'Notify Update'
+  trigger: 
+    - platform: state
+      entity_id: sensor.hass_update_available
+      from: 'No'
+      to: 'Yes'
+  action: 
+    - service: notify.mobile_app_mathesons_iphone_8_plus
+      data_template:
+        message: "Update Available!!"
+    - service: notify.html5_matheson_pc
+      data_template:
+        message: "Update Available!!"

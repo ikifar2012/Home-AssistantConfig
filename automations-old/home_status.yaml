@@ -1,0 +1,31 @@
+- alias: 'Set Away'
+  trigger:
+    - platform: state
+      entity_id: group.family_device_trackers
+      to: 'not_home'
+  action:
+    - service: input_select.select_option
+      data_template:
+        option: "Away"
+        entity_id: input_select.home_status
+- alias: 'Set Home'
+  trigger:
+    - platform: state
+      entity_id: group.family_device_trackers
+      to: 'home'
+  action:
+    - service: input_select.select_option
+      data_template:
+        option: "Home"
+        entity_id: input_select.home_status
+- alias: 'Set Extended Away'
+  trigger:
+    - platform: state
+      entity_id: group.family_device_trackers
+      to: 'not_home'
+      for: '00:45:00'
+  action:
+    - service: input_select.select_option
+      data_template:
+        option: "Extended Away"
+        entity_id: input_select.home_status

@@ -1,0 +1,26 @@
+- alias: 'Home Lighting'
+  trigger:
+    platform: state
+    entity_id: input_select.home_status
+    to: "Home"
+  condition:
+    condition: sun
+    after: sunset
+    after_offset: "-00:50:00"
+  action:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: group.main_floor
+- alias: 'Home Lighting Outdoor'
+  trigger:
+    platform: state
+    entity_id: input_select.home_status
+    to: "Home"
+  condition:
+    - condition: state
+      entity_id: 'sun.sun'
+      state: 'below_horizon'
+  action:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: group.front_lighting

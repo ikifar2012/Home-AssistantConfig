@@ -1,0 +1,22 @@
+- alias: 'Zack School TTS'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.life360_zachary_steplock
+      from: 'not_home'
+      to: 'School'
+  action:
+    - service: script.say_sonos
+      data_template:
+        entity_id: media_player.main_floor
+        message: "Zack has arrived at school"
+- alias: 'Matheson School TTS'
+  trigger:
+    - platform: state
+      entity_id: device_tracker.life360_matheson_steplock
+      from: 'not_home'
+      to: 'School'
+  action:
+    - service: script.say_sonos
+      data_template:
+        entity_id: media_player.main_floor
+        message: "Matheson has arrived at school"

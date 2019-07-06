@@ -1,0 +1,49 @@
+say_alert:
+  sequence:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_boolean.speech
+          state: 'on'
+    # - service: media_player.media_pause
+    #   data_template:
+    #     entity_id: media_player.main_floor_speakers
+    - service: sonos.snapshot
+      data_template:
+        entity_id: "{{ entity_id }}"
+    - service: media_player.volume_set
+      data_template:
+        entity_id: "{{ entity_id }}"
+        volume_level: "0.6"
+    - service: media_extractor.play_media
+      data:
+        entity_id: media_player.main_floor
+        media_content_id: 'http://192.168.0.19:66/trumpet.mp3'
+        media_content_type: 'music'
+    - delay: '00:00:09'
+    - service: tts.google_translate_say
+      data_template:
+        entity_id: "{{ entity_id }}"
+        message: "{{ message }}"
+    - delay: '00:00:10'
+    # - service: media_player.turn_off
+    #   data_template:
+    #     entity_id: "{{ entity_id }}"
+    # - delay: '00:00:01'
+    # - service: media_player.volume_set
+    #   data_template:
+    #     entity_id: "{{ entity_id }}"
+    #     volume_level: "0.8"
+    # # - service: media_player.select_source
+    # #   data_template:
+    # #     entity_id: media_player.main_floor
+    # #     source: Line-in
+    # # - service: media_player.media_play
+    # #   data_template:
+    # #     entity_id: media_player.main_floor
+    # # - service: media_player.media_play
+    # #   data_template:
+    # #     entity_id: media_player.main_floor_speakers
+    - service: sonos.restore
+      data_template:
+        entity_id: "{{ entity_id }}"

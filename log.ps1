@@ -1,0 +1,1 @@
+gc home-assistant.log -wait

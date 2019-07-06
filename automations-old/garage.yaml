@@ -1,0 +1,22 @@
+- alias: 'Garage Door Open'
+  trigger:
+    platform: state
+    entity_id: cover.garage_door_opener
+    from: "closed"
+    to: "open"
+  action:
+    - service: script.say_sonos
+      data_template:
+        entity_id: media_player.main_floor
+        message: "The garage door is open"
+- alias: 'Garage Door Closed'
+  trigger:
+    platform: state
+    entity_id: cover.garage_door_opener
+    from: "open"
+    to: "closed"
+  action:
+    - service: script.say_sonos
+      data_template:
+        entity_id: media_player.main_floor
+        message: "The garage door is closed"

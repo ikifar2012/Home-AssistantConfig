@@ -1,0 +1,12 @@
+  system_status:
+    name: System Status
+    view: no
+    entities:
+      - updater.updater
+      - sensor.netdata_ram_free
+      - sensor.rogers_cable_modem
+      - sensor.life360_sensor
+      - sensor.hass_current_beta_version
+      - sensor.hass_current_stable_version
+      - sensor.hass_installed_version
+      - sensor.hass_update_available

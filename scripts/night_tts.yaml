@@ -1,0 +1,19 @@
+night_tts:
+  sequence:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_boolean.night
+          state: 'on'
+    - service: media_player.volume_set
+      data_template:
+        entity_id: "{{ entity_id }}"
+        volume_level: "0.3"
+    - service: tts.google_translate_say
+      data_template:
+        entity_id: "{{ entity_id }}"
+        message: "{{ message }}"
+    - delay: '00:00:10'
+    - service: media_player.turn_off
+      data_template:
+        entity_id: "{{ entity_id }}"

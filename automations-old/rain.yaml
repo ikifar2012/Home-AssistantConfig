@@ -1,0 +1,11 @@
+- alias: 'Pot Lights On Rain'
+  trigger: 
+    - platform: state 
+      entity_id: sensor.dark_sky_summary
+      to: 'Light Rain'
+    - platform: state 
+      entity_id: sensor.dark_sky_summary
+      to: 'Heavy Rain'
+  action: 
+    - service: homeassistant.turn_on
+      entity_id: group.main_floor

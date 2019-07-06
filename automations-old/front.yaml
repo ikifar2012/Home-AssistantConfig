@@ -1,0 +1,24 @@
+- alias: 'Motion Lighting'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.ring_front_door_motion
+      to: 'on'
+  condition:
+    - condition: sun
+      after: sunset
+      after_offset: "-00:30:00"
+  action:
+    - service: script.turn_on
+      entity_id: script.front_door_timer
+- alias: 'Door Open Lighting'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door
+      to: 'on'
+  condition:
+    - condition: sun
+      after: sunset
+      after_offset: "-00:30:00"
+  action:
+    - service: script.turn_on
+      entity_id: script.front_door_timer

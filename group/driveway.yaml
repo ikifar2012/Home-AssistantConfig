@@ -1,0 +1,9 @@
+  driveway:
+    name: Driveway Camera
+    view: no
+    entities:
+      - binary_sensor.driveway_camera_motion_detected
+      - binary_sensor.driveway_camera_online
+      - binary_sensor.driveway_camera_person_detected
+      - binary_sensor.driveway_camera_sound_detected
+      - camera.driveway

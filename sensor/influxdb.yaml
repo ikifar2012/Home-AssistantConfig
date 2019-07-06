@@ -1,0 +1,10 @@
+# - platform: influxdb
+#   host: 192.168.0.19
+#   username: !secret influxdb_user
+#   password: influxdb_pw
+#   queries:
+#     - name: pfSense Dropped Outbound
+#       database: pfSense
+#       group_function: mean
+#       value_template: '{{ value | round(1) }}'
+#       feild: value

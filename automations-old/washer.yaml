@@ -1,0 +1,44 @@
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+#  Washing Machine Start/Finish
+# -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+- alias: 'Washer State - Start'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.washer_watts
+    above: 5
+    for:
+      seconds: 4
+# Make sure washer isn't already running and delaying between cycles - don't re-trigger and cause stopwatch reset
+  condition:
+    condition: template
+    value_template: "{{ states.sensor.washer_state.state != 'Washing' }}"
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: hass/state/washer
+        payload: 'Washing'
+        retain: 'true'
+- alias: 'Washer State - Idle'
+  trigger:
+    platform: numeric_state
+    entity_id: sensor.washer_watts
+    below: 10
+    for:
+      minutes: 1
+  action:
+    - service: mqtt.publish
+      data_template:
+        topic: hass/state/washer
+        payload: 'Idle'
+        retain: 'true'
+- alias: 'Wash Done Say'
+  trigger:
+   - platform: state
+     entity_id: sensor.washer_state
+     from: 'Washing'
+     to:  'Idle'
+  action:
+    - service: script.say_sonos
+      data_template:
+        entity_id: media_player.main_floor
+        message: "The Laundry is Done!"

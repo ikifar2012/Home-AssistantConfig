@@ -1,0 +1,22 @@
+- alias: 'Internet Offline'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.rogers_cable_modem
+      from: 'on'
+      to: 'off'
+  action:
+    - service: script.say_sonos
+      data_template:
+        entity_id: media_player.main_floor
+        message: "The Internet is Offline"
+- alias: 'Internet Online'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.rogers_cable_modem
+      from: 'off'
+      to: 'on'
+  action:
+    - service: script.say_sonos
+      data_template:
+        entity_id: media_player.main_floor
+        message: "The Internet is Online"

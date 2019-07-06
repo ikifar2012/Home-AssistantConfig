@@ -1,0 +1,11 @@
+- alias: 'Front Door TTS'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door
+      from: 'off'
+      to: 'on'
+  action:
+    - service: script.say_sonos
+      data_template:
+        entity_id: media_player.main_floor
+        message: "Front Door Open"

@@ -1,0 +1,34 @@
+- alias: 'Patio Door Lights On'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.patio_door
+      from: 'off'
+      to: 'on'
+  condition:
+      condition: or  # 'when dark' condition: either after sunset or before sunrise
+      conditions:
+        - condition: sun
+          after: sunset
+        - condition: sun
+          before: sunrise
+  action:
+    - service: switch.turn_on
+      entity_id: switch.deck_light
+- alias: 'Patio Door Lights Off'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.patio_door
+      from: 'on'
+      to: 'off'
+      for:
+        minutes: 5
+  condition:
+      condition: or  # 'when dark' condition: either after sunset or before sunrise
+      conditions:
+        - condition: sun
+          after: sunset
+        - condition: sun
+          before: sunrise
+  action:
+    - service: switch.turn_off
+      entity_id: switch.deck_light

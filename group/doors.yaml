@@ -1,0 +1,7 @@
+  doors:
+    name: Doors
+    view: no
+    entities:
+      - binary_sensor.main_entrance
+      - binary_sensor.front_door
+      - binary_sensor.patio_door

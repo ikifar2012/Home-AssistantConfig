@@ -1,0 +1,22 @@
+show_desktop:
+  alias: Show Desktop
+  sequence:
+  # - alias: desktop
+    data: {}
+    service: shell_command.desktop
+lock_script:
+  alias: Lock PC for the Night
+  sequence:
+  - data:
+      entity_id: script.show_desktop
+    service: script.turn_on
+  - delay: 00:00:05
+  - data:
+      entity_id: script.lock
+    service: script.turn_on
+lock:
+  alias: Lock PC
+  sequence:
+  # - alias: Lock
+    data: {}
+    service: shell_command.lock

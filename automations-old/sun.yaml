@@ -1,0 +1,98 @@
+- alias: 'Sunset Main Floor'
+  trigger:
+    - platform: sun
+      event: sunset
+      offset: '-00:50:00'
+  condition:
+    - condition: state
+      entity_id: input_select.home_status
+      state: 'Home'
+  action:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: group.main_floor
+    - service: homeassistant.turn_on
+      data:
+        entity_id: group.front_lighting
+# - alias: 'Sunset Main Floor Overcast'
+#   trigger:
+#     - platform: sun
+#       event: sunset
+#       offset: '-00:50:00'
+#   condition:
+#     condition: and
+#     conditions:
+#       - condition: state
+#         entity_id: sensor.dark_sky_summary
+#         state: 'Overcast'
+#       - condition: state
+#         entity_id: input_select.home_status
+#         state: 'Home'
+#   action:
+#     - service: homeassistant.turn_on
+#       data:
+#         entity_id: group.main_floor
+#     - service: homeassistant.turn_on
+#       data:
+#         entity_id: switch.outdoor_landscaping
+- alias: 'Sunset Outdoor'
+  trigger:
+    platform: sun
+    event: sunset
+  action:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: group.front_lighting
+- alias: 'Sunset Outdoor Overcast'
+  trigger:
+    platform: sun
+    event: sunset
+  condition:
+    condition: state
+    entity_id: sensor.dark_sky_summary
+    state: 'Overcast'
+  action:
+    - service: homeassistant.turn_on
+      data:
+        entity_id: group.front_light
+- alias: 'Sunrise Matheson Bedroom'
+  trigger:
+      platform: state
+      entity_id: switch.matheson_bedroom
+      from: 'off'
+      to: 'on'
+  action:
+    service: switch.turn_off
+    data:
+      entity_id: switch.matheson_salt_lamp
+- alias: 'Sunrise Matheson Bedroom On'
+  trigger:
+    platform: sun
+    event: sunrise
+    offset: '-00:30:00'
+  action:
+    service: automation.turn_on
+    data:
+      entity_id: automation.sunrise_matheson_bedroom
+- alias: 'Sunrise Matheson Bedroom Off'
+  trigger:
+    platform: sun
+    event: sunset
+    offset: '-00:30:00'
+  action:
+    service: automation.turn_off
+    data:
+      entity_id: automation.sunrise_matheson_bedroom
+  # - - alias: 'Sunset Main Floor Rain or Cloud'
+  #   trigger:
+  #     platform: sun
+  #     event: sunset
+  #     offset: '-00:50:00'
+  #   condition:
+  #     condition: state
+  #     entity_id: 'sensor.clear'
+  #     state: 'False'
+  #   action:
+  #     service: homeassistant.turn_on
+  #     data:
+  #       entity_id: group.main_floor

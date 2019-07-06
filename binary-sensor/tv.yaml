@@ -1,0 +1,7 @@
+  - platform: command_line
+    scan_interval: 3
+    name: TV
+    command: ping -W 1 -c 1 192.168.0.104 > /dev/null 2>&1 && echo On || echo Off
+    device_class: power
+    payload_on: "On"
+    payload_off: "Off"

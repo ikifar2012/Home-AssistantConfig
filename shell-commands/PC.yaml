@@ -1,0 +1,2 @@
+  lock: curl -k http://192.168.0.7:81/index.html?Lock
+  desktop: curl -k http://192.168.0.7:81/index.html?Desktop

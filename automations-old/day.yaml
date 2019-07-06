@@ -1,0 +1,14 @@
+- alias: 'Day TTS'
+  trigger:
+    platform: time
+    at: '7:10:00'
+  action:
+    - service: homeassistant.turn_on
+      data:
+       entity_id: input_boolean.speech
+    - service: automation.turn_on
+      data:
+        entity_id: automation.pot_lights_on_rain
+    - service: homeassistant.turn_off
+      data:
+        entity_id: input_boolean.night

@@ -1,0 +1,5 @@
+  stocks:  
+    name: Stock Market
+    entities:
+      - sensor.googl
+      - sensor.tsla

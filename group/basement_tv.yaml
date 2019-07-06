@@ -1,0 +1,6 @@
+#  matheson tv:
+#    name: Matheson's TV
+#    view: no
+#    entities:
+#      - switch.avr
+#      - switch.matheson_tv

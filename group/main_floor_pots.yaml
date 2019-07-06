@@ -1,0 +1,6 @@
+  main_floor_pots:
+    name: Main Floor Pot Lighting
+    view: no
+    entities:
+      - switch.kitchen_pot_lights
+      - switch.living_room

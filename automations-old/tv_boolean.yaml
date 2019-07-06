@@ -1,0 +1,68 @@
+- alias: 'TV Off'
+  trigger:
+      platform: state
+      entity_id: input_boolean.tv_off
+      from: 'off'
+      to: 'on'
+  condition:
+    condition: state
+    entity_id:  binary_sensor.tv
+    state: 'on'
+  action:
+    service: switch.turn_off
+    data:
+      entity_id: switch.tv
+- alias: 'TV On'
+  trigger:
+      platform: state
+      entity_id: input_boolean.tv_on
+      from: 'off'
+      to: 'on'
+  condition:
+    condition: state
+    entity_id:  binary_sensor.tv
+    state: 'off'
+  action:
+    service: switch.turn_on
+    data:
+      entity_id: switch.tv
+- alias: 'TV On Boolean Set'
+  trigger:
+      platform: state
+      entity_id:  binary_sensor.tv
+      from: 'off'
+      to: 'on'
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.tv
+- alias: 'TV Off Boolean Set'
+  trigger:
+      platform: state
+      entity_id:  binary_sensor.tv
+      from: 'on'
+      to: 'off'
+  action:
+    service: input_boolean.turn_off
+    data:
+      entity_id: input_boolean.tv
+- alias: 'TV Off Boolean Trigger'
+  trigger:
+      platform: state
+      entity_id: input_boolean.tv
+      from: 'on'
+      to: 'off'
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.tv_off
+- alias: 'TV On Boolean Trigger'
+  trigger:
+      platform: state
+      entity_id: input_boolean.tv
+      from: 'off'
+      to: 'on'
+  action:
+    service: input_boolean.turn_on
+    data:
+      entity_id: input_boolean.tv_on

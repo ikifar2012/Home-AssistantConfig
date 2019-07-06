@@ -1,0 +1,2 @@
+  update_hass: hassio homeassistant stop && hassio homeassistant update && hassio supervisor update
+  restart_hass: hassio homeassistant restart

@@ -1,0 +1,11 @@
+smart_home:
+  filter:
+    include_entities:
+      - script.going_to_bed
+      - input_boolean.movie_time
+      - cover.garage_door_opener
+    include_domains:
+      - switch
+      - light
+    exclude_entities:
+      - switch.tv

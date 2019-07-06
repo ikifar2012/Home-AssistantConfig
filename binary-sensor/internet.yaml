@@ -1,0 +1,5 @@
+  - platform: ping
+    name: Rogers Cable Modem
+    host: 99.228.142.1
+    count: 3
+    scan_interval: 15

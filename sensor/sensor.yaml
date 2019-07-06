@@ -1,0 +1,60 @@
+- platform: darksky
+  api_key: !secret darkskyapi
+  monitored_conditions:
+    - icon
+    - summary
+    - temperature
+    - humidity
+    - precip_type
+    - precip_intensity
+    - precip_intensity_max
+    - precip_probability
+    - wind_speed
+    - pressure
+  scan_interval:
+    days: 0
+    hours: 0
+    minutes: 5
+    seconds: 30
+    milliseconds: 0
+- platform: ring
+  monitored_conditions:
+    - battery
+    - last_activity
+    - last_ding
+    - last_motion
+    - volume
+- platform: waze_travel_time
+  name: Home to Work
+  origin: !secret homeaddr
+  destination: !secret workaddr
+  region: 'NA'
+- platform: waze_travel_time
+  name: Home to School
+  origin: !secret homeaddr
+  destination: !secret schooladdr
+  region: 'NA'
+- platform: ohmconnect
+  id: !secret ohm
+- platform: waqi
+  token: !secret air
+  locations:
+    - toronto
+- platform: pi_hole
+  host: 192.168.0.8
+  monitored_conditions:
+   - ads_blocked_today
+   - ads_percentage_today
+# - platform: time_date
+#   display_options:
+#     - 'time'
+- platform: command_line
+  name: Weather Alerts
+  command: curl -sSL https://weather.gc.ca/rss/battleboard/on11_e.xml | grep title | tail --lines=+2 | sed -e s/' <title>'// | sed -e s/'<\/title>'// | tail -1
+- platform: template
+  sensors:
+    clear:
+      value_template: "{{ 'Clear' in states.sensor.dark_sky_summary.state }}"
+- platform: command_line
+  name: Red Alerts
+  command: curl -sSL https://www.emergencymanagementontario.ca/feeds/redalerts.ashx | grep description | sed -e s/' <description>'// | sed -e s/'<\/description>'//

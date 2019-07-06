@@ -1,0 +1,56 @@
+- alias: 'Glenn Battery Low'
+  trigger:
+    platform: numeric_state
+    entity_id: 'sensor.glenn_battery'
+    below: 30
+  condition:
+    - condition: state
+      entity_id: device_tracker.life360_glenn_steplock
+      state:  'Home'
+  action:
+    - service: script.say_sonos
+      data_template:
+        entity_id: media_player.main_floor
+        message: "Glenn your battery is at {{ states('sensor.glenn_battery') }} percent please charge it now"
+- alias: 'Sandy Battery Low'
+  trigger:
+    platform: numeric_state
+    entity_id: 'sensor.sandy_battery'
+    below: 30
+  condition:
+    - condition: state
+      entity_id: device_tracker.life360_sandy_steplock
+      state:  'Home'
+  action:
+    - service: script.say_sonos
+      data_template:
+        entity_id: media_player.main_floor
+        message: "Sandy your battery is at {{ states('sensor.sandy_battery') }} percent please charge it now"
+- alias: 'Matheson Battery Low'
+  trigger:
+    platform: numeric_state
+    entity_id: 'sensor.matheson_battery'
+    below: 30
+  condition:
+    - condition: state
+      entity_id: device_tracker.life360_matheson_steplock
+      state: 'Home'
+  action:
+    - service: script.say_sonos
+      data_template:
+        entity_id: media_player.main_floor
+        message: "Matheson your battery is at {{ states('sensor.matheson_battery') }} percent please charge it now"
+- alias: 'Zachary Battery Low'
+  trigger:
+    platform: numeric_state
+    entity_id: 'sensor.zachary_battery'
+    below: 30
+  condition:
+    - condition: state
+      entity_id: device_tracker.life360_zachary_steplock
+      state: 'Home'
+  action:
+    - service: script.say_sonos
+      data_template:
+        entity_id: media_player.main_floor
+        message: "Zachary your battery is at {{ states('sensor.zachary_battery') }} percent please charge it now"

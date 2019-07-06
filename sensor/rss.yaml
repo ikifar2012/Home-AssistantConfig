@@ -1,0 +1,3 @@
+- platform: feedparser
+  name: YCDSB Summer Job
+  feed_url: 'https://jobs.ycdsb.ca/services/rss/category/?catid=2387800'

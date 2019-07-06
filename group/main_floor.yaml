@@ -1,0 +1,8 @@
+  main_floor:
+    name: Main Floor
+    view: no
+    entities:
+      - switch.dining_room
+      - switch.kitchen_pot_lights
+      - switch.living_room
+      - switch.island_lights

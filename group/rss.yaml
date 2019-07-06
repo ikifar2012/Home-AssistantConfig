@@ -1,0 +1,4 @@
+  rss:  
+    name: RSS
+    entities:
+    - sensor.ycdsb_summer_job

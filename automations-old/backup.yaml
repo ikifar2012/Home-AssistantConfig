@@ -1,0 +1,20 @@
+# Backup at 2AM
+- alias: Backup Local
+  trigger:
+  - platform: time
+    at: '02:00:00'
+  action:
+  - service: hassio.snapshot_full
+    data_template:
+      name: Backup {{ now().strftime('%Y-%m-%d') }}
+
+# # Back to Dropbox 
+# - alias: Backup Dropbox
+#   trigger:
+#   - platform: time
+#     at: '03:00:00'
+#   action:
+#   - service: hassio.addon_stdin
+#     data_template:
+#       addon: "7be23ff5_dropbox_sync"
+#       input: {"command":"upload"}

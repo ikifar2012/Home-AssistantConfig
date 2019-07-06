@@ -1,0 +1,11 @@
+nest_set_away:
+  sequence:
+    - service: input_text.set_value
+      data_template:
+        entity_id: input_text.previous_nest_mode
+        value: "{{ state_attr('climate.hallway','operation_mode') }}"
+    - delay: 00:00:04
+    - service: climate.set_operation_mode
+      data:
+        entity_id: climate.hallway
+        operation_mode: 'eco' ## options: off, heat, cool, auto, eco

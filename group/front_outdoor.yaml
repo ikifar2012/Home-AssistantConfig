@@ -1,0 +1,6 @@
+  front_lighting:
+    name: Front Lighting
+    view: no
+    entities:
+      - switch.front_door
+      - switch.outdoor_landscaping

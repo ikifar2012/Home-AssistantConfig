@@ -1,0 +1,9 @@
+  main_floor_tv:
+    name: Main Floor TV
+    view: no
+    entities:
+      -  binary_sensor.tv
+      - switch.tv
+      - input_boolean.tv_off
+      - input_boolean.tv_on
+      - input_boolean.tv

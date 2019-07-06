@@ -1,0 +1,11 @@
+- alias: 'Main Entrance TTS'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.main_entrance
+      from: 'off'
+      to: 'on'
+  action:
+    - service: script.say_sonos
+      data_template:
+        entity_id: media_player.main_floor
+        message: "Main Entrance Door Open"

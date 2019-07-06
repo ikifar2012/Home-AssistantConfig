@@ -1,0 +1,13 @@
+fan_8_hr:
+  alias: Turn on Fan (8 Hours)
+  sequence:
+  - entity_id: climate.hallway
+    service: climate.set_fan_mode
+    data:
+      fan_mode: 'on'
+  - delay:
+      hours: 8
+  - entity_id: climate.hallway
+    service: climate.set_fan_mode
+    data:
+      fan_mode: 'auto'

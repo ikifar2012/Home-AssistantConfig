@@ -1,0 +1,13 @@
+- alias: 'Start HomeKit'
+  trigger:
+    - platform: homeassistant
+      event: start
+  action:
+    - delay: 00:02:00  # Waits 2 minutes
+    - service: homekit.start
+    - service: notify.mobile_app_mathesons_iphone_8_plus
+      data_template:
+        message: "Bootup Complete"
+    - service: notify.html5_matheson_pc
+      data_template:
+        message: "Bootup Complete"

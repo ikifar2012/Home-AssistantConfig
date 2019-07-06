@@ -1,0 +1,61 @@
+- platform: mqtt
+  name: "Washer State"
+  state_topic: "hass/state/washer"
+  icon: mdi:washing-machine
+- platform: mqtt
+  name: "Washer Watts"
+  state_topic: "tele/wash/SENSOR"
+  value_template: "{{value_json['ENERGY'].Power }}"
+  qos: 2
+  unit_of_measurement : "W"
+  icon: mdi:flash-circle
+  availability_topic: "tele/wash/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+- platform: mqtt
+  name: "Washer Voltage"
+  state_topic: "tele/wash/SENSOR"
+  value_template: "{{value_json['ENERGY'].Voltage }}"
+  qos: 2
+  unit_of_measurement : "V"
+  icon: mdi:flash-circle
+  availability_topic: "tele/wash/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+- platform: mqtt
+  name: "Washer Amps"
+  state_topic: "tele/wash/SENSOR"
+  value_template: "{{value_json['ENERGY'].Current }}"
+  qos: 2
+  unit_of_measurement : "A"
+  icon: mdi:flash-circle
+  availability_topic: "tele/wash/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+- platform: mqtt
+  name: "Washer Energy Today"
+  state_topic: "tele/wash/SENSOR"
+  value_template: "{{value_json['ENERGY'].Today }}"
+  qos: 2
+  unit_of_measurement : "kWh"
+  availability_topic: "tele/wash/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+- platform: mqtt
+  name: "Washer Energy Yesterday"
+  state_topic: "tele/wash/SENSOR"
+  value_template: "{{value_json['ENERGY'].Yesterday }}"
+  qos: 2
+  unit_of_measurement : "kWh"
+  availability_topic: "tele/wash/LWT"
+  payload_available: "Online"
+  payload_not_available: "Offline"
+- platform: mqtt
+  state_topic: "tele/wash/STATE"
+  name: "Washer Signal"
+  unit_of_measurement: "%"
+  value_template: "{{value_json['Wifi'].RSSI }}"
+  availability_topic: "tele/wash/LWT"
+  qos: 1
+  payload_available: "Online"
+  payload_not_available: "Offline"

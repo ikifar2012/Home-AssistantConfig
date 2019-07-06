@@ -1,0 +1,6 @@
+nest_set_home:
+  sequence:
+    - service: climate.set_operation_mode
+      data_template:
+        entity_id: climate.hallway
+        operation_mode: '{{states.input_text.previous_nest_mode.state}}'

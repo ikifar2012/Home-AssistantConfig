@@ -1,0 +1,7 @@
+vacation_mode:
+    alias: 'Vacation Mode'
+    sequence:
+      - service: climate.set_operation_mode
+        data:
+          operation_mode: 'eco'
+          entity_id: 'climate.hallway'

@@ -1,0 +1,209 @@
+homeassistant:
+  name: Home
+  latitude: !secret latitude
+  longitude: !secret longitude
+  elevation: 223
+  unit_system: metric
+  time_zone: America/Toronto
+  customize: !include customize.yaml
+########### !include Configuration #############
+light: !include_dir_merge_list light/
+sensor: !include_dir_merge_list sensor/
+group: !include_dir_merge_named group/
+automation old: !include_dir_merge_list automations-old/
+# panel_iframe: !include_dir_merge_list panel_iframe/
+shell_command: !include_dir_merge_named shell-commands/
+binary_sensor: !include_dir_merge_list binary-sensor/
+media_player: !include media_player.yaml
+input_boolean: !include input_boolean.yaml
+input_select: !include input_select.yaml
+script: !include_dir_merge_named scripts/
+switch: !include switch.yaml
+# packages: !include_dir_named packages
+input_text: !include input_text.yaml
+# input_slider: !include input_slider.yaml
+image_processing: !include image_processing.yaml
+###############################################
+
+#################### HTTP #####################
+http:
+#  api_password: !secret MQTT_PASSWORD
+#  ssl_certificate: !secret cert
+#  ssl_key: !secret ssl_key
+  base_url: !secret base_url
+  use_x_forwarded_for: true
+  trusted_proxies: 192.168.0.17
+##############################################
+api:
+breaking_changes:
+############## Voice Assistant's ##############
+alexa: !include alexa.yaml
+homekit:
+  ip_address: 192.168.0.19
+  auto_start: False
+  filter:
+    include_domains:
+      - climate
+      - switch
+      - light
+    include_entities:
+      - cover.garage_door_opener
+  # filter:
+  #   include_entities:
+  #     - demo.demo
+google_assistant:
+  project_id: hass-46714
+  api_key: !secret google_api
+  exposed_domains:
+    - switch
+    - light
+  entity_config:
+    script.going_to_bed:
+      expose: true
+    input_boolean.movie_time:
+      expose: true
+    cover.garage_door_opener:
+      expose: true
+######################################
+########## Basic Configuration ###########
+updater:
+discovery:
+ffmpeg:
+  ffmpeg_bin: /usr/bin/ffmpeg
+frontend:
+    themes: !include_dir_merge_named themes
+config:
+map:
+mobile_app:
+
+camera:
+  - platform: ring
+
+# Allows you to issue voice commands from the frontend in enabled browsers
+conversation:
+### Timer ###
+timer:
+  google_kitchen:
+
+# Enables support for tracking state changes over time.
+history:
+
+# View all events in a logbook
+logbook:
+
+# Track the sun
+sun:
+# Weather Prediction
+weather:
+  - platform: darksky
+    api_key: !secret darkskyapi
+
+
+# Text to speech
+tts:
+  - platform: google_translate
+    base_url: http://192.168.0.19:8123
+
+
+ring:
+  username: !secret emailM
+  password: !secret ring
+
+notify:
+  - platform: html5
+    vapid_pub_key: !secret vappubkey
+    vapid_prv_key: !secret vapprvkey
+    vapid_email: !secret vapemail
+
+zone 2:
+  name: Work
+  icon: mdi:briefcase
+  latitude: !secret latitudework
+  longitude: !secret longitudework
+  radius: 200
+zone 3:
+  name: School
+  icon: mdi:school
+  latitude: !secret latitudeschool
+  longitude: !secret longitudeschool
+  radius: 200
+scene: !include scene.yaml
+media_extractor:
+
+wemo:
+  static:
+    - 192.168.0.88
+    - 192.168.0.89
+    - 192.168.0.78
+    - 192.168.0.77
+    - 192.168.0.86
+    - 192.168.0.87
+    - 192.168.0.23
+    - 192.168.0.95
+cover:
+  - platform: myq
+    username: !secret myquser
+    password: !secret myqpass
+    type: chamberlain
+logger:
+  default: warning
+  # logs:
+    # homeassistant.components.homekit: debug
+    # pyhap: debug
+nest:
+  client_id: !secret id
+  client_secret: !secret client
+#
+# life360:
+#   accounts:
+#     username: !secret life360_username
+#     password: !secret life360_password
+sonos:
+  media_player:
+    interface_addr: 192.168.0.19
+    hosts: 192.168.0.125
+system_health:
+speedtestdotnet:
+  scan_interval:
+    minutes: 30
+  monitored_conditions:
+    - ping
+    - download
+    - upload
+fastdotcom:
+  scan_interval:
+      minutes: 30
+alexa_media:
+  accounts:
+    - email: !secret azemail
+      password: !secret azpass
+      url: amazon.com
+googlehome:
+  devices:
+    - host: '192.168.0.35'
+      device_types: 2
+      track_alarms: true
+      track_devices: false
+stream:
+tplink:
+  switch:
+    - host: 192.168.0.109
+    - host: 192.168.0.107
+    - host: 192.168.0.135
+########### InfluxDB ##########
+influxdb:
+  host: a0d7b954-influxdb
+  port: 8086
+  database: homeassistant
+  username: !secret influxdb_user
+  password: !secret influxdb_pw
+  max_retries: 3
+  default_measurement: state
+###############################
+########## Update ############
+# custom_updater:
+#   track:
+#     - cards
+#     - components
+hacs:
+  token: !secret github_access_token

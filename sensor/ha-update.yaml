@@ -1,0 +1,67 @@
+# Version and Availability
+- platform: rest
+  resource: https://s3.amazonaws.com/hassio-version/stable.json
+  name: Hass Current Stable Version
+  value_template: '{{ value_json.homeassistant.default }}'
+- platform: rest
+  resource: https://s3.amazonaws.com/hassio-version/beta.json
+  name: Hass Current Beta Version
+  value_template: '{{ value_json.homeassistant.default }}'
+- platform: version
+  name: Hass Installed Version
+- platform: template
+  sensors:
+    hass_update_available:
+      friendly_name: 'Hass Update Available'
+      value_template: >-
+        {%- if states.sensor.hass_current_stable_version.state != states.sensor.hass_installed_version.state and states.sensor.hass_current_stable_version.state != "unavailable"-%}
+           Yes
+        {%- else -%}
+           No
+        {%- endif -%}
+      icon_template: >-
+        {%- if states.sensor.hass_current_stable_version.state != states.sensor.hass_installed_version.state and states.sensor.hass_current_stable_version.state != "unavailable"-%}
+          mdi:alert-box
+        {% else %}
+          mdi:approval
+        {% endif %}
+    glenn_battery:
+      friendly_name: 'Glenn Phone Battery'
+      unit_of_measurement: '%'
+      value_template: >-
+          {%- if states.device_tracker.life360_glenn_steplock.attributes.battery %}
+              {{ states.device_tracker.life360_glenn_steplock.attributes.battery|round }}
+          {% else %}
+              # {{ states.sensor.battery_glenn_steplock.state }}
+          {%- endif %}
+      device_class: battery
+    matheson_battery:
+      friendly_name: 'Matheson Phone Battery'
+      unit_of_measurement: '%'
+      value_template: >-
+          {%- if states.device_tracker.life360_matheson_steplock.attributes.battery %}
+              {{ states.device_tracker.life360_matheson_steplock.attributes.battery|round }}
+          {% else %}
+              # {{ states.sensor.battery_matheson_steplock.state }}
+          {%- endif %}
+      device_class: battery
+    sandy_battery:
+      friendly_name: 'Sandy Phone Battery'
+      unit_of_measurement: '%'
+      value_template: >-
+          {%- if states.device_tracker.life360_sandy_steplock.attributes.battery %}
+              {{ states.device_tracker.life360_sandy_steplock.attributes.battery|round }}
+          {% else %}
+              # {{ states.sensor.battery_sandy_steplock.state }}
+          {%- endif %}
+      device_class: battery
+    zachary_battery:
+      friendly_name: 'Zachary Phone Battery'
+      unit_of_measurement: '%'
+      value_template: >-
+          {%- if states.device_tracker.life360_zachary_steplock.attributes.battery %}
+              {{ states.device_tracker.life360_zachary_steplock.attributes.battery|round }}
+          {% else %}
+              # {{ states.sensor.battery_zachary_steplock.state }}
+          {%- endif %}
+      device_class: battery

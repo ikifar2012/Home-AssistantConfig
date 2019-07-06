@@ -1,0 +1,81 @@
+#  - - alias: 'diningroom_state'
+#    hide_entity: True
+#    trigger:
+#      - platform: state
+#        entity_id: switch.dining_room
+#        from: 'off'
+#        to: 'on'
+#    action:
+#      - service: switch.turn_on
+#        data:
+#          entity_id: switch.lamp
+#  - - alias: 'diningroom_state'
+#    hide_entity: True
+#    trigger:
+#      - platform: state
+#        entity_id: switch.dining_room
+#        from: 'on'
+#        to: 'off'
+#    action:
+#      - service: switch.turn_off
+#        data:
+#          entity_id: switch.lamp
+#  - - alias: 'ring_state'
+#    hide_entity: True
+#    trigger:
+#      - platform: state
+#        entity_id: binary_sensor.ring_front_door_ding
+#        from: 'off'
+#        to: 'on'
+#    action:
+#      - service: switch.turn_on
+#        data:
+#          entity_id: switch.dining_room
+#      - delay: 00:00:05 
+#      - service: switch.turn_off
+#        data:
+#          entity_id: switch.dining_room
+#  - - alias: 'Telegram bot that reply pong to ping'
+#    hide_entity: true
+#    trigger:
+#      platform: event
+#      event_type: telegram_command
+#      event_data:
+#        command: '/ping'
+#    action:
+#      service: notify.sandy
+#      data_template:
+#         message: "Online"
+#  - - alias: 'Set dark theme for the night'
+#    initial_state: True
+#    trigger:
+#      - platform: state
+#        entity_id: sun.sun
+#        to: 'below_horizon'
+#    action:
+#      - service: frontend.set_theme
+#        data:
+#          name: Night
+#  - - alias: 'Set theme for the Day'
+#    initial_state: True
+#    trigger:
+#      - platform: state
+#        entity_id: sun.sun
+#        to: 'above_horizon'
+#    action:
+#      - service: frontend.set_theme
+#        data:
+#          name: default
+#  - - alias: Reboot Cable Modem when Internet Connection is Lost
+#    initial_state: False
+#    trigger:
+#      - platform: state
+#        entity_id: sensor.rogers_cable_modem
+#        from: 'success'
+#        to: 'fail'
+#        for:
+#          minutes: 2
+#    action:
+#      - service: script.turn_on
+#        data:
+#          entity_id: script.restart_modem

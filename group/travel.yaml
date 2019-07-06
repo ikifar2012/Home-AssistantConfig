@@ -1,0 +1,8 @@
+  travel:
+    name: Travel
+    view: no
+    entities:
+      - binary_sensor.workday_sensor
+      - sensor.home_to_school
+      - sensor.home_to_work
+      - sensor.home_to_work_using_transit

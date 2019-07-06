@@ -1,0 +1,19 @@
+- alias: 'Sonos Idle'
+  trigger:
+    - platform: state
+      entity_id: media_player.main_floor
+      to: 'paused'
+      for:
+        minutes: 5
+  action:
+    - service: media_player.select_source
+      data_template:
+        entity_id: media_player.main_floor
+        source: 'Line-in'
+    - service: media_player.media_play
+      data_template:
+        entity_id: media_player.main_floor
+    - service: media_player.volume_set
+      data_template:
+        entity_id: media_player.main_floor
+        volume_level: '0.8'

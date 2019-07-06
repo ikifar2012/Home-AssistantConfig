@@ -1,0 +1,15 @@
+  tts:
+    name: TTS
+    view: no
+    entities:
+      - automation.matheson_home_tts
+      - automation.matheson_school_tts
+      - automation.glenn_home_tts
+      - automation.sandy_home_tts
+      - automation.zack_home_tts
+      - automation.zack_school_tts
+      - automation.heat_warning_tts
+      - automation.thunderstorm_tts_warning
+      - automation.thunderstorm_tts_watch
+      - automation.garage_door_closed
+      - automation.garage_door_open

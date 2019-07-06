@@ -1,0 +1,18 @@
+  nest:
+    name: Climate
+    view: no
+    entities:
+      - climate.hallway
+      - sensor.hallway_thermostat_humidity      
+      - sensor.hallway_thermostat_hvac_state    
+      - sensor.hallway_thermostat_operation_mode
+      - sensor.hallway_thermostat_target        
+      - sensor.hallway_thermostat_temperature
+      - binary_sensor.hallway_thermostat_fan      
+      - binary_sensor.hallway_thermostat_has_leaf 
+      - binary_sensor.hallway_thermostat_is_locked
+      - binary_sensor.hallway_thermostat_is_using_emergency_heat
+      - binary_sensor.hallway_thermostat_online   
+      - binary_sensor.home_away
+      - sensor.home_security_state
+      - sensor.home_eta

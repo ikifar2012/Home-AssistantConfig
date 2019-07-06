@@ -1,0 +1,8 @@
+    - platform: mqtt
+      name: "Front Door"
+      state_topic: "tele/RF_Bridge/RESULT"
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: "2CB90A"
+      payload_off: "2CB90E"
+      device_class: Door
+      qos: 1

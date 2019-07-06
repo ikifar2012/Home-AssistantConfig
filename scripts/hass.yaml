@@ -1,0 +1,12 @@
+update_hass:
+  alias: Update Home Assistant
+  sequence:
+  - alias: Update Home Assistant
+    data: {}
+    service: shell_command.update_hass
+restart_hass:
+  alias: Restart Home Assistant
+  sequence:
+  - alias: Restart Home Assistant
+    data: {}
+    service: shell_command.restart_hass

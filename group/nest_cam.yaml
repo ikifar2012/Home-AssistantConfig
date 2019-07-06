@@ -1,0 +1,8 @@
+  nest_cam:
+    name: Nest Camera
+    view: no
+    entities:
+      - binary_sensor.outside_camera_motion_detected
+      - binary_sensor.outside_camera_online
+      - binary_sensor.outside_camera_person_detected
+      - binary_sensor.outside_camera_sound_detected

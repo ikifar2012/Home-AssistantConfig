@@ -1,0 +1,10 @@
+restart_modem:
+  alias: Restart Cable Modem
+  sequence:
+  - data:
+      entity_id: switch.cable_modem
+    service: switch.turn_off
+  - delay: 00:00:30
+  - data:
+      entity_id: switch.cable_modem
+    service: switch.turn_on

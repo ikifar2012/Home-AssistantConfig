@@ -1,0 +1,22 @@
+- alias: 'TV Off Input Reset'
+  trigger:
+      platform: state
+      entity_id: input_boolean.tv_off
+      from: 'off'
+      to: 'on'
+  action:
+    - delay: '00:00:03'
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.tv_off
+- alias: 'TV On Input Reset'
+  trigger:
+      platform: state
+      entity_id: input_boolean.tv_on
+      from: 'off'
+      to: 'on'
+  action:
+    - delay: '00:00:03'
+    - service: input_boolean.turn_off
+      data:
+        entity_id: input_boolean.tv_on

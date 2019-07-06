@@ -1,0 +1,37 @@
+- alias: 'Movie Time On'
+  trigger: 
+    platform: state 
+    entity_id: 'input_boolean.movie_time'
+    to: 'on'
+  action: 
+    - service: script.lock_script
+    - delay: "00:02:00"
+    - service: home_assistant.turn_off
+      data_template:
+        entity_id: group.main_floor
+- alias: 'Movie Time Off'
+  trigger: 
+    platform: state 
+    entity_id: 'input_boolean.movie_time'
+    to: 'off'
+  action: 
+    - service: home_assistant.turn_on
+      data_template:
+        entity_id: group.main_floor
+- alias: 'Movie Time Motion'
+  trigger: 
+    platform: state 
+    entity_id: 'group.main_floor_motion'
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.movie_time
+    state: 'on'
+  action: 
+    - service: home_assistant.turn_on
+      data_template:
+        entity_id: group.main_floor
+    - delay: "00:05:00"
+    - service: home_assistant.turn_off
+      data_template:
+        entity_id: group.main_floor

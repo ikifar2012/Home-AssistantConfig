@@ -1,0 +1,180 @@
+#   - - alias: 'not_home_notify.matheson'
+#     hide_entity: True
+#     trigger:
+#       - platform: state
+#         entity_id: device_tracker.life360_steplock_matheson
+#         from: 'home'
+#         to: 'not_home'
+#     action:
+#       service: notify.matheson
+#       data_template:
+#         title: "Goodbye Matheson"
+#         message: "See You Soon"
+#   - - alias: 'not_home_notify.matheson_sandy'
+#     hide_entity: True
+#     trigger:
+#       - platform: state
+#         entity_id: device_tracker.life360_steplock_sandy
+#         from: 'home'
+#         to: 'not_home'
+#     action:
+#       service: notify.matheson
+#       data_template:
+#         title: "Goodbye Sandy"
+#         message: "See You Soon"
+#   - - alias: 'not_home_notify.matheson_glenn'
+#     hide_entity: True
+#     trigger:
+#       - platform: state
+#         entity_id: device_tracker.life360_steplock_glenn
+#         from: 'home'
+#         to: 'not_home'
+#     action:
+#       service: notify.matheson
+#       data_template:
+#         title: "Goodbye Glenn"
+#         message: "See You Soon"
+#   - - alias: 'home_notify.matheson'
+#     hide_entity: True
+#     trigger:
+#       - platform: state
+#         entity_id: device_tracker.life360_steplock_matheson
+#         from: 'not_home'
+#         to: 'home'
+#     action:
+#       service: notify.matheson
+#       data_template:
+#         title: "Welcome Home"
+#         message: "Welcome Home Matheson"
+#   - - alias: 'home_notify.matheson_sandy'
+#     hide_entity: True
+#     trigger:
+#       - platform: state
+#         entity_id: device_tracker.life360_steplock_sandy
+#         from: 'not_home'
+#         to: 'home'
+#     action:
+#       service: notify.matheson
+#       data_template:
+#         title: "Welcome Home"
+#         message: "Welcome Home Sandy"
+#   - - alias: 'home_notify.matheson_glenn'
+#     hide_entity: True
+#     trigger:
+#       - platform: state
+#         entity_id: device_tracker.life360_steplock_glenn
+#         from: 'not_home'
+#         to: 'home'
+#     action:
+#       service: notify.matheson
+#       data_template:
+#         title: "Welcome Home"
+#         message: "Welcome Home Glenn"
+#   - - alias: 'home_notify.glenn'
+#     hide_entity: True
+#     trigger:
+#       - platform: state
+#         entity_id: device_tracker.life360_steplock_matheson
+#         from: 'not_home'
+#         to: 'home'
+#     action:
+#       service: notify.glenn
+#       data_template:
+#         title: "Welcome Home"
+#         message: "Welcome Home Matheson"
+#   - - alias: 'home_notify.glenn_sandy'
+#     hide_entity: True
+#     trigger:
+#       - platform: state
+#         entity_id: device_tracker.life360_steplock_sandy
+#         from: 'not_home'
+#         to: 'home'
+#     action:
+#       service: notify.glenn
+#       data_template:
+#         title: "Welcome Home"
+#         message: "Welcome Home Sandy"
+#   - - alias: 'home_notify.glenn_glenn'
+#     hide_entity: True
+#     trigger:
+#       - platform: state
+#         entity_id: device_tracker.life360_steplock_glenn
+#         from: 'not_home'
+#         to: 'home'
+#     action:
+#       service: notify.glenn
+#       data_template:
+#         title: "Welcome Home"
+#         message: "Welcome Home Glenn"
+#   - - alias: 'home_notify.sandy'
+#     hide_entity: True
+#     trigger:
+#       - platform: state
+#         entity_id: device_tracker.life360_steplock_matheson
+#         from: 'not_home'
+#         to: 'home'
+#     action:
+#       service: notify.sandy
+#       data_template:
+#         title: "Welcome Home"
+#         message: "Welcome Home Matheson"
+# #  - - alias: 'home_notify.sandy_sandy'
+# #    hide_entity: True
+# #    trigger:
+# #      - platform: state
+# #        entity_id: device_tracker.life360_steplock_sandy
+# #        from: 'not_home'
+# #        to: 'home'
+# #    action:
+# #      service: notify.sandy
+# #      data_template:
+# #        title: "Welcome Home"
+# #        message: "Welcome Home Sandy"
+#   - - alias: 'home_notify.sandy_glenn'
+#     hide_entity: True
+#     trigger:
+#       - platform: state
+#         entity_id: device_tracker.life360_steplock_glenn
+#         from: 'not_home'
+#         to: 'home'
+#     action:
+#       service: notify.sandy
+#       data_template:
+#         title: "Welcome Home"
+#         message: "Welcome Home Glenn"
+#   - - alias: 'not_home_notify.sandy'
+#     hide_entity: True
+#     trigger:
+#       - platform: state
+#         entity_id: device_tracker.life360_steplock_matheson
+#         from: 'home'
+#         to: 'not_home'
+#     action:
+#       service: notify.sandy
+#       data_template:
+#         title: "Goodbye Matheson"
+#         message: "See You Soon"
+# #  - - alias: 'not_home_notify.sandy_sandy'
+# #    hide_entity: True
+# #    trigger:
+# #      - platform: state
+# #        entity_id: device_tracker.life360_steplock_sandy
+# #        from: 'home'
+# #        to: 'not_home'
+# #    action:
+# #      service: notify.sandy
+# #      data_template:
+# #        title: "Goodbye Sandy"
+# #        message: "See You Soon"
+#   - - alias: 'not_home_notify.sandy_glenn'
+#     hide_entity: True
+#     trigger:
+#       - platform: state
+#         entity_id: device_tracker.life360_steplock_glenn
+#         from: 'home'
+#         to: 'not_home'
+#     action:
+#       service: notify.sandy
+#       data_template:
+#         title: "Goodbye Glenn"
+#         message: "See You Soon"

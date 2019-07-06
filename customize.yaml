@@ -1,0 +1,43 @@
+# Alarm clock sensors
+sensor.time:
+  hidden: true
+sensor.alarm_clock_hour:
+  hidden: true
+sensor.alarm_clock_minute:
+  hidden: true
+sensor.alarm_clock_time_long:
+  hidden: true
+sensor.alarm_clock_time:
+  friendly_name: 'Alarm Clock Setting'
+  icon: mdi:alarm
+# Alarm clock inputs
+input_slider.alarm_clock_hour:
+  friendly_name: 'Hour'
+  icon: mdi:timer
+input_slider.alarm_clock_minute:
+  friendly_name: 'Minute'
+  icon: mdi:timer
+input_boolean.alarm_clock_status:
+  friendly_name: 'Alarm Clock Status'
+  icon: mdi:alarm-check
+switch.wake_on_lan:
+  friendly_name: 'My PC'
+  icon: mdi:desktop-classic
+device_tracker.sandys_ipad:
+  track_ios: false
+sensor.ipad_battery_level:
+  hidden: true 
+sensor.ipad_battery_state:
+  hidden: true
+sensor.mathesons_iphone_8_plus_battery_state:
+  hidden: true
+sensor.mathesons_iphone_8_plus_battery_level:
+  hidden: true
+input_boolean.tv:
+  icon: mdi:television
+binary_sensor.tv:
+  icon: mdi:television
+sensor.hass_update_available:
+  icon: mdi:home-assistant
+input_boolean.speech:
+  icon: mdi:voice

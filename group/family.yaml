@@ -1,0 +1,8 @@
+  family:
+    name: Family
+    view: no
+    entities:
+      - device_tracker.life360_matheson_steplock
+      - device_tracker.life360_glenn_steplock
+      - device_tracker.life360_sandy_steplock
+      - device_tracker.life360_zachary_steplock

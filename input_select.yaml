@@ -1,0 +1,6 @@
+home_status:
+  name: "Home Status"
+  options:
+    - Home
+    - Away
+    - Extended Away
