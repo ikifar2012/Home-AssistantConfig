@@ -1,0 +1,9 @@
+kind: pipeline
+name: Home Assistant
+
+steps:
+- name: Check Config
+  image: python
+  commands:
+  - pip3 install homeassistant
+  - pip3 install colorlog
