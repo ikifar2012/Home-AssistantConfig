@@ -7,3 +7,4 @@ steps:
   commands:
   - pip3 install homeassistant
   - pip3 install colorlog
+  - hass --script check_config --info all
