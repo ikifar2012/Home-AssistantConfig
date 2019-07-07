@@ -33,7 +33,6 @@ production_auth.json
 *.json
 node-red/
 notebooks/
-custom_components/
 .spotify-token-cache
 appdaemon/
 .vscode/
