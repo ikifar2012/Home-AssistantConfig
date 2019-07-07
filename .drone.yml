@@ -7,5 +7,6 @@ steps:
   commands:
   - pip3 install homeassistant
   - pip3 install colorlog
+  - sudo apt-get install -y python-dev pkg-config libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libavresample-dev libavfilter-dev
   - mv ci_secrets.yaml secrets.yaml
   - hass -c . --script check_config
