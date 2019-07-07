@@ -8,4 +8,5 @@ steps:
   - pip3 install homeassistant
   - pip3 install colorlog
   - mv ci_secrets.yaml secrets.yaml
+  - hass -c .
   - hass -c . --script check_config --info all
