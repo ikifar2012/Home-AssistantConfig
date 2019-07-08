@@ -42,3 +42,4 @@ Eco Mode.txt
 *.txt
 deps/
 www/
+!ci-requirements.txt
