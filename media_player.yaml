@@ -3,7 +3,3 @@
   - platform: spotify
     client_id: !secret spotify_id
     client_secret: !secret spotify
-  # - platform: dlna_dmr
-  #   url: http://192.168.0.179:9197/dmr
-  - platform: samsungtv
-    host: 192.168.0.104

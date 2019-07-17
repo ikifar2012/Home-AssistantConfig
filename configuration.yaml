@@ -76,8 +76,8 @@ config:
 map:
 mobile_app:
 
-camera:
-  - platform: ring
+camera: !include_dir_merge_list camera/
+
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -97,6 +97,7 @@ sun:
 weather:
   - platform: darksky
     api_key: !secret darkskyapi
+  - platform: environment_canada
 
 
 # Text to speech
