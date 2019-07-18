@@ -14,6 +14,7 @@ steps:
 #   displayName: 'Run a one-line script'
 
 - script: |
+    sudo apt-get install python3-venv
     pip3 install homeassistant
     pip3 install colorlog
     pip3 install -r ci-requirements.txt
