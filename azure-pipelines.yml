@@ -1,0 +1,24 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+# - script: echo Hello, world!
+#   displayName: 'Run a one-line script'
+
+- script: |
+    pip3 install homeassistant
+    pip3 install colorlog
+    pip3 install -r ci-requirements.txt
+    apt-get update
+    apt-get install -y python-dev pkg-config libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libavresample-dev libavfilter-dev
+    mv ci_secrets.yaml secrets.yaml
+    hass -c . --script check_config
+  displayName: 'Home Assistant Config Check Stable'
