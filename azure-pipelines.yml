@@ -11,23 +11,22 @@ pool:
 
 
 stages:
-
-- stage: 'Validate'
-  jobs:
-  - job: 'VersionValidate'
-    pool:
-      vmImage: 'ubuntu-latest'
-    steps:
-    - task: UsePythonVersion@0
-      displayName: 'Use Python 3.7'
-      inputs:
-        versionSpec: '3.7'
-    - script: |
-        sudo apt-get install python3-venv
-        pip3 install homeassistant
-        pip3 install colorlog
-        pip3 install -r ci-requirements.txt
-        apt-get update
-        apt-get install -y python-dev pkg-config libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libavresample-dev libavfilter-dev
-        mv ci_secrets.yaml secrets.yaml
-        hass -c . --script check_config
+  - stage: 'Validate'
+    jobs:
+    - job: 'VersionValidate'
+      pool:
+        vmImage: 'ubuntu-latest'
+      steps:
+      - task: UsePythonVersion@0
+        displayName: 'Use Python 3.7'
+        inputs:
+          versionSpec: '3.7'
+      - script: |
+          sudo apt-get install python3-venv
+          pip3 install homeassistant
+          pip3 install colorlog
+          pip3 install -r ci-requirements.txt
+          apt-get update
+          apt-get install -y python-dev pkg-config libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libavresample-dev libavfilter-dev
+          mv ci_secrets.yaml secrets.yaml
+          hass -c . --script check_config
