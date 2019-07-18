@@ -10,12 +10,6 @@ pool:
   vmImage: 'ubuntu-latest'
 strategy:
   matrix:
-    # Python27:
-    #   python.version: '2.7'
-    # Python35:
-    #   python.version: '3.5'
-    # Python36:
-    #   python.version: '3.6'
     Python37:
       python.version: '3.7'
 
@@ -34,10 +28,8 @@ steps:
     apt-get update
     apt-get install -y python-dev pkg-config libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libavresample-dev libavfilter-dev
     mv ci_secrets.yaml secrets.yaml
-    hass -c . --script check_config
   displayName: 'Install dependencies'
 
 - script: |
-    pip install pytest pytest-azurepipelines
-    pytest
-  displayName: 'pytest'
+    hass -c . --script check_config
+  displayName: 'Test Config'
