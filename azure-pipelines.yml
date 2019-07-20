@@ -24,7 +24,7 @@ steps:
     # pip install -r ci-requirements.txt
     pip3 install homeassistant
     pip3 install colorlog
-    pip3 install -r ci-requirements.txt
+    pip install -r ci-requirements.txt
     apt-get update
     apt-get install -y python-dev pkg-config libavformat-dev libavcodec-dev libavdevice-dev libavutil-dev libswscale-dev libavresample-dev libavfilter-dev
     mv ci_secrets.yaml secrets.yaml
