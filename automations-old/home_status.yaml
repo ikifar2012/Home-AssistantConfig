@@ -21,8 +21,8 @@
 - alias: 'Set Extended Away'
   trigger:
     - platform: state
-      entity_id: group.family_device_trackers
-      to: 'not_home'
+      entity_id: input_select.home_status
+      to: 'Away'
       for: '00:45:00'
   action:
     - service: input_select.select_option
