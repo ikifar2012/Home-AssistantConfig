@@ -79,7 +79,7 @@ mobile_app:
 camera: !include_dir_merge_list camera/
 #### ZoneMinder ####
 zoneminder:
-  - host: 192.168.0.14
+  - host: 192.168.0.14:9080
     username: !secret zmuser
     password: !secret zmpw
 ####################
