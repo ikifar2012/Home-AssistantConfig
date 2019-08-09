@@ -135,7 +135,10 @@ zone 3:
   radius: 200
 scene: !include scene.yaml
 media_extractor:
-
+######## Roku TV ########
+roku:
+  - host: 192.168.0.37
+#########################
 wemo:
   static:
     - 192.168.0.88
