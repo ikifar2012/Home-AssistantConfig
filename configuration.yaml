@@ -198,12 +198,12 @@ alexa_media:
     - email: !secret azemail
       password: !secret azpass
       url: amazon.com
-googlehome:
-  devices:
-    - host: '192.168.0.35'
-      device_types: 2
-      track_alarms: true
-      track_devices: false
+# googlehome:
+#   devices:
+#     - host: '192.168.0.35'
+#       device_types: 2
+#       track_alarms: true
+#       track_devices: false
 stream:
 tplink:
   switch:
