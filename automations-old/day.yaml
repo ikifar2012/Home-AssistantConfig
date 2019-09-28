@@ -12,3 +12,6 @@
     - service: homeassistant.turn_off
       data:
         entity_id: input_boolean.night
+    - service: homeassistant.turn_off
+      data:
+        entity_id: group.front_lighting
