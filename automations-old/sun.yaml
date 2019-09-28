@@ -68,3 +68,11 @@
   #     service: homeassistant.turn_on
   #     data:
   #       entity_id: group.main_floor
+- alias: 'Sunrise Front Lighting Off'
+  trigger:
+    platform: sun
+    event: sunrise
+  action:
+    - service: homeassistant.turn_off
+      data:
+        entity_id: group.front_lighting

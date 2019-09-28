@@ -23,7 +23,7 @@
         {%- if states.sensor.hass_current_stable_version.state != states.sensor.hass_installed_version.state and states.sensor.hass_current_stable_version.state != "unavailable"-%}
           mdi:alert-box
         {% else %}
-          mdi:approval
+          mdi:check-underline
         {% endif %}
     glenn_battery:
       friendly_name: 'Glenn Phone Battery'
