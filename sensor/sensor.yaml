@@ -40,8 +40,6 @@
   token: !secret air
   locations:
     - toronto
-- platform: pi_hole
-  host: 192.168.0.8
   monitored_conditions:
    - ads_blocked_today
    - ads_percentage_today
