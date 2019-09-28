@@ -43,18 +43,18 @@
     - service: homeassistant.turn_on
       data:
         entity_id: group.front_lighting
-- alias: 'Sunset Outdoor Overcast'
-  trigger:
-    platform: sun
-    event: sunset
-  condition:
-    condition: state
-    entity_id: sensor.dark_sky_summary
-    state: 'Overcast'
-  action:
-    - service: homeassistant.turn_on
-      data:
-        entity_id: group.front_light
+# - alias: 'Sunset Outdoor Overcast'
+#   trigger:
+#     platform: sun
+#     event: sunset
+#   condition:
+#     condition: state
+#     entity_id: sensor.dark_sky_summary
+#     state: 'Overcast'
+#   action:
+#     - service: homeassistant.turn_on
+#       data:
+#         entity_id: group.front_lighting
   # - - alias: 'Sunset Main Floor Rain or Cloud'
   #   trigger:
   #     platform: sun

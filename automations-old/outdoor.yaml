@@ -7,7 +7,7 @@
   condition:
     condition: sun
     after: sunset
-    offset: "-00:45:00"
+    after_offset: "-00:45:00"
   action:
     - service: script.turn_on
       data:
@@ -21,7 +21,7 @@
   condition:
     condition: sun
     after: sunset
-    offset: "-00:45:00"
+    after_offset: "-00:45:00"
   action:
     - service: script.turn_on
       data:
@@ -35,7 +35,7 @@
   condition:
     condition: sun
     after: sunset
-    offset: "-00:45:00"
+    after_offset: "-00:45:00"
   action:
     - service: script.turn_on
       data:
