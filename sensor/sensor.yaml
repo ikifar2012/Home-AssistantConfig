@@ -40,12 +40,6 @@
   token: !secret air
   locations:
     - toronto
-  monitored_conditions:
-   - ads_blocked_today
-   - ads_percentage_today
-# - platform: time_date
-#   display_options:
-#     - 'time'
 - platform: command_line
   name: Weather Alerts
   command: curl -sSL https://weather.gc.ca/rss/battleboard/on11_e.xml | grep title | tail --lines=+2 | sed -e s/' <title>'// | sed -e s/'<\/title>'// | tail -1
