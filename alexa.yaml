@@ -3,7 +3,7 @@ smart_home:
     include_entities:
       - script.going_to_bed
       - input_boolean.movie_time
-      - cover.garage_door_opener
+      - cover.garage_door
     include_domains:
       - switch
       - light

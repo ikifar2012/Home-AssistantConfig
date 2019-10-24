@@ -47,7 +47,7 @@ homekit:
       - switch
       - light
     include_entities:
-      - cover.garage_door_opener
+      - cover.garage_door
   # filter:
   #   include_entities:
   #     - demo.demo
@@ -62,7 +62,7 @@ google_assistant:
       expose: true
     input_boolean.movie_time:
       expose: true
-    cover.garage_door_opener:
+    cover.garage_door:
       expose: true
 ######################################
 ########## Basic Configuration ###########

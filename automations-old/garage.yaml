@@ -1,7 +1,7 @@
 - alias: 'Garage Door Open'
   trigger:
     platform: state
-    entity_id: cover.garage_door_opener
+    entity_id: cover.garage_door
     from: "closed"
     to: "open"
   action:
@@ -12,7 +12,7 @@
 - alias: 'Garage Door Closed'
   trigger:
     platform: state
-    entity_id: cover.garage_door_opener
+    entity_id: cover.garage_door
     from: "open"
     to: "closed"
   action:
