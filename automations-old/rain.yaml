@@ -7,5 +7,8 @@
       entity_id: sensor.dark_sky_summary
       to: 'Heavy Rain'
   action: 
+    - service: script.say_sonos
+      data_template:
+        message: "It has started to rain, so I have turned on the Lights"
     - service: homeassistant.turn_on
       entity_id: group.main_floor

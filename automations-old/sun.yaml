@@ -2,12 +2,15 @@
   trigger:
     - platform: sun
       event: sunset
-      offset: '-00:50:00'
+      offset: '-01:00:00'
   condition:
     - condition: state
       entity_id: input_select.home_status
       state: 'Home'
   action:
+    - service: script.say_sonos
+      data_template:
+        message: "It's getting dark outside, so I have turned on the lights"
     - service: homeassistant.turn_on
       data:
         entity_id: group.main_floor
@@ -40,6 +43,9 @@
     platform: sun
     event: sunset
   action:
+    - service: script.say_sonos
+      data_template:
+        message: "The sun has set and now I have turned on the Outside Lights"
     - service: homeassistant.turn_on
       data:
         entity_id: group.front_lighting

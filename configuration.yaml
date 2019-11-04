@@ -22,6 +22,7 @@ switch: !include switch.yaml
 # packages: !include_dir_named packages
 input_text: !include input_text.yaml
 # input_slider: !include input_slider.yaml
+scene: !include scene.yaml
 image_processing: !include image_processing.yaml
 ###############################################
 
@@ -144,7 +145,6 @@ zone 3:
   latitude: !secret latitudeschool
   longitude: !secret longitudeschool
   radius: 200
-scene: !include scene.yaml
 media_extractor:
 ######## Roku TV ########
 roku:
@@ -199,6 +199,9 @@ alexa_media:
       password: !secret azpass
       url: amazon.com
 pi_hole:
+  host: '192.168.0.8'
+  ssl: false
+  verify_ssl: false
 # googlehome:
 #   devices:
 #     - host: '192.168.0.35'
