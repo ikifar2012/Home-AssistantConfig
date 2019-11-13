@@ -14,7 +14,7 @@ say_sonos:
     - service: media_player.volume_set
       data_template:
         entity_id: "media_player.main_floor"
-        volume_level: '0.5'
+        volume_level: '0.4'
     - service: tts.google_translate_say
       data_template:
         entity_id: "media_player.main_floor"
