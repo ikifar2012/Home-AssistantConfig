@@ -22,15 +22,12 @@ switch: !include switch.yaml
 # packages: !include_dir_named packages
 input_text: !include input_text.yaml
 # input_slider: !include input_slider.yaml
-scene: !include scene.yaml
+scene: !include scenes.yaml
 image_processing: !include image_processing.yaml
 ###############################################
 
 #################### HTTP #####################
 http:
-#  api_password: !secret MQTT_PASSWORD
-#  ssl_certificate: !secret cert
-#  ssl_key: !secret ssl_key
   base_url: !secret base_url
   use_x_forwarded_for: true
   trusted_proxies: 192.168.0.17

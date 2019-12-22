@@ -22,10 +22,6 @@
         friendly_name: Fireplace
         command_on: 'JgBoAAABKJcSEhIUERQRFBITEhQRFBITETkSORE5EjkSORE5ETkSORI4ERURExMTERQRFBITEjkSExE5EjkSORE5EzgROREUEgAFKwABKUsTAAxwAAEpSxMADHEAAShLEgAMcgABKEsSAA0F'
         command_off: 'JgBoAAABKJcSEhIUERQRFBITEhQRFBITETkSORE5EjkSORE5ETkSORI4ERURExMTERQRFBITEjkSExE5EjkSORE5EzgROREUEgAFKwABKUsTAAxwAAEpSxMADHEAAShLEgAMcgABKEsSAA0F'
-  - platform: wake_on_lan
-    mac_address: "08-62-66-87-62-A2"
-    turn_off:
-      service: shell_command.lock
   - platform: mqtt
     name: "Washing Machine"
     icon: mdi:washing-machine

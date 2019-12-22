@@ -2,7 +2,7 @@
   trigger:
     - platform: sun
       event: sunset
-      offset: '-00:35:00'
+      offset: '-00:25:00'
   condition:
     - condition: state
       entity_id: input_select.home_status
