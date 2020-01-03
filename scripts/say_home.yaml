@@ -14,7 +14,7 @@ say_home:
     - service: media_player.volume_set
       data_template:
         entity_id: "{{ entity_id }}"
-        volume_level: '0.4'
+        volume_level: '0.5'
     - service: media_extractor.play_media
       data:
         entity_id: media_player.main_floor
