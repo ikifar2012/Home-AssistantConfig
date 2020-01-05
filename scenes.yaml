@@ -1,0 +1,40 @@
+- id: '1578195382239'
+  name: Going to Bed
+  entities:
+    automation.pot_lights_on_rain:
+      friendly_name: Pot Lights On Rain
+      last_triggered: '2019-12-30T14:44:07.071767+00:00'
+      state: 'off'
+    group.front_lighting:
+      entity_id:
+      - switch.front_door
+      - switch.outdoor_landscaping
+      friendly_name: Front Lighting
+      order: 4
+      state: 'off'
+    group.kitchen:
+      entity_id:
+      - switch.kitchen_pot_lights
+      - switch.kitchen_cabinet_lights
+      friendly_name: Kitchen Lights
+      order: 5
+      state: 'off'
+    group.main_floor:
+      entity_id:
+      - switch.dining_room
+      - switch.kitchen_pot_lights
+      - switch.living_room
+      - switch.island_lights
+      friendly_name: Main Floor
+      order: 6
+      state: 'off'
+    input_boolean.speech:
+      friendly_name: Speech
+      icon: mdi:voice
+      state: 'off'
+    switch.deck_light:
+      friendly_name: Deck Light
+      state: 'off'
+    switch.outdoor_landscaping:
+      friendly_name: Outdoor Landscaping
+      state: 'off'
