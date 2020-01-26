@@ -1,4 +1,3 @@
-# entity_id: 
 - switch.basement_echo_do_not_disturb_switch
 - switch.basement_echo_repeat_switch
 - switch.basement_echo_shuffle_switch
