@@ -46,6 +46,7 @@ homekit:
       - light
     include_entities:
       - cover.garage_door
+    exclude_entities: homekit_exclude.yaml
   # filter:
   #   include_entities:
   #     - demo.demo

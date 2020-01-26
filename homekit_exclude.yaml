@@ -1,0 +1,16 @@
+# entity_id: 
+- switch.basement_echo_do_not_disturb_switch
+- switch.basement_echo_repeat_switch
+- switch.basement_echo_shuffle_switch
+- switch.matheson_s_bedroom_echo_dot_do_not_disturb_switch
+- switch.matheson_s_bedroom_echo_dot_repeat_switch
+- switch.matheson_s_bedroom_echo_dot_shuffle_switch
+- switch.matheson_s_echo_dot_do_not_disturb_switch
+- switch.matheson_s_echo_dot_repeat_switch
+- switch.matheson_s_echo_dot_shuffle_switch
+- switch.main_floor_do_not_disturb_switch
+- switch.main_floor_repeat_switch
+- switch.main_floor_shuffle_switch
+- switch.this_device_do_not_disturb_switch
+- switch.this_device_repeat_switch
+- switch.this_device_shuffle_switch
