@@ -165,6 +165,8 @@ cover:
     type: chamberlain
 logger:
   default: warning
+  logs:
+    homeassistant.components.mqtt.binary_sensor: critical
   # logs:
     # homeassistant.components.homekit: debug
     # pyhap: debug
