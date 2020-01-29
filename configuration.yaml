@@ -52,7 +52,7 @@ homekit:
   #     - demo.demo
 google_assistant:
   project_id: hass-46714
-  api_key: !secret google_api
+  # api_key: !secret google_api
   exposed_domains:
     - switch
     - light
