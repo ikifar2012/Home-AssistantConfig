@@ -88,10 +88,6 @@ esxi_stats:
   host: 192.168.0.2
   username: !secret esxi_user
   password: !secret esxi_pw
-  monitored_conditions:
-    - hosts
-    - vms
-    - datastores
 #####################
 
 # Allows you to issue voice commands from the frontend in enabled browsers
