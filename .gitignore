@@ -44,3 +44,4 @@ deps/
 www/
 !ci-requirements.txt
 *.old
+zones/
