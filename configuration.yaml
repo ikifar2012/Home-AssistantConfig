@@ -117,28 +117,17 @@ tts:
     base_url: http://192.168.0.19:8123
 
 
-ring:
-  username: !secret emailring
-  password: !secret ring
+# ring:
+#   username: !secret emailring
+#   password: !secret ring
 
 notify:
   - platform: html5
     vapid_pub_key: !secret vappubkey
     vapid_prv_key: !secret vapprvkey
     vapid_email: !secret vapemail
+zone: !include_dir_merge_list zones/
 
-zone 2:
-  name: Work
-  icon: mdi:briefcase
-  latitude: !secret latitudework
-  longitude: !secret longitudework
-  radius: 200
-zone 3:
-  name: School
-  icon: mdi:school
-  latitude: !secret latitudeschool
-  longitude: !secret longitudeschool
-  radius: 200
 media_extractor:
 ######## Roku TV ########
 roku:

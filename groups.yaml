@@ -5,7 +5,7 @@
 
 #  notify_family:
 #    name: Notify Family
-#    view: no
+#    # view: no
 #    entities:
 #      - notify.matheson
 #      - notify.glenn

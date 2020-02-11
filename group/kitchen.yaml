@@ -1,6 +1,6 @@
   kitchen:
     name: 'Kitchen Lights'
-    view: no
+    # view: no
     entities:
       - switch.kitchen_pot_lights
       - switch.kitchen_cabinet_lights

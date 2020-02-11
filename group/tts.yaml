@@ -1,6 +1,6 @@
   tts:
     name: TTS
-    view: no
+    # view: no
     entities:
       - automation.matheson_home_tts
       - automation.matheson_school_tts

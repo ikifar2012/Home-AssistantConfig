@@ -1,6 +1,6 @@
   main_floor_tv:
     name: Main Floor TV
-    view: no
+    # view: no
     entities:
       -  binary_sensor.tv
       - switch.tv

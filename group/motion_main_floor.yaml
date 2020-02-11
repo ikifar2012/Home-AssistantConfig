@@ -1,6 +1,6 @@
   main_floor_motion:
     name: Main Floor Motion
-    view: no
+    # view: no
     entities:
       - binary_sensor.main_floor_back_motion
       - binary_sensor.main_floor_front_motion

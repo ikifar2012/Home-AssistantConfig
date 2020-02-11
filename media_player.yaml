@@ -1,5 +1,5 @@
-  - platform: spotify
-    client_id: !secret spotify_id
-    client_secret: !secret spotify
+  # - platform: spotify
+  #   client_id: !secret spotify_id
+  #   client_secret: !secret spotify
   - platform: yamaha_musiccast
     host: 192.168.0.22

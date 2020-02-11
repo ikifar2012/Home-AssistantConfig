@@ -1,5 +1,5 @@
   power:
     name: Power
-    view: no
+    # view: no
     entities:
       - sensor.ohmconnect_status

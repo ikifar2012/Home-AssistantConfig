@@ -1,6 +1,6 @@
   nest:
     name: Climate
-    view: no
+    # view: no
     entities:
       - climate.hallway
       - sensor.hallway_thermostat_humidity      

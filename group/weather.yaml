@@ -1,6 +1,6 @@
   weather:
     name: Weather
-    view: no
+    # view: no
     entities:
       - sun.sun
       - sensor.dark_sky_icon

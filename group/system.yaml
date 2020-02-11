@@ -1,6 +1,6 @@
   system_status:
     name: System Status
-    view: no
+    # view: no
     entities:
       - updater.updater
       - sensor.netdata_ram_free

@@ -1,6 +1,6 @@
   family:
     name: Family
-    view: no
+    # view: no
     entities:
       - device_tracker.life360_matheson_steplock
       - device_tracker.life360_glenn_steplock

@@ -1,6 +1,6 @@
 #  battery:
 #    name: Battery
-#    view: no
+#    # view: no
 #    entities:
 #      - sensor.mathesons_battery
 #      - sensor.glenns_battery

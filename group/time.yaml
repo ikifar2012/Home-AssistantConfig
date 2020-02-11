@@ -1,6 +1,6 @@
   # time:
   #   name: Time and Date
-  #   view: no
+  #   # view: no
   #   entities:
   #     - sensor.date
   #     - sensor.time
