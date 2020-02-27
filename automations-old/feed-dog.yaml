@@ -3,7 +3,7 @@
     platform: time
     at: '16:30:00'
   action: 
-    - service: script.say_sonos
+    - service: script.say_all
       data_template:
         entity_id: media_player.main_floor
         message: "Time to Feed the Dog!"
