@@ -18,8 +18,9 @@ say_all:
         entity_id: "media_player.master_bedroom_speaker"
         message: "{{ message }}"
     - service: notify.alexa_media
-      data:
-        target: "media_player.basement_echo"
-        data:
-          type: tts
+      data_template:
+        target: 
+          - media_player.basement_echo
         message: "{{ message }}"
+        data:
+          type: announce
