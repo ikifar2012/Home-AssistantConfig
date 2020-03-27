@@ -17,13 +17,6 @@
     minutes: 5
     seconds: 30
     milliseconds: 0
-- platform: ring
-  monitored_conditions:
-    - battery
-    - last_activity
-    - last_ding
-    - last_motion
-    - volume
 - platform: waze_travel_time
   name: Home to Work
   origin: !secret homeaddr
