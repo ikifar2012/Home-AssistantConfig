@@ -10,7 +10,7 @@ homeassistant:
 light: !include_dir_merge_list light/
 sensor: !include_dir_merge_list sensor/
 group: !include_dir_merge_named group/
-automation: !include automations.yaml
+automation editor: !include automations.yaml
 automation folder: !include_dir_merge_list automations/
 # panel_iframe: !include_dir_merge_list panel_iframe/
 shell_command: !include_dir_merge_named shell-commands/
