@@ -1,0 +1,9 @@
+- alias: 'Doorbell Ring'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_ding
+      to: 'on'
+  action:
+    - service: script.say_all
+      data_template:
+        message: 'There is Someone at the Door!!'
