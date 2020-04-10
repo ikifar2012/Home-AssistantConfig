@@ -9,7 +9,8 @@ https://community.home-assistant.io/t/echo-devices-alexa-as-media-player-testers
 """
 import asyncio
 import logging
-from typing import List  # noqa pylint: disable=unused-import
+import re
+from typing import List, Text  # noqa pylint: disable=unused-import
 
 from homeassistant import util
 from homeassistant.components.media_player import MediaPlayerDevice
@@ -269,6 +270,10 @@ class AlexaClient(MediaPlayerDevice):
                 if event.data["queue_state"]
                 else None
             )
+        elif "push_activity" in event.data:
+            event_serial = (
+                event.data.get("push_activity", {}).get("key", {}).get("serialNumber")
+            )
         if not event_serial:
             return
         self.available = True
@@ -345,6 +350,17 @@ class AlexaClient(MediaPlayerDevice):
                     if self.hass and self.async_schedule_update_ha_state:
                         self.async_schedule_update_ha_state()
                 await _refresh_if_no_audiopush(already_refreshed)
+        elif "push_activity" in event.data:
+            if self.state in {STATE_IDLE, STATE_PAUSED, STATE_PLAYING}:
+                _LOGGER.debug(
+                    "%s checking for potential state update due to push activity on %s",
+                    self.name,
+                    hide_serial(event_serial),
+                )
+                # allow delay before trying to refresh to avoid http 400 errors
+                await asyncio.sleep(2)
+                await self.async_update()
+                already_refreshed = True
         if "queue_state" in event.data:
             queue_state = event.data["queue_state"]
             if event_serial == self.device_serial_number:
@@ -808,9 +824,12 @@ class AlexaClient(MediaPlayerDevice):
         return self._last_update
 
     @property
-    def media_image_url(self):
+    def media_image_url(self) -> Text:
         """Return the image URL of current playing media."""
-        return self._media_image_url
+        if self._media_image_url:
+            return re.sub("\\(", "%28", re.sub("\\)", "%29", self._media_image_url))
+            # fix failure of HA media player ui to quote "(" or ")"
+        return None
 
     @property
     def media_image_remotely_accessible(self):

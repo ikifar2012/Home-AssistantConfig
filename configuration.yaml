@@ -95,7 +95,7 @@ esxi_stats:
 ######## Recorder ########
 recorder:
   purge_interval: 2
-  purge_keep_days: 7
+  purge_keep_days: 31
   db_url: !secret db_url
 #########################
 
