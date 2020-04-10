@@ -50,27 +50,18 @@
         entity_id: media_player.master_bedroom_speaker
 
 
-- alias: 'Motion Glenn'
+- alias: 'Motion Morning'
   trigger:
     - platform: state
       entity_id: group.main_floor_motion
       to: 'on'
   condition:
-    condition: and
-    conditions:
-      - condition: sun
-        before: sunrise
-      - condition: time
-        # At least one of the following is required.
-        after: '05:00:00'
-      - condition: state
-        entity_id: 'binary_sensor.workday_sensor'
-        state: 'on'
+    - condition: time
+      after: '07:00:00'
   action:
     - service: homeassistant.turn_off
       data_template:
         entity_id: input_boolean.night
-    # - delay: '00:00:03'
-    - service: homeassistant.turn_on
-      data_template:
-        entity_id: group.main_floor
+    # - service: homeassistant.turn_on
+    #   data_template:
+    #     entity_id: group.main_floor

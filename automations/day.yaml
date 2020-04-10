@@ -1,7 +1,8 @@
-- alias: 'Day TTS'
+- alias: 'Day Mode'
   trigger:
-    platform: time
-    at: '7:10:00'
+    - platform: state
+      entity_id: input_boolean.night
+      to: 'off'
   action:
     - service: homeassistant.turn_on
       data:
@@ -9,9 +10,9 @@
     - service: automation.turn_on
       data:
         entity_id: automation.pot_lights_on_rain
-    - service: homeassistant.turn_off
-      data:
-        entity_id: input_boolean.night
+    # - service: homeassistant.turn_off
+    #   data:
+    #     entity_id: input_boolean.night
     - service: homeassistant.turn_off
       data:
         entity_id: group.front_lighting
