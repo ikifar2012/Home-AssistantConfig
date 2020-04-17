@@ -163,6 +163,8 @@ logger:
   logs:
     homeassistant.components.mqtt.binary_sensor: error
     homeassistant.components.yamaha: critical
+    homeassistant.loader: error
+    homeassistant.components.alexa_media: error
   # logs:
     # homeassistant.components.homekit: debug
     # pyhap: debug
