@@ -52,7 +52,7 @@ homekit:
   #   include_entities:
   #     - demo.demo
 google_assistant:
-  project_id: hass-46714
+  project_id: !secret project_id
   service_account: !include SERVICE_ACCOUNT.json
   exposed_domains:
     - switch
@@ -159,9 +159,10 @@ cover:
     password: !secret myqpass
     type: chamberlain
 logger:
-  default: warning
+  default: warn
   logs:
-    homeassistant.components.mqtt.binary_sensor: critical
+    homeassistant.components.mqtt.binary_sensor: error
+    homeassistant.components.yamaha: critical
   # logs:
     # homeassistant.components.homekit: debug
     # pyhap: debug
