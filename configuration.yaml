@@ -161,7 +161,7 @@ cover:
 logger:
   default: warn
   logs:
-    homeassistant.components.mqtt.binary_sensor: error
+    homeassistant.components.mqtt.binary_sensor: critical
     homeassistant.loader: error
     homeassistant.components..switch.alexa_media: error
   # logs:
