@@ -1,1 +1,1 @@
-gc home-assistant.log -wait
+Get-Content home-assistant.log -Wait -Tail 10
