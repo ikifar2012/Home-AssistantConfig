@@ -1,6 +1,6 @@
 - alias: 'Pot Lights On Rain'
   trigger: 
-    - platform:
+    - platform: state
       entity_id: weather.richmond_hill
       to: 'Rain'
     # - platform: state 
