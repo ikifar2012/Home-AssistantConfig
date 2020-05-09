@@ -1,11 +1,14 @@
 - alias: 'Pot Lights On Rain'
   trigger: 
-    - platform: state 
-      entity_id: sensor.dark_sky_summary
-      to: 'Light Rain'
-    - platform: state 
-      entity_id: sensor.dark_sky_summary
-      to: 'Heavy Rain'
+    - platform:
+      entity_id: weather.richmond_hill
+      to: 'Rain'
+    # - platform: state 
+    #   entity_id: sensor.dark_sky_summary
+    #   to: 'Light Rain'
+    # - platform: state 
+    #   entity_id: sensor.dark_sky_summary
+    #   to: 'Heavy Rain'
   action: 
     - service: script.say_sonos
       data_template:
