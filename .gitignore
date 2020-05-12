@@ -46,4 +46,4 @@ secrets.yaml
 tts
 www/
 zones/
-!www/sounds
+!www/sounds/*
