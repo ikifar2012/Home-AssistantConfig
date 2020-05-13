@@ -18,7 +18,7 @@ say_alert:
     - service: media_extractor.play_media
       data:
         entity_id: media_player.main_floor
-        media_content_id: 'http://192.168.0.19:66/trumpet.mp3'
+        media_content_id: '/local/sounds/trumpet.mp3'
         media_content_type: 'music'
     - delay: '00:00:09'
     - service: tts.google_translate_say
