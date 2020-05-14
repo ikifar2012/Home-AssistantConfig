@@ -10,6 +10,7 @@
   trigger:
     - platform: state
       entity_id: sensor.watches
+      from: ''
   action:
     - service: script.say_alert
       data_template:
