@@ -2,6 +2,9 @@
   trigger:
     - platform: state
       entity_id: sensor.warnings
+  condition:
+    - condition: template
+      value_template: "{{ not is_state('sensor.warnings', '') }}"
   action:
     - service: script.say_alert
       data_template:
@@ -10,7 +13,9 @@
   trigger:
     - platform: state
       entity_id: sensor.watches
-      from: ''
+  condition:
+    - condition: template
+      value_template: "{{ not is_state('sensor.warnings', '') }}"
   action:
     - service: script.say_alert
       data_template:

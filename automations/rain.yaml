@@ -2,7 +2,7 @@
   trigger: 
     - platform: state
       entity_id: weather.richmond_hill
-      to: 'Rain'
+      to: 'Rainy'
     # - platform: state 
     #   entity_id: sensor.dark_sky_summary
     #   to: 'Light Rain'
