@@ -119,6 +119,7 @@ weather:
   - platform: darksky
     api_key: !secret darkskyapi
   - platform: environment_canada
+    forecast: hourly
 
 
 # Text to speech

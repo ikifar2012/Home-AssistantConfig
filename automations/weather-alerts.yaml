@@ -1,0 +1,16 @@
+- alias: 'Weather Warning Alert'
+  trigger:
+    - platform: state
+      entity_id: sensor.warnings
+  action:
+    - service: script.say_alert
+      data_template:
+        message: "{{ states('sensor.warnings') }} in effect. {{ state_attr('sensor.warnings', 'alert detail') }}"
+- alias: 'Weather Watches Alert'
+  trigger:
+    - platform: state
+      entity_id: sensor.watches
+  action:
+    - service: script.say_alert
+      data_template:
+        message: "{{ states('sensor.watches') }} in effect. {{ state_attr('sensor.watches', 'alert detail') }}"
