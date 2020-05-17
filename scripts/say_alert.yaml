@@ -12,12 +12,12 @@ say_alert:
       data_template:
         entity_id: "media_player.main_floor"
         volume_level: '0.5'
-    - service: media_extractor.play_media
-      data:
-        entity_id: media_player.main_floor
-        media_content_id: '/local/sounds/trumpet.mp3'
-        media_content_type: 'music'
-    - delay: '00:00:09'
+    # - service: media_extractor.play_media
+    #   data:
+    #     entity_id: media_player.main_floor
+    #     media_content_id: '/local/sounds/trumpet.mp3'
+    #     media_content_type: 'music'
+    # - delay: '00:00:09'
     - service: script.say_all
       data_template:
         message: "{{ message }}"
