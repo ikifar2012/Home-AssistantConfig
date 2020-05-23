@@ -33,13 +33,13 @@
   token: !secret air
   locations:
     - toronto
-- platform: command_line
-  name: Weather Alerts
-  command: curl -sSL https://weather.gc.ca/rss/battleboard/on11_e.xml | grep title | tail --lines=+2 | sed -e s/' <title>'// | sed -e s/'<\/title>'// | tail -1
+# - platform: command_line
+#   name: Weather Alerts
+#   command: curl -sSL https://weather.gc.ca/rss/battleboard/on11_e.xml | grep title | tail --lines=+2 | sed -e s/' <title>'// | sed -e s/'<\/title>'// | tail -1
 - platform: template
   sensors:
     clear:
       value_template: "{{ 'Clear' in states.sensor.dark_sky_summary.state }}"
-- platform: command_line
-  name: Red Alerts
-  command: curl -sSL https://www.emergencymanagementontario.ca/feeds/redalerts.ashx | grep description | sed -e s/' <description>'// | sed -e s/'<\/description>'//
+# - platform: command_line
+#   name: Red Alerts
+#   command: curl -sSL https://www.emergencymanagementontario.ca/feeds/redalerts.ashx | grep description | sed -e s/' <description>'// | sed -e s/'<\/description>'//
