@@ -8,7 +8,7 @@
   action:
     - service: script.say_alert
       data_template:
-        message: "{{ states('sensor.warnings') }} in effect. {{ state_attr('sensor.warnings', 'alert detail') }}"
+        message: "{{ states('sensor.warnings') }} in effect."
 - alias: 'Weather Watches Alert'
   trigger:
     - platform: state
@@ -19,4 +19,4 @@
   action:
     - service: script.say_alert
       data_template:
-        message: "{{ states('sensor.watches') }} in effect. {{ state_attr('sensor.watches', 'alert detail') }}"
+        message: "{{ states('sensor.watches') }} in effect."
