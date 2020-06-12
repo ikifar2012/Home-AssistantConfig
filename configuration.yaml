@@ -126,7 +126,6 @@ weather:
 # Text to speech
 tts:
   - platform: google_translate
-    base_url: http://192.168.0.19:8123
 
 
 # ring:
