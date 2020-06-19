@@ -14,34 +14,15 @@
     - service: homeassistant.turn_on
       data:
         entity_id: group.main_floor
-    - service: homeassistant.turn_on
-      data:
-        entity_id: group.front_lighting
-# - alias: 'Sunset Main Floor Overcast'
-#   trigger:
-#     - platform: sun
-#       event: sunset
-#       offset: '-00:50:00'
-#   condition:
-#     condition: and
-#     conditions:
-#       - condition: state
-#         entity_id: sensor.dark_sky_summary
-#         state: 'Overcast'
-#       - condition: state
-#         entity_id: input_select.home_status
-#         state: 'Home'
-#   action:
-#     - service: homeassistant.turn_on
-#       data:
-#         entity_id: group.main_floor
-#     - service: homeassistant.turn_on
-#       data:
-#         entity_id: switch.outdoor_landscaping
-- alias: 'Sunset Outdoor'
+
+- alias: 'Sunset Outdoor Winter'
   trigger:
     platform: sun
     event: sunset
+  condition:
+    - condition: state
+      entity_id: sensor.season
+      state: 'Winter'
   action:
     - service: script.say_sonos
       data_template:
@@ -49,31 +30,28 @@
     - service: homeassistant.turn_on
       data:
         entity_id: group.front_lighting
-# - alias: 'Sunset Outdoor Overcast'
-#   trigger:
-#     platform: sun
-#     event: sunset
-#   condition:
-#     condition: state
-#     entity_id: sensor.dark_sky_summary
-#     state: 'Overcast'
-#   action:
-#     - service: homeassistant.turn_on
-#       data:
-#         entity_id: group.front_lighting
-  # - - alias: 'Sunset Main Floor Rain or Cloud'
-  #   trigger:
-  #     platform: sun
-  #     event: sunset
-  #     offset: '-00:50:00'
-  #   condition:
-  #     condition: state
-  #     entity_id: 'sensor.clear'
-  #     state: 'False'
-  #   action:
-  #     service: homeassistant.turn_on
-  #     data:
-  #       entity_id: group.main_floor
+
+- alias: 'Sunset Outdoor Not Winter'
+  trigger:
+    platform: sun
+    event: sunset
+  condition:
+    condition: not
+    conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'Winter'
+  action:
+    - service: script.say_sonos
+      data_template:
+        message: "The sun has set and now I have turned on the Outside Lights"
+    - service: homeassistant.turn_on
+      data:
+        entity_id: switch.front_door
+    - service: homeassistant.turn_off
+      data:
+        entity_id: switch.outdoor_landscaping
+
 - alias: 'Sunrise Front Lighting Off'
   trigger:
     platform: sun

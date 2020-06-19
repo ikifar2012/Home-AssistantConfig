@@ -1,0 +1,7 @@
+fan_off:
+  alias: 'Nest Fan Off'
+  sequence:
+    - entity_id: climate.hallway
+      service: climate.set_fan_mode
+      data:
+        fan_mode: 'auto'

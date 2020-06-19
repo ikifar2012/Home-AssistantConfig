@@ -30,3 +30,24 @@
       to: 'Away'
   action:
     - service: script.nest_set_home
+- alias: 'Nest Fan Summer On'
+  trigger: 
+    - platform: state
+      entity_id: input_boolean.night
+      to: 'on'
+  condition:
+    - condition: state
+      entity_id: sensor.season
+      state: 'Summer'
+  action:
+    - service: script.fan_on
+- alias: 'Nest Fan Summer Off'
+  trigger: 
+    - platform: time
+      at: '11:00:00'
+  condition:
+    - condition: state
+      entity_id: sensor.season
+      state: 'Summer'
+  action:
+    - service: script.fan_off

@@ -1,0 +1,12 @@
+- alias: 'Fountain On'
+  trigger:
+    platform: time
+    at: "15:00:00"
+  condition:
+    - condition: state
+      entity_id: sensor.season
+      state: 'Summer'
+  action:
+    - service: home_assistant.turn_on
+      data_template:
+        entity_id: switch.outdoor_landscaping
