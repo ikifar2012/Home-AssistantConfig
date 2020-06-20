@@ -64,13 +64,13 @@
   trigger:
     - platform: state
       entity_id: binary_sensor.patio_door
-      from: 'off'
-      to: 'on'
+      from: 'on'
+      to: 'off'
   condition:
     - condition: time
       after: '22:00:00'
       before: '06:00:00'
   action:
     - service: scene.turn_on
-      data:
+      data_template:
         entity_id: scene.before_main_floor
