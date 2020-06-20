@@ -68,7 +68,7 @@
       to: 'on'
   condition:
     - condition: time
-      after: '22:30:00'
+      after: '22:00:00'
       before: '06:00:00'
   action:
     - service: scene.turn_on
