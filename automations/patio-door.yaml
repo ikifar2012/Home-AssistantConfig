@@ -32,3 +32,45 @@
   action:
     - service: switch.turn_off
       entity_id: switch.deck_light
+- alias: 'Patio Door Lights Off Inside'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.patio_door
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: time
+      after: '22:30:00'
+      before: '06:00:00'
+  action:
+    - service: scene.create
+      data:
+        scene_id: before_main_floor
+        snapshot_entities:
+        - switch.dining_room
+        - switch.island_lights
+        - switch.kitchen_cabinet_lights
+        - switch.living_room
+        - switch.kitchen_pot_lights
+    - service: homeassistant.turn_off
+      data_template:
+        entity_id:
+        - switch.dining_room
+        - switch.island_lights
+        - switch.kitchen_cabinet_lights
+        - switch.living_room
+        - switch.kitchen_pot_lights
+- alias: 'Patio Door Lights On Inside'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.patio_door
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: time
+      after: '22:30:00'
+      before: '06:00:00'
+  action:
+    - service: scene.turn_on
+      data:
+        entity_id: scene.before_main_floor

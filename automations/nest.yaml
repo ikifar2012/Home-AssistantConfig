@@ -39,7 +39,7 @@
   condition:
     - condition: state
       entity_id: sensor.season
-      state: 'Summer'
+      state: 'summer'
   action:
     - service: script.fan_on
 - alias: 'Nest Fan Summer Off'
@@ -49,6 +49,6 @@
   condition:
     - condition: state
       entity_id: sensor.season
-      state: 'Summer'
+      state: 'summer'
   action:
     - service: script.fan_off
