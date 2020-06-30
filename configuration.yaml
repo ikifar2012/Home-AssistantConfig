@@ -100,6 +100,15 @@ recorder:
   db_url: !secret db_url
 #########################
 
+######## Cloudflare ########
+cloudflare:
+  email: !secret emailM
+  api_key: !secret cfapi
+  zone: !secret cfzone
+  records:
+    - !secret cfrecord
+#########################
+
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
