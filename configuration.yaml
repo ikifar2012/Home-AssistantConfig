@@ -46,9 +46,9 @@ homekit:
       - climate
       - switch
       - light
+      - camera
     include_entities:
       - cover.garage_door
-      - camera.driveway
     exclude_entities: !include homekit_exclude.yaml
   # filter:
   #   include_entities:
@@ -59,6 +59,7 @@ google_assistant:
   exposed_domains:
     - switch
     - light
+    - camera
   entity_config:
     script.going_to_bed:
       expose: true
