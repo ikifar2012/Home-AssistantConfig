@@ -48,6 +48,7 @@ homekit:
       - light
     include_entities:
       - cover.garage_door
+      - camera.driveway
     exclude_entities: !include homekit_exclude.yaml
   # filter:
   #   include_entities:
