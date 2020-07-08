@@ -221,6 +221,7 @@ tplink:
     - host: 192.168.0.135
     - host: 192.168.0.20
     - host: 192.168.0.21
+  scan_interval: 5
 ########### InfluxDB ##########
 influxdb:
   host: a0d7b954-influxdb
