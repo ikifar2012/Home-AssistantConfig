@@ -10,10 +10,3 @@
         friendly_name: Fireplace
         command_on: 'JgBoAAABKJcSEhIUERQRFBITEhQRFBITETkSORE5EjkSORE5ETkSORI4ERURExMTERQRFBITEjkSExE5EjkSORE5EzgROREUEgAFKwABKUsTAAxwAAEpSxMADHEAAShLEgAMcgABKEsSAA0F'
         command_off: 'JgBoAAABKJcSEhIUERQRFBITEhQRFBITETkSORE5EjkSORE5ETkSORI4ERURExMTERQRFBITEjkSExE5EjkSORE5EzgROREUEgAFKwABKUsTAAxwAAEpSxMADHEAAShLEgAMcgABKEsSAA0F'
-  - platform: mqtt
-    name: "Washing Machine"
-    icon: mdi:washing-machine
-    state_topic: "stat/wash/POWER"
-    command_topic: "cmnd/wash/POWER"
-    payload_on: "ON"
-    payload_off: "OFF"

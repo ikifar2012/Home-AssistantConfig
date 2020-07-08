@@ -21,7 +21,7 @@ media_player: !include media_player.yaml
 input_boolean: !include input_boolean.yaml
 input_select: !include input_select.yaml
 script: !include_dir_merge_named scripts/
-switch: !include switch.yaml
+switch: !include_dir_merge_list switch/
 # packages: !include_dir_named packages
 input_text: !include input_text.yaml
 # input_slider: !include input_slider.yaml
@@ -217,12 +217,7 @@ alexa_media:
 #       track_devices: false
 stream:
 tplink:
-  switch:
-    - host: 192.168.0.109
-    - host: 192.168.0.107
-    - host: 192.168.0.135
-    - host: 192.168.0.20
-    - host: 192.168.0.21
+  discovery: false
 
 ########### InfluxDB ##########
 influxdb:
