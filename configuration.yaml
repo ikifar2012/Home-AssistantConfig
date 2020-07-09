@@ -218,7 +218,12 @@ alexa_media:
 stream:
 tplink:
   discovery: false
-
+  switch:
+    - host: 192.168.0.109
+    - host: 192.168.0.107
+    - host: 192.168.0.135
+    - host: 192.168.0.20
+    - host: 192.168.0.21
 ########### InfluxDB ##########
 influxdb:
   host: a0d7b954-influxdb
