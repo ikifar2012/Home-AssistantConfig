@@ -239,5 +239,3 @@ influxdb:
 #   track:
 #     - cards
 #     - components
-hacs:
-  token: !secret github_access_token
