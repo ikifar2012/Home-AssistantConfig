@@ -194,16 +194,16 @@ sonos:
     interface_addr: 192.168.0.19
     hosts: 192.168.0.125
 system_health:
-speedtestdotnet:
-  scan_interval:
-    minutes: 30
-  monitored_conditions:
-    - ping
-    - download
-    - upload
-fastdotcom:
-  scan_interval:
-      minutes: 30
+# speedtestdotnet:
+#   scan_interval:
+#     minutes: 30
+#   monitored_conditions:
+#     - ping
+#     - download
+#     - upload
+# fastdotcom:
+#   scan_interval:
+#       minutes: 30
 alexa_media:
   accounts:
     - email: !secret azemail

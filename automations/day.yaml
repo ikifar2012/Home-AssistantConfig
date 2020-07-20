@@ -16,3 +16,4 @@
     - service: homeassistant.turn_off
       data:
         entity_id: group.front_lighting
+    - service: script.weather_alerts_reset

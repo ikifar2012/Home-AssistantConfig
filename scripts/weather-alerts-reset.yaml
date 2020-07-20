@@ -1,0 +1,11 @@
+weather_alerts_reset:
+  alias: 'Weather Alerts Reset'
+  sequence:
+    - service: input_boolean.turn_off
+      data:
+        entity_id:
+          - input_boolean.warnings
+          - input_boolean.watches
+          - input_boolean.statements
+          - input_boolean.advisories
+          - input_boolean.endings

@@ -1,4 +1,4 @@
-- alias: 'Weather Warning Alert'
+- alias: 'Weather Warning Alert Input On'
   trigger:
     - platform: state
       entity_id: sensor.warnings
@@ -6,16 +6,43 @@
     - condition: template
       value_template: "{{ not is_state('sensor.warnings', '') }}"
   action:
-    - service: script.say_alert
+    - service: input_boolean.turn_on
       data_template:
-        message: "{{ states('sensor.warnings') }} in effect."
-- alias: 'Weather Watches Alert'
+        entity_id: input_boolean.warnings
+- alias: 'Weather Watches Input On'
   trigger:
     - platform: state
       entity_id: sensor.watches
   condition:
     - condition: template
+      value_template: "{{ not is_state('sensor.watches', '') }}"
+  action:
+    - service: input_boolean.turn_on
+      data_template:
+        entity_id: input_boolean.watches
+
+- alias: 'Weather Warning Alert Announcement'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.warnings
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: template
       value_template: "{{ not is_state('sensor.warnings', '') }}"
+  action:
+    - service: script.say_alert
+      data_template:
+        message: "{{ states('sensor.warnings') }} in effect."
+- alias: 'Weather Watches Announcement'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.watches
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: template
+      value_template: "{{ not is_state('sensor.watches', '') }}"
   action:
     - service: script.say_alert
       data_template:
