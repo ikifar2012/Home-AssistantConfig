@@ -1,0 +1,3 @@
+- platform: environment_canada
+  station: ON/s0000773
+  # https://dd.weather.gc.ca/citypage_weather/xml/ON/s0000773_e.xml

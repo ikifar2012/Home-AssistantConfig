@@ -42,3 +42,12 @@
     switch.matheson_bedroom_echo:
       friendly_name: Matheson Bedroom Echo
       state: 'on'
+- id: '1595811291848'
+  name: Movie Time
+  entities:
+    switch.theatre_back:
+      friendly_name: Theatre Back
+      state: 'off'
+    switch.theatre_front:
+      friendly_name: Theatre Front
+      state: 'off'
