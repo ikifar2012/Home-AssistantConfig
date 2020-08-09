@@ -7,6 +7,6 @@
       entity_id: sensor.season
       state: 'summer'
   action:
-    - service: home_assistant.turn_on
+    - service: homeassistant.turn_on
       data_template:
         entity_id: switch.outdoor_landscaping
