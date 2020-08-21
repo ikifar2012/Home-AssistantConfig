@@ -19,13 +19,13 @@
     milliseconds: 0
 - platform: waze_travel_time
   name: Home to Work
-  origin: !secret homeaddr
-  destination: !secret workaddr
+  origin: zone.home
+  destination: zone.work
   region: 'NA'
 - platform: waze_travel_time
-  name: Home to School
-  origin: !secret homeaddr
-  destination: !secret schooladdr
+  name: Home to High School
+  origin: zone.home
+  destination: zone.school
   region: 'NA'
 - platform: ohmconnect
   id: !secret ohm

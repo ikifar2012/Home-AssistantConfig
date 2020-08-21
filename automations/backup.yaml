@@ -4,9 +4,9 @@
   - platform: time
     at: '02:00:00'
   action:
-  - service: hassio.snapshot_full
+  - service: hassio.addon_start
     data_template:
-      name: Backup {{ now().strftime('%Y-%m-%d') }}
+      addon: 3490a758_remote_backup
 
 # # Back to Dropbox 
 # - alias: Backup Dropbox
