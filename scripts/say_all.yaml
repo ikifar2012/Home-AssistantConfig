@@ -11,11 +11,9 @@ say_all:
         message: "{{ message }}"
     - service: tts.google_translate_say
       data_template:
-        entity_id: "media_player.family_room_speaker"
-        message: "{{ message }}"
-    - service: tts.google_translate_say
-      data_template:
-        entity_id: "media_player.master_bedroom_speaker"
+        entity_id: 
+          - media_player.master_bedroom_speaker
+          - media_player.family_room_speaker
         message: "{{ message }}"
     - service: notify.alexa_media
       data_template:

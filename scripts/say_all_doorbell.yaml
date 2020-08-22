@@ -1,0 +1,41 @@
+say_all_doorbell:
+  sequence:
+    - condition: or
+      conditions:
+        - condition: state
+          entity_id: input_boolean.speech
+          state: 'on'
+    - service: sonos.snapshot
+      data_template:
+        entity_id: "media_player.main_floor"
+    - service: media_player.volume_set
+      data_template:
+        entity_id: "media_player.main_floor"
+        volume_level: '0.5'
+    - service: media_extractor.play_media
+      data:
+        entity_id: 
+          - media_player.main_floor
+          - media_player.family_room_speaker
+          - media_player.master_bedroom_speaker
+        media_content_id: 'http://192.168.0.19:8123/local/sounds/Doorbell.wav'
+        media_content_type: 'music'
+    - delay: '00:00:02'
+    - service: tts.google_translate_say
+      data_template:
+        entity_id: 
+          - media_player.main_floor
+          - media_player.family_room_speaker
+          - media_player.master_bedroom_speaker
+        message: "{{ message }}"
+    - service: notify.alexa_media
+      data_template:
+        target: 
+          - media_player.basement_echo
+        message: "{{ message }}"
+        data:
+          type: announce
+    - delay: '00:00:02'
+    - service: sonos.restore
+      data_template:
+        entity_id: "media_player.main_floor"
