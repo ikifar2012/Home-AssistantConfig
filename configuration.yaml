@@ -132,8 +132,8 @@ weather:
     api_key: !secret darkskyapi
   - platform: environment_canada
     forecast: hourly
-  - platform: openweathermap
-    api_key: !secret owm_key
+  # - platform: openweathermap
+  #   api_key: !secret owm_key
 
 
 # Text to speech
