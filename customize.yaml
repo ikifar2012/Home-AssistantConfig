@@ -40,4 +40,4 @@ binary_sensor.tv:
 sensor.hass_update_available:
   icon: mdi:home-assistant
 input_boolean.speech:
-  icon: mdi:voice
+  icon: mdi:account-voice

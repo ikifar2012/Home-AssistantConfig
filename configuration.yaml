@@ -153,6 +153,10 @@ notify:
 zone: !include_dir_merge_list zones/
 
 media_extractor:
+media_source:
+spotify:
+  client_id: !secret spotify_id
+  client_secret: !secret spotify
 ######## Roku TV ########
 roku:
   - host: 192.168.0.37
