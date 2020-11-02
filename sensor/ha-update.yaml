@@ -1,10 +1,10 @@
 # Version and Availability
 - platform: rest
-  resource: https://s3.amazonaws.com/hassio-version/stable.json
+  resource: https://version.home-assistant.io/stable.json
   name: Hass Current Stable Version
   value_template: '{{ value_json.homeassistant.default }}'
 - platform: rest
-  resource: https://s3.amazonaws.com/hassio-version/beta.json
+  resource: https://version.home-assistant.io/beta.json
   name: Hass Current Beta Version
   value_template: '{{ value_json.homeassistant.default }}'
 - platform: version
