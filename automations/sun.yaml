@@ -15,14 +15,19 @@
       data:
         entity_id: group.main_floor
 
-- alias: 'Sunset Outdoor Winter'
+- alias: 'Sunset Outdoor Winter or Autumn'
   trigger:
     platform: sun
     event: sunset
-  condition:
-    - condition: state
-      entity_id: sensor.season
-      state: 'Winter'
+    condition:
+      condition: or
+      conditions:
+        - condition: state
+          entity_id: sensor.season
+          state: 'Winter'
+        - condition: state
+          entity_id: sensor.season
+          state: 'Autumn'
   action:
     - service: script.say_sonos
       data_template:
@@ -41,6 +46,9 @@
       - condition: state
         entity_id: sensor.season
         state: 'Winter'
+      - condition: state
+        entity_id: sensor.season
+        state: 'Autumn'
   action:
     - service: script.say_sonos
       data_template:
