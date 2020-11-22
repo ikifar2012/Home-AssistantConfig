@@ -19,15 +19,15 @@
   trigger:
     platform: sun
     event: sunset
-    condition:
-      condition: or
-      conditions:
-        - condition: state
-          entity_id: sensor.season
-          state: 'Winter'
-        - condition: state
-          entity_id: sensor.season
-          state: 'Autumn'
+  condition:
+    condition: or
+    conditions:
+      - condition: state
+        entity_id: sensor.season
+        state: 'Winter'
+      - condition: state
+        entity_id: sensor.season
+        state: 'Autumn'
   action:
     - service: script.say_sonos
       data_template:
