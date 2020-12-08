@@ -24,14 +24,14 @@
     conditions:
       - condition: state
         entity_id: sensor.season
-        state: 'Winter'
+        state: 'winter'
       - condition: state
         entity_id: sensor.season
-        state: 'Autumn'
+        state: 'autumn'
   action:
     - service: script.say_sonos
       data_template:
-        message: "The sun has set and now I have turned on the Outside Lights"
+        message: "The sun has set and now I have turned on the Outside Landscaping Lights"
     - service: homeassistant.turn_on
       data:
         entity_id: group.front_lighting
@@ -45,10 +45,10 @@
     conditions:
       - condition: state
         entity_id: sensor.season
-        state: 'Winter'
+        state: 'winter'
       - condition: state
         entity_id: sensor.season
-        state: 'Autumn'
+        state: 'autumn'
   action:
     - service: script.say_sonos
       data_template:
