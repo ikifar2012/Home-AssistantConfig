@@ -16,7 +16,13 @@ import datetime
 from typing import Any, Optional, Text
 import re
 
-from alexapy import AlexaLogin, AlexapyConnectionError, hide_email, obfuscate
+from alexapy import (
+    AlexaLogin,
+    AlexapyConnectionError,
+    AlexapyPyotpInvalidKey,
+    hide_email,
+    obfuscate,
+)
 from homeassistant import config_entries
 from homeassistant.const import (
     CONF_EMAIL,
@@ -28,6 +34,7 @@ from homeassistant.const import (
 )
 from homeassistant.core import callback
 from homeassistant.helpers import config_validation as cv
+from homeassistant.util import slugify
 import voluptuous as vol
 
 from .const import (
@@ -37,6 +44,7 @@ from .const import (
     CONF_INCLUDE_DEVICES,
     CONF_QUEUE_DELAY,
     CONF_SECURITYCODE,
+    CONF_OAUTH,
     CONF_OTPSECRET,
     CONF_TOTP_REGISTER,
     DATA_ALEXAMEDIA,
@@ -163,10 +171,10 @@ class AlexaMediaFlowHandler(config_entries.ConfigFlow):
 
         if (
             not self.config.get("reauth")
-            and f"{user_input[CONF_EMAIL]} - {user_input[CONF_URL]}"
+            and f"{self.config[CONF_EMAIL]} - {self.config[CONF_URL]}"
             in configured_instances(self.hass)
             and not self.hass.data[DATA_ALEXAMEDIA]["config_flows"].get(
-                f"{user_input[CONF_EMAIL]} - {user_input[CONF_URL]}"
+                f"{self.config[CONF_EMAIL]} - {self.config[CONF_URL]}"
             )
         ):
             _LOGGER.debug("Existing account found")
@@ -185,15 +193,16 @@ class AlexaMediaFlowHandler(config_entries.ConfigFlow):
             except KeyError:
                 self.login = None
         try:
-            if not self.login:
+            if not self.login or self.login.session.closed:
                 _LOGGER.debug("Creating new login")
                 self.login = AlexaLogin(
-                    self.config[CONF_URL],
-                    self.config[CONF_EMAIL],
-                    self.config[CONF_PASSWORD],
-                    self.hass.config.path,
-                    self.config[CONF_DEBUG],
-                    self.config.get(CONF_OTPSECRET, ""),
+                    url=self.config[CONF_URL],
+                    email=self.config[CONF_EMAIL],
+                    password=self.config[CONF_PASSWORD],
+                    outputpath=self.hass.config.path,
+                    debug=self.config[CONF_DEBUG],
+                    otp_secret=self.config.get(CONF_OTPSECRET, ""),
+                    uuid=await self.hass.helpers.instance_id.async_get(),
                 )
             else:
                 _LOGGER.debug("Using existing login")
@@ -201,18 +210,25 @@ class AlexaMediaFlowHandler(config_entries.ConfigFlow):
                 not self.config.get("reauth")
                 and user_input
                 and user_input.get(CONF_OTPSECRET)
+                and user_input.get(CONF_OTPSECRET).replace(" ", "")
             ):
-                _LOGGER.debug("Generating OTP from %s", self.login.get_totp_token())
-
+                otp: Text = self.login.get_totp_token()
+                if otp:
+                    _LOGGER.debug("Generating OTP from %s", otp)
+                    return self.async_show_form(
+                        step_id="totp_register",
+                        data_schema=vol.Schema(self.totp_register),
+                        errors={},
+                        description_placeholders={
+                            "email": self.login.email,
+                            "url": self.login.url,
+                            "message": otp,
+                        },
+                    )
                 return self.async_show_form(
-                    step_id="totp_register",
-                    data_schema=vol.Schema(self.totp_register),
-                    errors={},
-                    description_placeholders={
-                        "email": self.login.email,
-                        "url": self.login.url,
-                        "message": self.login.get_totp_token(),
-                    },
+                    step_id="user",
+                    errors={"base": "2fa_key_invalid"},
+                    description_placeholders={"message": ""},
                 )
             await self.login.login(
                 cookies=await self.login.load_cookie(
@@ -226,6 +242,13 @@ class AlexaMediaFlowHandler(config_entries.ConfigFlow):
             return self.async_show_form(
                 step_id="user",
                 errors={"base": "connection_error"},
+                description_placeholders={"message": ""},
+            )
+        except AlexapyPyotpInvalidKey:
+            self.automatic_steps = 0
+            return self.async_show_form(
+                step_id="user",
+                errors={"base": "2fa_key_invalid"},
                 description_placeholders={"message": ""},
             )
         except BaseException as ex:
@@ -339,6 +362,11 @@ class AlexaMediaFlowHandler(config_entries.ConfigFlow):
                 self.config.pop("reauth")
             if self.config.get(CONF_SECURITYCODE):
                 self.config.pop(CONF_SECURITYCODE)
+            self.config[CONF_OAUTH] = {
+                "access_token": login.access_token,
+                "refresh_token": login.refresh_token,
+                "expires_in": login.expires_in,
+            }
             if existing_entry:
                 self.hass.config_entries.async_update_entry(
                     existing_entry, data=self.config
@@ -349,7 +377,7 @@ class AlexaMediaFlowHandler(config_entries.ConfigFlow):
                     event_data={"email": hide_email(email), "url": login.url},
                 )
                 self.hass.components.persistent_notification.async_dismiss(
-                    "alexa_media_relogin_required"
+                    f"alexa_media_{slugify(email)}{slugify(login.url[7:])}"
                 )
                 self.hass.data[DATA_ALEXAMEDIA]["accounts"][self.config[CONF_EMAIL]][
                     "login_obj"
@@ -401,7 +429,7 @@ class AlexaMediaFlowHandler(config_entries.ConfigFlow):
             generated_securitycode: Text = login.get_totp_token()
             if (
                 self.securitycode or generated_securitycode
-            ) and self.automatic_steps < 3:
+            ) and self.automatic_steps < 2:
                 if self.securitycode:
                     _LOGGER.debug(
                         "Automatically submitting securitycode %s", self.securitycode
@@ -474,7 +502,11 @@ class AlexaMediaFlowHandler(config_entries.ConfigFlow):
                 step_id="verificationcode",
                 data_schema=vol.Schema(self.verificationcode_schema),
             )
-        if login.status and login.status.get("force_get"):
+        if (
+            login.status
+            and login.status.get("force_get")
+            and not login.status.get("ap_error_href")
+        ):
             _LOGGER.debug("Creating config_flow to wait for user action")
             self.automatic_steps = 0
             return self.async_show_form(
@@ -486,13 +518,15 @@ class AlexaMediaFlowHandler(config_entries.ConfigFlow):
                     "message": f"  \n>{login.status.get('message','')}  \n",
                 },
             )
-        if login.status and login.status.get("login_failed"):
+        if login.status and (
+            login.status.get("login_failed") or login.status.get("ap_error_href")
+        ):
             _LOGGER.debug("Login failed: %s", login.status.get("login_failed"))
             await login.close()
             self.hass.components.persistent_notification.async_dismiss(
-                "alexa_media_relogin_required"
+                f"alexa_media_{slugify(email)}{slugify(login.url[7:])}"
             )
-            return self.async_abort(reason=login.status.get("login_failed"),)
+            return self.async_abort(reason=login.status.get("login_failed"))
         new_schema = self._update_schema_defaults()
         if login.status and login.status.get("error_message"):
             _LOGGER.debug("Login error detected: %s", login.status.get("error_message"))
@@ -536,8 +570,13 @@ class AlexaMediaFlowHandler(config_entries.ConfigFlow):
             self.config[CONF_SECURITYCODE] = self.securitycode
         elif CONF_SECURITYCODE in self.config:
             self.config.pop(CONF_SECURITYCODE)
-        if user_input.get(CONF_OTPSECRET):
+        if user_input.get(CONF_OTPSECRET) and user_input.get(CONF_OTPSECRET).replace(
+            " ", ""
+        ):
             self.config[CONF_OTPSECRET] = user_input[CONF_OTPSECRET].replace(" ", "")
+        elif user_input.get(CONF_OTPSECRET):
+            # a blank line
+            self.config.pop(CONF_OTPSECRET)
         if CONF_EMAIL in user_input:
             self.config[CONF_EMAIL] = user_input[CONF_EMAIL]
         if CONF_PASSWORD in user_input:

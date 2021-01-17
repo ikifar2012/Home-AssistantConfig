@@ -173,6 +173,7 @@ wemo:
     - 192.168.0.87
     - 192.168.0.23
     - 192.168.0.95
+    - 192.168.0.82
 cover:
   - platform: myq
     username: !secret myquser
