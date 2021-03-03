@@ -1,0 +1,16 @@
+- alias: 'CO2 On'
+  trigger: 
+    - platform: time
+      at: '8:00'
+  action:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.co2_tank
+- alias: 'CO2 Off'
+  trigger: 
+    - platform: time
+      at: '20:00'
+  action:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.co2_tank

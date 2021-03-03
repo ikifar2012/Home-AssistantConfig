@@ -6,3 +6,4 @@
       - switch.kitchen_pot_lights
       - switch.living_room
       - switch.island_lights
+      # - switch.entrance_lights

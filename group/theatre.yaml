@@ -1,0 +1,5 @@
+  theatre_lights:
+    name: Theatre Lights
+    entities:
+      - switch.theatre_front
+      - switch.theatre_back

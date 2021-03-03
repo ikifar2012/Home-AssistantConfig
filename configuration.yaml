@@ -105,12 +105,12 @@ recorder:
 #########################
 
 ######## Cloudflare ########
-cloudflare:
-  email: !secret emailM
-  api_key: !secret cfapi
-  zone: !secret cfzone
-  records:
-    - !secret cfrecord
+# cloudflare:
+#   email: !secret emailM
+#   api_key: !secret cfapi
+#   zone: !secret cfzone
+#   records:
+#     - !secret cfrecord
 #########################
 
 
@@ -160,8 +160,8 @@ spotify:
   client_id: !secret spotify_id
   client_secret: !secret spotify
 ######## Roku TV ########
-roku:
-  - host: 192.168.0.37
+# roku:
+#   - host: 192.168.0.37
 #########################
 wemo:
   static:
@@ -174,11 +174,11 @@ wemo:
     - 192.168.0.23
     - 192.168.0.95
     - 192.168.0.82
-cover:
-  - platform: myq
-    username: !secret myquser
-    password: !secret myqpass
-    type: chamberlain
+# cover:
+#   - platform: myq
+#     username: !secret myquser
+#     password: !secret myqpass
+#     type: chamberlain
 logger:
   default: warn
   logs:
@@ -211,11 +211,11 @@ system_health:
 # fastdotcom:
 #   scan_interval:
 #       minutes: 30
-alexa_media:
-  accounts:
-    - email: !secret azemail
-      password: !secret azpass
-      url: amazon.com
+# alexa_media:
+#   accounts:
+#     - email: !secret azemail
+#       password: !secret azpass
+#       url: amazon.com
 # googlehome:
 #   devices:
 #     - host: '192.168.0.35'

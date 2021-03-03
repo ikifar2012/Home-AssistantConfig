@@ -9,3 +9,17 @@
       data_template:
         entity_id: media_player.main_floor
         message: "Front Door Open"
+- alias: 'Foyer Light On'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door
+      from: 'off'
+      to: 'on'
+  condition:
+    - condition: sun
+      after: sunset
+      after_offset: '-00:15:00'
+  action:
+    - service: switch.turn_on
+      data_template:
+        entity_id: switch.entrance_lights

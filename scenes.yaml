@@ -2,12 +2,15 @@
   name: Going to Bed
   entities:
     automation.pot_lights_on_rain:
+      last_triggered: '2020-07-31T03:44:02.425945+00:00'
+      mode: single
+      current: 0
       friendly_name: Pot Lights On Rain
-      last_triggered: '2019-12-30T14:44:07.071767+00:00'
       state: 'off'
     input_boolean.speech:
+      editable: false
       friendly_name: Speech
-      icon: mdi:voice
+      icon: mdi:account-voice
       state: 'off'
     switch.deck_light:
       friendly_name: Deck Light
@@ -32,6 +35,9 @@
       state: 'off'
     switch.outdoor_landscaping:
       friendly_name: Outdoor Landscaping
+      state: 'off'
+    switch.entrance_lights:
+      friendly_name: Entrance Lights
       state: 'off'
 - id: '1578196989329'
   name: Light Upstairs

@@ -5,6 +5,9 @@
     to: 'on'
   action: 
     - service: script.lock_script
+    - service: homeassistant.turn_on
+      data_template:
+        entity_id: group.theatre_lights
     - delay: "00:02:00"
     - service: homeassistant.turn_off
       data_template:
