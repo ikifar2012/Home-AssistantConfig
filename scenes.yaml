@@ -18,9 +18,6 @@
     switch.dining_room:
       friendly_name: Dining Room
       state: 'off'
-    switch.front_door:
-      friendly_name: Front Door
-      state: 'off'
     switch.island_lights:
       friendly_name: Island Lights
       state: 'off'

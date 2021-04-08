@@ -40,7 +40,6 @@ breaking_changes:
 alexa: !include alexa.yaml
 homekit:
   ip_address: 192.168.0.19
-  auto_start: False
   filter:
     include_domains:
       - climate
@@ -70,8 +69,6 @@ google_assistant:
 ######################################
 ########## Basic Configuration ###########
 updater:
-  reporting: true
-  include_used_components: true
 discovery:
 ffmpeg:
   ffmpeg_bin: /usr/bin/ffmpeg
@@ -96,23 +93,12 @@ esxi_stats:
   password: !secret esxi_pw
 #####################
 
-
 ######## Recorder ########
 recorder:
   # purge_interval: 1
   purge_keep_days: 7
   db_url: !secret db_url
 #########################
-
-######## Cloudflare ########
-# cloudflare:
-#   email: !secret emailM
-#   api_key: !secret cfapi
-#   zone: !secret cfzone
-#   records:
-#     - !secret cfrecord
-#########################
-
 
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
@@ -142,11 +128,6 @@ weather:
 tts:
   - platform: google_translate
 
-
-# ring:
-#   username: !secret emailring
-#   password: !secret ring
-
 notify:
   - platform: html5
     vapid_pub_key: !secret vappubkey
@@ -159,10 +140,7 @@ media_source:
 spotify:
   client_id: !secret spotify_id
   client_secret: !secret spotify
-######## Roku TV ########
-# roku:
-#   - host: 192.168.0.37
-#########################
+
 wemo:
   static:
     - 192.168.0.88
@@ -174,11 +152,7 @@ wemo:
     - 192.168.0.23
     - 192.168.0.95
     - 192.168.0.82
-# cover:
-#   - platform: myq
-#     username: !secret myquser
-#     password: !secret myqpass
-#     type: chamberlain
+
 logger:
   default: warn
   logs:
@@ -191,37 +165,13 @@ logger:
 nest:
   client_id: !secret id
   client_secret: !secret client
-#
-# life360:
-#   accounts:
-#     username: !secret life360_username
-#     password: !secret life360_password
+
 sonos:
   media_player:
     interface_addr: 192.168.0.19
     hosts: 192.168.0.125
 system_health:
-# speedtestdotnet:
-#   scan_interval:
-#     minutes: 30
-#   monitored_conditions:
-#     - ping
-#     - download
-#     - upload
-# fastdotcom:
-#   scan_interval:
-#       minutes: 30
-# alexa_media:
-#   accounts:
-#     - email: !secret azemail
-#       password: !secret azpass
-#       url: amazon.com
-# googlehome:
-#   devices:
-#     - host: '192.168.0.35'
-#       device_types: 2
-#       track_alarms: true
-#       track_devices: false
+
 stream:
 tplink:
   discovery: false
@@ -241,3 +191,5 @@ influxdb:
   max_retries: 3
   default_measurement: state
 ###############################
+# default_config:
+my:
