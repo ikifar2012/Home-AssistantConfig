@@ -1,4 +1,5 @@
-- alias: 'Glenn Battery Low'
+- id: '26b3325a-d009-488b-8a59-7ff1a4887421'
+  alias: 'Glenn Battery Low'
   trigger:
     platform: numeric_state
     entity_id: 'sensor.glenn_battery'
@@ -12,7 +13,9 @@
       data_template:
         entity_id: media_player.main_floor
         message: "Glenn your battery is at {{ states('sensor.glenn_battery') }} percent please charge it now"
-- alias: 'Sandy Battery Low'
+
+- id: '5a8781e0-d846-4471-9a56-e6e5af2acb89'
+  alias: 'Sandy Battery Low'
   trigger:
     platform: numeric_state
     entity_id: 'sensor.sandy_battery'
@@ -26,7 +29,9 @@
       data_template:
         entity_id: media_player.main_floor
         message: "Sandy your battery is at {{ states('sensor.sandy_battery') }} percent please charge it now"
-- alias: 'Matheson Battery Low'
+
+- id: 'c95c0ead-dec0-4939-8cd8-dcd18639c393'
+  alias: 'Matheson Battery Low'
   trigger:
     platform: numeric_state
     entity_id: 'sensor.matheson_battery'
@@ -40,7 +45,9 @@
       data_template:
         entity_id: media_player.main_floor
         message: "Matheson your battery is at {{ states('sensor.matheson_battery') }} percent please charge it now"
-- alias: 'Zachary Battery Low'
+
+- id: '180e016d-c96d-4c33-a6a9-dfcaa88b6f81'
+  alias: 'Zachary Battery Low'
   trigger:
     platform: numeric_state
     entity_id: 'sensor.zachary_battery'

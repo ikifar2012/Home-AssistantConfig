@@ -1,7 +1,6 @@
 show_desktop:
   alias: Show Desktop
   sequence:
-  # - alias: desktop
     data: {}
     service: shell_command.desktop
 lock_script:
@@ -17,6 +16,5 @@ lock_script:
 lock:
   alias: Lock PC
   sequence:
-  # - alias: Lock
     data: {}
     service: shell_command.lock

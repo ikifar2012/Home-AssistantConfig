@@ -1,4 +1,5 @@
-- alias: 'Set Away'
+- id: '97a6e920-bd4a-4bd5-8674-4c329bcf9710'
+  alias: 'Set Away'
   trigger:
     - platform: state
       entity_id: group.family_device_trackers
@@ -8,7 +9,9 @@
       data_template:
         option: "Away"
         entity_id: input_select.home_status
-- alias: 'Set Home'
+
+- id: 'cdcbb896-2757-44ec-b024-c946a3f38af7'
+  alias: 'Set Home'
   trigger:
     - platform: state
       entity_id: group.family_device_trackers
@@ -18,7 +21,9 @@
       data_template:
         option: "Home"
         entity_id: input_select.home_status
-- alias: 'Set Extended Away'
+
+- id: '60fde1da-1366-4573-a9eb-75c7d0b95557'
+  alias: 'Set Extended Away'
   trigger:
     - platform: state
       entity_id: input_select.home_status

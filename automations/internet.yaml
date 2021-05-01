@@ -1,4 +1,5 @@
-- alias: 'Internet Offline'
+- id: 'dd8d0c87-5def-41e3-a293-b5aa3e6710ec'
+  alias: 'Internet Offline'
   trigger:
     - platform: state
       entity_id: binary_sensor.rogers_cable_modem
@@ -9,7 +10,9 @@
       data_template:
         entity_id: media_player.main_floor
         message: "The Internet is Offline"
-- alias: 'Internet Online'
+
+- id: '432abc5f-cf29-4c2b-8816-fdcd04a13e82'
+  alias: 'Internet Online'
   trigger:
     - platform: state
       entity_id: binary_sensor.rogers_cable_modem

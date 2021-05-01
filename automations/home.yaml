@@ -1,4 +1,5 @@
-- alias: 'Home Lighting'
+- id: '847dfcb3-8ac3-45da-888f-4b9717bf66ec'
+  alias: 'Home Lighting'
   trigger:
     platform: state
     entity_id: input_select.home_status
@@ -11,7 +12,9 @@
     - service: homeassistant.turn_on
       data:
         entity_id: group.main_floor
-- alias: 'Home Lighting Outdoor'
+
+- id: 'd7f508de-a136-41a2-867e-f5f698f70a4d'
+  alias: 'Home Lighting Outdoor'
   trigger:
     platform: state
     entity_id: input_select.home_status

@@ -1,0 +1,25 @@
+- id: '1619553033999'
+  alias: Timer Done Outside
+  description: ''
+  trigger:
+  - platform: state
+    entity_id: sensor.main_floor_display_timers
+    attribute: next_timer_status
+    to: ringing
+  condition: []
+  action:
+  - repeat:
+      count: '2'
+      sequence:
+      - service: switch.toggle
+        target:
+          entity_id: switch.deck_light
+      - delay:
+          hours: 0
+          minutes: 0
+          seconds: 1
+          milliseconds: 0
+      - service: switch.toggle
+        target:
+          entity_id: switch.deck_light
+  mode: single

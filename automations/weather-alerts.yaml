@@ -1,4 +1,5 @@
-- alias: 'Weather Warning Alert Input On'
+- id: '6b6790a7-d230-435b-bc06-aa7c6805b760'
+  alias: 'Weather Warning Alert Input On'
   trigger:
     - platform: state
       entity_id: sensor.warnings
@@ -9,7 +10,9 @@
     - service: input_boolean.turn_on
       data_template:
         entity_id: input_boolean.warnings
-- alias: 'Weather Watches Input On'
+
+- id: 'e73726d6-7ac5-4d46-a5fa-1f886c6b8d26'
+  alias: 'Weather Watches Input On'
   trigger:
     - platform: state
       entity_id: sensor.watches
@@ -21,7 +24,9 @@
       data_template:
         entity_id: input_boolean.watches
 
-- alias: 'Weather Warning Alert Announcement'
+
+- id: '7617e405-d392-4201-bacc-6fb7c567d07b'
+  alias: 'Weather Warning Alert Announcement'
   trigger:
     - platform: state
       entity_id: input_boolean.warnings
@@ -34,7 +39,9 @@
     - service: script.say_alert
       data_template:
         message: "{{ states('sensor.warnings') }} in effect."
-- alias: 'Weather Watches Announcement'
+
+- id: 'c9344966-e2c6-4fb3-9bf8-7f93dc5aba68'
+  alias: 'Weather Watches Announcement'
   trigger:
     - platform: state
       entity_id: input_boolean.watches

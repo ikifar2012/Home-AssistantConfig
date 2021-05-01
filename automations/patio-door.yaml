@@ -1,4 +1,5 @@
-- alias: 'Patio Door Lights On'
+- id: '56a616cd-49f4-4840-93fd-beab70b09655'
+  alias: 'Patio Door Lights On'
   trigger:
     - platform: state
       entity_id: binary_sensor.patio_door
@@ -14,7 +15,9 @@
   action:
     - service: switch.turn_on
       entity_id: switch.deck_light
-- alias: 'Patio Door Lights Off'
+
+- id: '4df0970c-fe87-46ba-8ec1-19920dcb5b5c'
+  alias: 'Patio Door Lights Off'
   trigger:
     - platform: state
       entity_id: binary_sensor.patio_door
@@ -32,7 +35,9 @@
   action:
     - service: switch.turn_off
       entity_id: switch.deck_light
-- alias: 'Patio Door Lights Off Inside'
+
+- id: '07359a4a-757c-43e3-a95d-e7c685cf288c'
+  alias: 'Patio Door Lights Off Inside'
   trigger:
     - platform: state
       entity_id: binary_sensor.patio_door
@@ -60,7 +65,9 @@
         - switch.kitchen_cabinet_lights
         - switch.living_room
         - switch.kitchen_pot_lights
-- alias: 'Patio Door Lights On Inside'
+
+- id: '4f2a8392-bb4a-4548-9fb0-da3b9749c02a'
+  alias: 'Patio Door Lights On Inside'
   trigger:
     - platform: state
       entity_id: binary_sensor.patio_door

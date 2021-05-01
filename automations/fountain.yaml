@@ -1,4 +1,5 @@
-- alias: 'Fountain On'
+- id: '79dcfaa0-7960-40dc-b632-cd88e75a5aef'
+  alias: 'Fountain On'
   trigger:
     platform: time
     at: "15:00:00"

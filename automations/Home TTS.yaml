@@ -1,4 +1,5 @@
-- alias: 'Glenn Home TTS'
+- id: 'f3b3c9ad-0557-417e-9216-8f683752a2cf'
+  alias: 'Glenn Home TTS'
   trigger:
     - platform: state
       entity_id: device_tracker.life360_glenn_steplock
@@ -9,7 +10,9 @@
       data_template:
         entity_id: media_player.main_floor
         message: "Glenn is Home"
-- alias: 'Matheson Home TTS'
+
+- id: 'fead744e-b517-4262-9b13-cd3d2f907914'
+  alias: 'Matheson Home TTS'
   trigger:
     - platform: state
       entity_id: device_tracker.life360_matheson_steplock
@@ -20,7 +23,9 @@
       data_template:
         entity_id: media_player.main_floor
         message: "Matheson is Home"
-- alias: 'Sandy Home TTS'
+
+- id: 'fa84e394-c56a-4bdb-9991-17462bb16676'
+  alias: 'Sandy Home TTS'
   trigger:
     - platform: state
       entity_id: device_tracker.life360_sandy_steplock
@@ -31,7 +36,9 @@
       data_template:
         entity_id: media_player.main_floor
         message: "Sandy is Home"
-- alias: 'Zack Home TTS'
+
+- id: '579ba8d8-1910-4f18-accd-18069529b820'
+  alias: 'Zack Home TTS'
   trigger:
     - platform: state
       entity_id: device_tracker.life360_zachary_steplock

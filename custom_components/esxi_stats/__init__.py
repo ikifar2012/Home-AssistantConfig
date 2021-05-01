@@ -1,6 +1,5 @@
 """ESXi Stats Integration."""
 import asyncio
-import functools
 import logging
 import os
 from datetime import datetime, timedelta

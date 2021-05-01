@@ -1,4 +1,5 @@
-- alias: 'Movie Time On'
+- id: 'a52d5f31-266d-42e7-9ffa-95d302f1bf0f'
+  alias: 'Movie Time On'
   trigger: 
     platform: state 
     entity_id: 'input_boolean.movie_time'
@@ -12,7 +13,9 @@
     - service: homeassistant.turn_off
       data_template:
         entity_id: group.main_floor
-- alias: 'Movie Time Off'
+
+- id: '7369178f-bff2-4832-9a20-5837d9cf8d4c'
+  alias: 'Movie Time Off'
   trigger: 
     platform: state 
     entity_id: 'input_boolean.movie_time'
@@ -21,7 +24,9 @@
     - service: homeassistant.turn_on
       data_template:
         entity_id: group.main_floor
-- alias: 'Movie Time Motion'
+
+- id: '9661645f-c82d-448f-8c9b-cc3d736bb729'
+  alias: 'Movie Time Motion'
   trigger: 
     platform: state 
     entity_id: 'group.main_floor_motion'

@@ -1,4 +1,5 @@
-- alias: 'Sandy Home Outdoor'
+- id: 'be952983-1706-484f-9ad1-eb2bef35b8e8'
+  alias: 'Sandy Home Outdoor'
   trigger:
     - platform: state
       entity_id: device_tracker.life360_sandy_steplock
@@ -12,7 +13,9 @@
     - service: script.turn_on
       data:
         entity_id: script.front_door_timer
-- alias: 'Glenn Home Outdoor'
+
+- id: '97908731-09b0-47e1-9c5b-5f4fce2e20b2'
+  alias: 'Glenn Home Outdoor'
   trigger:
     - platform: state
       entity_id: device_tracker.life360_glenn_steplock
@@ -26,7 +29,9 @@
     - service: script.turn_on
       data:
         entity_id: script.front_door_timer
-- alias: 'Matheson Home Outdoor'
+
+- id: '52522bd5-fe2d-4fc4-91e4-dd97d263d2f0'
+  alias: 'Matheson Home Outdoor'
   trigger:
     - platform: state
       entity_id: device_tracker.life360_matheson_steplock

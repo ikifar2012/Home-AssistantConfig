@@ -1,4 +1,5 @@
-- alias: 'Front Door TTS'
+- id: 'c51637c8-4927-4229-8992-3967505ccdb4'
+  alias: 'Front Door TTS'
   trigger:
     - platform: state
       entity_id: binary_sensor.front_door
@@ -9,7 +10,9 @@
       data_template:
         entity_id: media_player.main_floor
         message: "Front Door Open"
-- alias: 'Foyer Light On'
+
+- id: 'a75e43d6-9691-48c9-9324-fbac2004970b'
+  alias: 'Foyer Light On'
   trigger:
     - platform: state
       entity_id: binary_sensor.front_door

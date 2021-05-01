@@ -1,5 +1,6 @@
 # Backup at 2AM
-- alias: Backup Local
+- id: 'addc9d4a-86f8-41c3-aaa6-d70edcdd0142'
+  alias: Backup Local
   trigger:
   - platform: time
     at: '02:00:00'
@@ -7,14 +8,3 @@
   - service: hassio.addon_start
     data_template:
       addon: 3490a758_remote_backup
-
-# # Back to Dropbox 
-# - alias: Backup Dropbox
-#   trigger:
-#   - platform: time
-#     at: '03:00:00'
-#   action:
-#   - service: hassio.addon_stdin
-#     data_template:
-#       addon: "7be23ff5_dropbox_sync"
-#       input: {"command":"upload"}

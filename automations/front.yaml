@@ -1,4 +1,5 @@
-- alias: 'Motion Lighting'
+- id: 'b9701cfb-dee3-4859-915e-d6dc9adcd7b6'
+  alias: 'Motion Lighting'
   trigger:
     - platform: state
       entity_id: binary_sensor.ring_front_door_motion
@@ -10,7 +11,9 @@
   action:
     - service: script.turn_on
       entity_id: script.front_door_timer
-- alias: 'Door Open Lighting'
+
+- id: '01fb2711-dc63-4aac-ab10-415ad13c25c5'
+  alias: 'Door Open Lighting'
   trigger:
     - platform: state
       entity_id: binary_sensor.front_door

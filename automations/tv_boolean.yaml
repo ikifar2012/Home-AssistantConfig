@@ -1,4 +1,5 @@
-- alias: 'TV Off'
+- id: 'bc676bb4-24bd-480e-ad74-d165c3831033'
+  alias: 'TV Off'
   trigger:
       platform: state
       entity_id: input_boolean.tv_off
@@ -12,7 +13,9 @@
     service: switch.turn_off
     data:
       entity_id: switch.tv
-- alias: 'TV On'
+
+- id: 'fb71c4d2-4faa-47be-8021-597be8025866'
+  alias: 'TV On'
   trigger:
       platform: state
       entity_id: input_boolean.tv_on
@@ -26,7 +29,9 @@
     service: switch.turn_on
     data:
       entity_id: switch.tv
-- alias: 'TV On Boolean Set'
+
+- id: '5b90d972-d026-4ffa-af33-1925f683ea91'
+  alias: 'TV On Boolean Set'
   trigger:
       platform: state
       entity_id:  binary_sensor.tv
@@ -36,7 +41,9 @@
     service: input_boolean.turn_on
     data:
       entity_id: input_boolean.tv
-- alias: 'TV Off Boolean Set'
+
+- id: 'c4a07cde-80ad-4b0a-86a7-e1cc91d9c96f'
+  alias: 'TV Off Boolean Set'
   trigger:
       platform: state
       entity_id:  binary_sensor.tv
@@ -46,7 +53,9 @@
     service: input_boolean.turn_off
     data:
       entity_id: input_boolean.tv
-- alias: 'TV Off Boolean Trigger'
+
+- id: 'c25fe70a-6157-47d7-90a8-d0dee2746251'
+  alias: 'TV Off Boolean Trigger'
   trigger:
       platform: state
       entity_id: input_boolean.tv
@@ -56,7 +65,9 @@
     service: input_boolean.turn_on
     data:
       entity_id: input_boolean.tv_off
-- alias: 'TV On Boolean Trigger'
+
+- id: '5530bb8a-1d30-47a7-b693-f54b63d81eea'
+  alias: 'TV On Boolean Trigger'
   trigger:
       platform: state
       entity_id: input_boolean.tv

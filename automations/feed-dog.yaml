@@ -1,4 +1,5 @@
-- alias: 'Feed Dog'
+- id: '80f53b70-9475-4202-8ce7-12494147bccd'
+  alias: 'Feed Dog'
   trigger: 
     platform: time
     at: '16:30:00'

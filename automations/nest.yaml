@@ -1,4 +1,5 @@
-- alias: 'Nest HVAC TTS'
+- id: 'd1801c73-cf22-42ef-9d1d-49fe2c3218b2'
+  alias: 'Nest HVAC TTS'
   trigger:
     - platform: state
       entity_id: sensor.hallway_thermostat_hvac_state
@@ -8,21 +9,27 @@
       data_template:
         message: 'The Hallway thermostat has started to {{states("sensor.hallway_thermostat_operation_mode")}} the house with a current temperature of {{states("sensor.hallway_thermostat_temperature")|replace(".0", "")}} degrees and a target temperature of {{states("sensor.hallway_thermostat_target")|replace(".0", "")}} degrees'
         entity_id: 'media_player.main_floor'
-- alias: 'Nest Away'
+
+- id: '4ca00b43-7b42-42e5-b484-db83d55099e1'
+  alias: 'Nest Away'
   trigger:
     - platform: state
       entity_id: input_select.home_status
       to: 'Extended Away'
   action:
     - service: script.nest_set_away
-- alias: 'Nest Home'
+
+- id: '4d743075-b903-4acc-b8c0-935abda0d413'
+  alias: 'Nest Home'
   trigger:
     - platform: state
       entity_id: input_select.home_status
       to: 'Home'
   action:
     - service: script.nest_set_home
-- alias: 'Nest Coming Home'
+
+- id: 'b31554c1-966b-4d1c-a182-29683ce83c52'
+  alias: 'Nest Coming Home'
   trigger:
     - platform: state
       entity_id: input_select.home_status
@@ -30,7 +37,9 @@
       to: 'Away'
   action:
     - service: script.nest_set_home
-- alias: 'Nest Fan Summer On'
+
+- id: 25e0e604-e23f-4795-84db-8957f1155446
+  alias: 'Nest Fan Summer On'
   trigger: 
     - platform: state
       entity_id: input_boolean.night
@@ -42,7 +51,9 @@
       state: 'summer'
   action:
     - service: script.fan_on
-- alias: 'Nest Fan Summer Off'
+
+- id: 'b3cabf25-f74b-4bfd-ae99-2a8f48e3d6f0'
+  alias: 'Nest Fan Summer Off'
   trigger: 
     - platform: time
       at: '11:00:00'

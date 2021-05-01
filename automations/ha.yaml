@@ -1,4 +1,5 @@
-- alias: 'Home Assistant Boot'
+- id: '6fbe276d-1e50-4e10-ae1b-6107a5658faf'
+  alias: 'Home Assistant Boot'
   trigger:
     - platform: homeassistant
       event: start

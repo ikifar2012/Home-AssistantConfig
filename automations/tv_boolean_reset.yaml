@@ -1,4 +1,5 @@
-- alias: 'TV Off Input Reset'
+- id: 'd13ca56b-f5b4-4839-b40e-079b7472539f'
+  alias: 'TV Off Input Reset'
   trigger:
       platform: state
       entity_id: input_boolean.tv_off
@@ -9,7 +10,9 @@
     - service: input_boolean.turn_off
       data:
         entity_id: input_boolean.tv_off
-- alias: 'TV On Input Reset'
+
+- id: '112ad427-4375-4a98-964d-d55efa6326cb'
+  alias: 'TV On Input Reset'
   trigger:
       platform: state
       entity_id: input_boolean.tv_on

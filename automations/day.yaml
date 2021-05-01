@@ -1,4 +1,5 @@
-- alias: 'Day Mode'
+- id: '59cdb412-9fb5-4d85-b7ca-c85f065d9eaa'
+  alias: 'Day Mode'
   trigger:
     - platform: state
       entity_id: input_boolean.night

@@ -1,4 +1,5 @@
-- alias: 'Zack School TTS'
+- id: 'e702653f-9364-4213-a2ea-721c2b3d17d2'
+  alias: 'Zack School TTS'
   trigger:
     - platform: state
       entity_id: device_tracker.life360_zachary_steplock
@@ -9,7 +10,9 @@
       data_template:
         entity_id: media_player.main_floor
         message: "Zack has arrived at school"
-- alias: 'Matheson School TTS'
+
+- id: '868442b4-0238-49b4-b435-5ee6f4b8098a'
+  alias: 'Matheson School TTS'
   trigger:
     - platform: state
       entity_id: device_tracker.life360_matheson_steplock

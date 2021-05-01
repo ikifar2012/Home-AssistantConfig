@@ -1,4 +1,5 @@
-- alias: 'Sunset Main Floor'
+- id: 'befdafe5-06df-4e39-b50a-10ecaf3b1a41'
+  alias: 'Sunset Main Floor'
   trigger:
     - platform: sun
       event: sunset
@@ -15,7 +16,8 @@
       data:
         entity_id: group.main_floor
 
-- alias: 'Sunset Outdoor Winter or Autumn'
+- id: 'e6b28867-bad7-4f40-b2a8-e224ea463e8f'
+  alias: 'Sunset Outdoor Winter or Autumn'
   trigger:
     platform: sun
     event: sunset
@@ -36,7 +38,8 @@
       data:
         entity_id: group.front_lighting
 
-- alias: 'Sunset Outdoor Not Winter'
+- id: '5e78d3b3-06ac-46b9-87bf-348542065c3a'
+  alias: 'Sunset Outdoor Not Winter'
   trigger:
     platform: sun
     event: sunset
@@ -60,7 +63,8 @@
       data:
         entity_id: switch.outdoor_landscaping
 
-- alias: 'Sunrise Front Lighting Off'
+- id: '73468163-9d41-4475-a5e4-b3a8540b34d7'
+  alias: 'Sunrise Front Lighting Off'
   trigger:
     platform: sun
     event: sunrise

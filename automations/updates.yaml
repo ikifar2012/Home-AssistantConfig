@@ -1,4 +1,5 @@
-- alias: 'Notify Update'
+- id: 'beb5fa93-278c-4cbd-974d-c92b49260c42'
+  alias: 'Notify Update'
   trigger: 
     - platform: state
       entity_id: sensor.hass_update_available

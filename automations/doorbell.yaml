@@ -1,4 +1,5 @@
-- alias: 'Doorbell Ring'
+- id: '2790d163-8a42-4384-bd53-cb1753f43567'
+  alias: 'Doorbell Ring'
   trigger:
     - platform: state
       entity_id: binary_sensor.front_door_ding

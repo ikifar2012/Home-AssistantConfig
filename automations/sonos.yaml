@@ -1,4 +1,5 @@
-- alias: 'Sonos Idle'
+- id: '357047a3-ef23-4cfc-ab83-fbd2542e900d'
+  alias: 'Sonos Idle'
   trigger:
     - platform: state
       entity_id: media_player.main_floor

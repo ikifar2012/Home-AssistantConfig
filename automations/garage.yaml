@@ -1,4 +1,5 @@
-- alias: 'Garage Door Open'
+- id: 'aa50f47c-f170-4c12-b28e-e50d9e662247'
+  alias: 'Garage Door Open'
   trigger:
     platform: state
     entity_id: cover.garage_door
@@ -9,7 +10,9 @@
       data_template:
         entity_id: media_player.main_floor
         message: "The garage door is open"
-- alias: 'Garage Door Closed'
+
+- id: '4d1b040a-97e4-485e-89d7-7418daaf34bb'
+  alias: 'Garage Door Closed'
   trigger:
     platform: state
     entity_id: cover.garage_door

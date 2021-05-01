@@ -1,7 +1,8 @@
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
 #  Washing Machine Start/Finish
 # -=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
-- alias: 'Washer State - Start'
+- id: 'b44c34f2-cbc9-48dc-9979-b6e1adaeb1a2'
+  alias: 'Washer State - Start'
   trigger:
     platform: numeric_state
     entity_id: sensor.washer_watts
@@ -18,7 +19,9 @@
         topic: hass/state/washer
         payload: 'Washing'
         retain: 'true'
-- alias: 'Washer State - Idle'
+
+- id: '27be766d-bcea-4f26-a554-3a04deef6d4a'
+  alias: 'Washer State - Idle'
   trigger:
     platform: numeric_state
     entity_id: sensor.washer_watts
@@ -31,7 +34,9 @@
         topic: hass/state/washer
         payload: 'Idle'
         retain: 'true'
-- alias: 'Wash Done Say'
+
+- id: '9b9a9d6a-ea59-4264-8503-7e8648f4ffeb'
+  alias: 'Wash Done Say'
   trigger:
    - platform: state
      entity_id: sensor.washer_state
