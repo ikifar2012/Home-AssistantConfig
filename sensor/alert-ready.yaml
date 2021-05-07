@@ -1,0 +1,3 @@
+- platform: geo_rss_events
+  name: Alert Ready
+  url: https://rss.naad-adna.pelmorex.com
