@@ -17,16 +17,16 @@
     minutes: 5
     seconds: 30
     milliseconds: 0
-- platform: waze_travel_time
-  name: Home to Work
-  origin: zone.home
-  destination: zone.work
-  region: 'NA'
-- platform: waze_travel_time
-  name: Home to High School
-  origin: zone.home
-  destination: zone.school
-  region: 'NA'
+# - platform: waze_travel_time
+#   name: Home to Work
+#   origin: zone.home
+#   destination: zone.work
+#   region: 'NA'
+# - platform: waze_travel_time
+#   name: Home to High School
+#   origin: zone.home
+#   destination: zone.school
+#   region: 'NA'
 - platform: ohmconnect
   id: !secret ohm
 - platform: waqi
