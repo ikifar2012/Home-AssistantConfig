@@ -11,7 +11,7 @@ say_all_doorbell:
     - service: media_player.volume_set
       data_template:
         entity_id: "media_player.main_floor"
-        volume_level: '0.6'
+        volume_level: '0.3'
     - service: media_extractor.play_media
       data:
         entity_id: 
