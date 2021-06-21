@@ -16,21 +16,3 @@
   player_id: !secret ikifar
   game_platform: "PC"
   game_mode: "SQUAD"
-- platform: fortnite
-  name: Fortnite Solo Stats Georgioss
-  api_key: !secret fortnite_api
-  player_id: !secret Georgioss
-  game_platform: "PC"
-  game_mode: "SOLO"
-- platform: fortnite
-  name: Fortnite Duo Stats Georgioss
-  api_key: !secret fortnite_api
-  player_id: !secret Georgioss
-  game_platform: "PC"
-  game_mode: "DUO"
-- platform: fortnite
-  name: Fortnite Squads Stats Georgioss
-  api_key: !secret fortnite_api
-  player_id: !secret Georgioss
-  game_platform: "PC"
-  game_mode: "SQUAD"

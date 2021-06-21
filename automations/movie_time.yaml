@@ -8,6 +8,9 @@
     - service: script.lock_script
     - service: homeassistant.turn_on
       data_template:
+        entity_id: switch.basement_hallway
+    - service: homeassistant.turn_on
+      data_template:
         entity_id: group.theatre_lights
     - delay: "00:02:00"
     - service: homeassistant.turn_off
@@ -43,3 +46,38 @@
     - service: homeassistant.turn_off
       data_template:
         entity_id: group.main_floor
+
+- id: 'e45bfca7-34c5-4e64-9aa3-a3f2422c6473'
+  alias: 'Movie Time Playing'
+  trigger: 
+    platform: state 
+    entity_id: media_player.home_theatre_tv
+    to: 'playing'
+  condition:
+  - condition: state
+    entity_id: input_boolean.movie_time
+    state: 'on'
+  action: 
+    - service: homeassistant.turn_off
+      target:
+        entity_id:
+          - switch.theatre_front
+          - switch.theatre_back
+          - switch.basement_hallway
+
+- id: 'bb9389df-4e46-4825-bfde-c25322440703'
+  alias: 'Movie Time Paused'
+  trigger: 
+    platform: state 
+    entity_id: media_player.home_theatre_tv
+    to: 'paused'
+  condition:
+  - condition: state
+    entity_id: input_boolean.movie_time
+    state: 'on'
+  action: 
+    - service: homeassistant.turn_on
+      target:
+        entity_id:
+          - switch.theatre_back
+          - switch.basement_hallway

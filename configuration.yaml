@@ -39,19 +39,38 @@ breaking_changes:
 ############## Voice Assistant's ##############
 alexa: !include alexa.yaml
 homekit:
+- name: Steplock Home
+  port: 21063
   ip_address: 192.168.0.19
   filter:
     include_domains:
       - climate
       - switch
       - light
-      - camera
     include_entities:
       - cover.garage_door
     exclude_entities: !include homekit_exclude.yaml
   # filter:
   #   include_entities:
   #     - demo.demo
+- name: Driveway Camera
+  port: 21064
+  ip_address: 192.168.0.19
+  filter:
+    include_entities:
+    - camera.driveway
+- name: Porch Camera
+  port: 21065
+  ip_address: 192.168.0.19
+  filter:
+    include_entities:
+    - camera.porch
+- name: Front Door Camera
+  port: 21066
+  ip_address: 192.168.0.19
+  filter:
+    include_entities:
+    - camera.front_door
 google_assistant:
   project_id: !secret project_id
   service_account: !include SERVICE_ACCOUNT.json
@@ -145,6 +164,7 @@ wemo:
   static:
     - 192.168.0.88
     - 192.168.0.89
+    - 192.168.0.74
     - 192.168.0.78
     - 192.168.0.77
     - 192.168.0.86
