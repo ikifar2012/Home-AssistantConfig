@@ -147,11 +147,7 @@ weather:
 tts:
   - platform: google_translate
 
-notify:
-  - platform: html5
-    vapid_pub_key: !secret vappubkey
-    vapid_prv_key: !secret vapprvkey
-    vapid_email: !secret vapemail
+notify: !include_dir_merge_list notify/
 zone: !include_dir_merge_list zones/
 
 media_extractor:
