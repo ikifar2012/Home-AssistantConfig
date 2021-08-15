@@ -16,7 +16,7 @@ say_sonos:
       data_template:
         entity_id: "media_player.main_floor"
         message: "{{ message }}"
-    - delay: '00:00:10'
+    - delay: '00:00:12'
     - service: sonos.restore
       data_template:
         entity_id: "media_player.main_floor"

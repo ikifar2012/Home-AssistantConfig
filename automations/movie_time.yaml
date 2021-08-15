@@ -79,5 +79,5 @@
     - service: homeassistant.turn_on
       target:
         entity_id:
-          - switch.theatre_back
+          - switch.theatre_front
           - switch.basement_hallway

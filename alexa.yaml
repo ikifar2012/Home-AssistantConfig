@@ -7,5 +7,6 @@ smart_home:
     include_domains:
       - switch
       - light
+      - script
     exclude_entities:
       - switch.tv

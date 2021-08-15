@@ -1,0 +1,16 @@
+  - alias: "UPS changed state"
+    trigger:
+      - platform: event
+        event_type: nut.ups_event
+    action:
+      - service: notify.mobile_app_mathesons_iphone_8_plus
+        data_template:
+          title: "UPS changed state"
+          message: "{{ trigger.event.data.notify_msg }}"
+      - service: notify.html5_matheson_pc
+        data_template:
+          title: "UPS changed state"
+          message: "{{ trigger.event.data.notify_msg }}"
+      - service: script.say_all
+        data_template:
+          message: "{{ trigger.event.data.notify_msg }}"

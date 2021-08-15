@@ -1,2 +1,6 @@
   - platform: yamaha
     host: 192.168.0.22
+    zone_ignore:
+      - "Zone_2"
+      - "Zone_3"
+      - "Zone_4"

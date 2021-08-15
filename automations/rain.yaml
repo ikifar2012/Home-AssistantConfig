@@ -1,9 +1,9 @@
 - id: 'b2f0f384-ab9e-4b4a-9f84-fd30eb5f25eb'
   alias: 'Pot Lights On Rain'
   trigger: 
-    - platform: state
-      entity_id: weather.richmond_hill
-      to: 'Rainy'
+    # - platform: state
+    #   entity_id: weather.richmond_hill
+    #   to: 'rainy'
     - platform: state
       entity_id: sensor.icon_code
       to: '19'
@@ -25,9 +25,12 @@
     # - platform: state 
     #   entity_id: sensor.dark_sky_summary
     #   to: 'Heavy Rain'
+    - platform: state
+      entity_id: weather.richmond_hill
+      to: 'lightning-rainy'
   action: 
     - service: script.say_sonos
       data_template:
-        message: "The weather condition has changed to {{ states('sensor.condition') }}, so I have turned on the lights"
+        message: "The weather condition has changed to {{ states('weather.richmond_hill') }}, so I have turned on the lights"
     - service: homeassistant.turn_on
       entity_id: group.main_floor

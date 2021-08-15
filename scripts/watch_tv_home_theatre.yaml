@@ -1,0 +1,14 @@
+watch_tv_home_theatre:
+    alias: 'Watch TV'
+    sequence:
+      - service: media_player.turn_on
+        target:
+          entity_id: media_player.home_theatre_tv
+      - service: media_player.select_source
+        data:
+          entity_id: media_player.home_theatre_tv
+          source: "AV\_receiver"
+      - service: media_player.select_source
+        data:
+          entity_id: media_player.yamaha_receiver
+          source: "AV1"

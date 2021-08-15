@@ -1,0 +1,1 @@
+restart_dns: ssh dns@192.168.0.8 -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no -i /ssl/sshkeyfile ./restartdns.sh
