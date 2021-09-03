@@ -1,4 +1,5 @@
-  - alias: "UPS changed state"
+  - id: '5f2ec80f-0035-438c-a205-96f17487307b'
+    alias: "UPS changed state"
     trigger:
       - platform: event
         event_type: nut.ups_event
@@ -11,6 +12,21 @@
         data_template:
           title: "UPS changed state"
           message: "{{ trigger.event.data.notify_msg }}"
-      - service: script.say_all
-        data_template:
-          message: "{{ trigger.event.data.notify_msg }}"
+      # - service: script.say_all
+      #   data_template:
+      #     message: "{{ trigger.event.data.notify_msg }}"
+
+
+  - id: '530a8fbe-0aeb-439c-8fec-7e5bc308ad2f'
+    alias: Restart NUT on Fail
+    mode: single
+    trigger:
+      - platform: event
+        event_type: nut.ups_event
+        event_data:
+          notify_type: COMMBAD
+    condition: []
+    action:
+      - service: hassio.addon_restart
+        data:
+          addon: a0d7b954_nut
