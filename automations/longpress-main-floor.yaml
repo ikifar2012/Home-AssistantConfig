@@ -1,0 +1,31 @@
+- id: 'f70fd46d-8da9-4486-aeee-c95ead67901e'
+  alias: Kitchen Pot Lights Longpress
+  description: ''
+  mode: single
+  trigger:
+    - platform: event
+      event_type: wemo_subscription_event
+      event_data:
+        type: LongPress
+        name: Kitchen Pot Lights
+  condition: []
+  action:
+    - service: homeassistant.toggle
+      target:
+        entity_id: switch.fireplace
+
+- id: '42eb72c9-b231-4a3b-8d5c-380cb4b16943'
+  alias: Dining Room Lights Longpress
+  description: ''
+  mode: single
+  trigger:
+    - platform: event
+      event_type: wemo_subscription_event
+      event_data:
+        type: LongPress
+        name: Dining Room Lights
+  condition: []
+  action:
+    - service: homeassistant.toggle
+      target:
+        entity_id: group.main_floor
