@@ -1,4 +1,0 @@
-- platform: generic
-  name: Driveway
-  still_image_url: !secret CameraDriveway_URL
-  stream_source: !secret CameraDriveway_Source
