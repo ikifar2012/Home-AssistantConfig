@@ -10,20 +10,17 @@ sensor:
    game_mode: "SQUAD"
 """
 
-import voluptuous as vol
 import logging
 
 # from .fortnite import FortniteData
 ## use below instead of above
 from fortnite_python import Fortnite
-from fortnite_python.domain import Platform
-from fortnite_python.domain import Mode
-
+from fortnite_python.domain import Mode, Platform
 from homeassistant.components.sensor import PLATFORM_SCHEMA
-from homeassistant.const import CONF_NAME, CONF_API_KEY
+from homeassistant.const import CONF_API_KEY, CONF_NAME
 import homeassistant.helpers.config_validation as cv
 from homeassistant.helpers.entity import Entity
-
+import voluptuous as vol
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -82,10 +79,11 @@ class FortniteSensor(Entity):
     @property
     def unit_of_measurement(self):
         """Return the unit of measurement."""
-        return "Kills"
+        return "eliminations"
 
     def update(self):
         self.data.update_stats()
+
 
 class FortniteData:
     def __init__(self, name, api_key, player, platform, mode):

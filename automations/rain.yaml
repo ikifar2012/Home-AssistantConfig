@@ -7,6 +7,6 @@
   action: 
     - service: script.say_sonos
       data_template:
-        message: "The weather condition has changed to {{ states('sensor.openweathermap_weather') }}, so I have turned on the lights"
+        message: "The weather condition has changed to {{ states('sensor.dark_sky_summary') }}, so I have turned on the lights"
     - service: homeassistant.turn_on
       entity_id: group.main_floor
