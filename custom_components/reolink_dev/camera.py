@@ -1,21 +1,15 @@
 """This component provides support for Reolink IP cameras."""
-import asyncio
 from datetime import datetime
 import logging
 from typing import Union
 
 import voluptuous as vol
 
-from haffmpeg.camera import CameraMjpeg
+from homeassistant.core import HomeAssistant
 from homeassistant.components.camera import SUPPORT_STREAM, Camera
 from homeassistant.components.ffmpeg import DATA_FFMPEG
 
 from homeassistant.helpers import config_validation as cv, entity_platform
-from homeassistant.helpers.aiohttp_client import (
-    async_aiohttp_proxy_web,
-    async_aiohttp_proxy_stream,
-    async_get_clientsession,
-)
 
 from .const import (
     DOMAIN_DATA,
@@ -34,7 +28,7 @@ from .typings import VoDEvent
 _LOGGER = logging.getLogger(__name__)
 
 
-async def async_setup_entry(hass, config_entry, async_add_devices):
+async def async_setup_entry(hass: HomeAssistant, config_entry, async_add_devices):
     """Set up a Reolink IP Camera."""
 
     platform = entity_platform.current_platform.get()
@@ -151,9 +145,12 @@ class ReolinkCamera(ReolinkEntity, Camera):
         return bool(self._base.api.hdd_info)
 
     @property
-    def device_state_attributes(self):
-        """Return the camera state attributes."""
-        attrs = {}
+    def extra_state_attributes(self):
+        """Return the state attributes."""
+        attrs = super().extra_state_attributes
+        if attrs is None:
+            attrs = {}
+
         if self._base.api.ptz_support:
             attrs["ptz_presets"] = self._base.api.ptz_presets
 
@@ -192,23 +189,6 @@ class ReolinkCamera(ReolinkEntity, Camera):
     async def stream_source(self):
         """Return the source of the stream."""
         return await self._base.api.get_stream_source()
-
-    async def handle_async_mjpeg_stream(self, request):
-        """Generate an HTTP MJPEG stream from the camera."""
-
-        stream = CameraMjpeg(self._ffmpeg.binary)
-        await stream.open_camera(self._input, extra_cmd=self._extra_arguments)
-
-        try:
-            stream_reader = await stream.get_reader()
-            return await async_aiohttp_proxy_stream(
-                self.hass,
-                request,
-                stream_reader,
-                self._ffmpeg.ffmpeg_stream_content_type,
-            )
-        finally:
-            await stream.close()
 
     async def async_camera_image(
         self, width: Union[int, None] = None, height: Union[int, None] = None
