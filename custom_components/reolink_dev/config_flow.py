@@ -27,6 +27,7 @@ from .const import (
     CONF_STREAM,
     CONF_STREAM_FORMAT,
     CONF_THUMBNAIL_PATH,
+    CONF_MOTION_STATES_UPDATE_FALLBACK_DELAY,
     DEFAULT_MOTION_OFF_DELAY,
     DEFAULT_USE_HTTPS,
     DEFAULT_PLAYBACK_MONTHS,
@@ -35,6 +36,7 @@ from .const import (
     DEFAULT_STREAM_FORMAT,
     DEFAULT_THUMBNAIL_PATH,
     DEFAULT_TIMEOUT,
+    DEFAULT_MOTION_STATES_UPDATE_FALLBACK_DELAY,
     DOMAIN,
 )
 
@@ -131,7 +133,7 @@ class ReolinkFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
 
     async def async_validate_input(self, hass: core.HomeAssistant, user_input: dict):
         """Validate the user input allows us to connect."""
-        self.base = ReolinkBase(hass, user_input, [])
+        self.base = ReolinkBase(hass, user_input, {})
 
         if not await self.base.connect_api():
             raise CannotConnect
@@ -145,7 +147,7 @@ class ReolinkFlowHandler(config_entries.ConfigFlow, domain=DOMAIN):
     async def async_finish_flow(self, flow, result):
         """Finish flow."""
         # if result['type'] == data_entry_flow.RESULT_TYPE_ABORT:
-        self.base.disconnect_api()
+        await self.base.disconnect_api()
 
 
 class ReolinkOptionsFlowHandler(config_entries.OptionsFlow):
@@ -178,19 +180,24 @@ class ReolinkOptionsFlowHandler(config_entries.OptionsFlow):
                         ),): vol.In(
                         ["main", "sub", "ext"]
                     ),
-                    vol.Required(CONF_STREAM_FORMAT, 
-                    default=self.config_entry.options.get(
-                            CONF_STREAM_FORMAT, DEFAULT_STREAM_FORMAT
-                        ),): vol.In(
+                    vol.Required(CONF_STREAM_FORMAT,
+                                 default=self.config_entry.options.get(
+                                     CONF_STREAM_FORMAT, DEFAULT_STREAM_FORMAT
+                                 ), ): vol.In(
                         ["h264", "h265"]
                     ),
-
                     vol.Required(
                         CONF_MOTION_OFF_DELAY,
                         default=self.config_entry.options.get(
                             CONF_MOTION_OFF_DELAY, DEFAULT_MOTION_OFF_DELAY
                         ),
                     ): vol.All(vol.Coerce(int), vol.Range(min=0)),
+                    vol.Required(
+                        CONF_MOTION_STATES_UPDATE_FALLBACK_DELAY,
+                        default=self.config_entry.options.get(
+                            CONF_MOTION_STATES_UPDATE_FALLBACK_DELAY, DEFAULT_MOTION_STATES_UPDATE_FALLBACK_DELAY
+                        ),
+                    ): vol.All(vol.Coerce(int), vol.Range(min=0, max=60)),
                     vol.Required(
                         CONF_PLAYBACK_MONTHS,
                         default=self.config_entry.options.get(

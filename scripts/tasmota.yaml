@@ -1,0 +1,4 @@
+'1641614880819':
+  alias: Tasmota EZ-Button for Update and Restart All 2022-01-07
+  use_blueprint:
+    path: SirGoodenough/Tasmota_EZ-Buttons.yaml
