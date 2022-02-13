@@ -2,12 +2,12 @@
   alias: 'Nest HVAC TTS'
   trigger:
     - platform: state
-      entity_id: sensor.hallway_thermostat_hvac_state
-      from: 'off'
+      entity_id: climate.hallway
+      from: 'idle'
   action:
     - service: script.say_sonos
       data_template:
-        message: 'The Hallway thermostat has started to {{states("sensor.hallway_thermostat_operation_mode")}} the house with a current temperature of {{states("sensor.hallway_thermostat_temperature")|replace(".0", "")}} degrees and a target temperature of {{states("sensor.hallway_thermostat_target")|replace(".0", "")}} degrees'
+        message: 'The Hallway thermostat has started to {{states("climate.hallway")}} the house with a current temperature of {{state_attr("climate.hallway","current_temperature")|replace(".0", "")}} degrees and a target temperature of {{state_attr("climate.hallway","temperature")|replace(".0", "")}} degrees'
         entity_id: 'media_player.main_floor'
 
 - id: '4ca00b43-7b42-42e5-b484-db83d55099e1'
