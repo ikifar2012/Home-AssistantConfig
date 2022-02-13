@@ -177,9 +177,15 @@ logger:
   # logs:
     # homeassistant.components.homekit: debug
     # pyhap: debug
+# nest:
+#   client_id: !secret id
+#   client_secret: !secret client
+# Example configuration.yaml entry
 nest:
-  client_id: !secret id
-  client_secret: !secret client
+  client_id: !secret gda_client_id
+  client_secret: !secret gda_client_secret
+  # "Project ID" in the Device Access Console (not Cloud Project ID!)
+  project_id: !secret gda_project_id
 
 sonos:
   media_player:
