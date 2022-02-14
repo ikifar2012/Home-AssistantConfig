@@ -3,6 +3,7 @@
   trigger:
     - platform: state
       entity_id: climate.hallway
+      attribute: hvac_action
       from: 'idle'
   action:
     - service: script.say_sonos
