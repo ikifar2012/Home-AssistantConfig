@@ -57,16 +57,19 @@ homekit:
 - name: Driveway Camera
   port: 21064
   ip_address: 192.168.0.19
+  mode: accessory
   filter:
     include_entities:
     - camera.driveway
 - name: Porch Camera
   port: 21065
   ip_address: 192.168.0.19
+  mode: accessory
   filter:
     include_entities:
     - camera.porch
 - name: Front Door Camera
+  mode: accessory
   port: 21066
   ip_address: 192.168.0.19
   filter:
