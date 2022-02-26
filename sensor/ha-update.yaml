@@ -7,8 +7,6 @@
   resource: https://version.home-assistant.io/beta.json
   name: Hass Current Beta Version
   value_template: '{{ value_json.homeassistant.default }}'
-- platform: version
-  name: Hass Installed Version
 - platform: template
   sensors:
     hass_update_available:
