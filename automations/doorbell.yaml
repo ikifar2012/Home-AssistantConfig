@@ -8,3 +8,26 @@
     - service: script.say_all_doorbell
       data_template:
         message: 'There is Someone at the Door!!'
+
+- id: '92f63845-4d25-48fb-a389-81a78bffd394'
+  alias: 'Show Front Door Camera'
+  trigger:
+    - platform: state
+      entity_id: binary_sensor.front_door_ding
+      to: 'on'
+  action:
+    - service: media_player.play_media
+      target:
+        entity_id: media_player.main_floor_display
+      data:
+        media_content_id: media-source://camera/camera.porch
+        media_content_type: application/vnd.apple.mpegurl
+      metadata:
+        title: Steplock-NAS Porch
+        thumbnail: /api/camera_proxy/camera.porch
+        media_class: video
+        children_media_class: null
+        navigateIds:
+          - {}
+          - media_content_type: app
+            media_content_id: media-source://camera
