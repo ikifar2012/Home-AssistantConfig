@@ -45,7 +45,6 @@
   action:
     - service: script.say_all
       data_template:
-        entity_id: media_player.main_floor
         message: "The Laundry is Done!"
     - service: notify.sandy
       data_template:

@@ -6,7 +6,6 @@
   action: 
     - service: script.say_all
       data_template:
-        entity_id: media_player.main_floor
         message: "Time to Feed the Dog!"
     - service: notify.mobile_app_mathesons_iphone_13_pro_max
       data_template:
