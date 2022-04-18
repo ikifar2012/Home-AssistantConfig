@@ -31,3 +31,6 @@
           - {}
           - media_content_type: app
             media_content_id: media-source://camera
+    - delay: '00:01:00'
+    - service: media_player.turn_off
+      entity_id: media_player.main_floor_display
