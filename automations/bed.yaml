@@ -11,12 +11,12 @@
       above: 23
     - condition: or
       conditions:
-      - condition: state
-        entity_id: sensor.season
-        state: "spring"
-      - condition: state
-        entity_id: sensor.season
-        state: "summer"
+        - condition: state
+          entity_id: sensor.season
+          state: "spring"
+        - condition: state
+          entity_id: sensor.season
+          state: "summer"
 
   action:
     - service: script.fan_on
