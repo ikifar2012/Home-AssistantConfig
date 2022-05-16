@@ -17,7 +17,6 @@
         - condition: state
           entity_id: sensor.season
           state: "summer"
-
   action:
     - service: script.fan_on
     - service: notify.mobile_app_mathesons_iphone_13_pro_max
@@ -27,6 +26,7 @@
           actions:
             - action: "SET23C"
               title: "Set to 23C"
+
 - id: '07b5be6d-7a23-4c96-9146-5e4df7e84148'
   alias: 'Set to 23C'
   trigger:
