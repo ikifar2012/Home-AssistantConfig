@@ -27,7 +27,7 @@
           actions:
             - action: "SET23C"
               title: "Set to 23C"
-- id: '03da3eec-c952-4afe-a6dc-de8b1042d781'
+- id: '07b5be6d-7a23-4c96-9146-5e4df7e84148'
   alias: 'Set to 23C'
   trigger:
     - platform: event
