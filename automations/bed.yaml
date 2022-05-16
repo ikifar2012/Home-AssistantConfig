@@ -6,19 +6,18 @@
       from: "off"
       to: "on"
   condition:
+    - condition: numeric_state
+      entity_id: sensor.mathesons_bedroom_temperature
+      above: 23
     - condition: or
       conditions:
-      - platform: state
+      - condition: state
         entity_id: sensor.season
         state: "spring"
-      - platform: state
+      - condition: state
         entity_id: sensor.season
         state: "summer"
-    - condition: and
-      conditions:
-        - platform: state
-          entity_id: sensor.mathesons_bedroom_temperature
-          above: 23
+
   action:
     - service: script.fan_on
     - service: notify.mobile_app_mathesons_iphone_13_pro_max
