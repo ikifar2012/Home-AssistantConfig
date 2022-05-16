@@ -1,0 +1,42 @@
+- id: '09add89b-db0e-4611-87f6-f3eb791f4f25'
+  alias: 'Warm Night Climate'
+  trigger:
+    - platform: state
+      entity_id: input_boolean.night
+      from: "off"
+      to: "on"
+  condition:
+    - condition: or
+      conditions:
+      - platform: state
+        entity_id: sensor.season
+        state: "spring"
+      - platform: state
+        entity_id: sensor.season
+        state: "summer"
+    - condition: and
+      conditions:
+        - platform: state
+          entity_id: sensor.mathesons_bedroom_temperature
+          above: 23
+  action:
+    - service: script.fan_on
+    - service: notify.mobile_app_mathesons_iphone_13_pro_max
+      data: 
+        message: "The current temperature is {{ states.sensor.mathesons_bedroom_temperature.state }}C. The fan has been enabled for 8 hours. Would you like to set the temperature to 23C?"
+        data:
+          actions:
+            - action: "SET23C"
+              title: "Set to 23C"
+- id: '03da3eec-c952-4afe-a6dc-de8b1042d781'
+  alias: 'Set to 23C'
+  trigger:
+    - platform: event
+      event_type: "mobile_app_notification_action"
+      event_data:
+        action: "SET23C"
+  action:
+    - service: climate.set_temperature
+      data:
+        entity_id: climate.hallway
+        temperature: 23
