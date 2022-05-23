@@ -16,6 +16,10 @@
       entity_id: binary_sensor.front_door_ding
       to: 'on'
   action:
+    - service: media_player.volume_mute
+      data:
+        entity_id: media_player.main_floor_display
+        is_volume_muted: true
     - service: media_player.play_media
       target:
         entity_id: media_player.main_floor_display
@@ -28,9 +32,12 @@
         media_class: video
         children_media_class: null
         navigateIds:
-          - {}
           - media_content_type: app
             media_content_id: media-source://camera
     - delay: '00:01:00'
     - service: media_player.turn_off
       entity_id: media_player.main_floor_display
+    - service: media_player.volume_mute
+      data:
+        entity_id: media_player.main_floor_display
+        is_volume_muted: false

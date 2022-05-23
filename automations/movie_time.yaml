@@ -35,9 +35,9 @@
     entity_id: 'group.main_floor_motion'
     to: 'on'
   condition:
-  - condition: state
-    entity_id: input_boolean.movie_time
-    state: 'on'
+    - condition: state
+      entity_id: input_boolean.movie_time
+      state: 'on'
   action: 
     - service: homeassistant.turn_on
       data_template:
@@ -54,9 +54,9 @@
     entity_id: media_player.home_theatre_tv
     to: 'playing'
   condition:
-  - condition: state
-    entity_id: input_boolean.movie_time
-    state: 'on'
+    - condition: state
+      entity_id: input_boolean.movie_time
+      state: 'on'
   action: 
     - service: homeassistant.turn_off
       target:
@@ -72,9 +72,26 @@
     entity_id: media_player.home_theatre_tv
     to: 'paused'
   condition:
-  - condition: state
-    entity_id: input_boolean.movie_time
-    state: 'on'
+    - condition: state
+      entity_id: input_boolean.movie_time
+      state: 'on'
+  action: 
+    - service: homeassistant.turn_on
+      target:
+        entity_id:
+          - switch.theatre_front
+          - switch.basement_hallway
+
+- id: 'fa4590ea-cca1-44ff-9681-7a3ff7f769a3'
+  alias: 'Movie Time Lights On'
+  trigger: 
+    platform: state 
+    entity_id: media_player.home_theatre_tv
+    to: 'off'
+  condition:
+    - condition: state
+      entity_id: input_boolean.movie_time
+      state: 'on'
   action: 
     - service: homeassistant.turn_on
       target:
