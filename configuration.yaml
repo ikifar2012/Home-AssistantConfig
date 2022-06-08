@@ -36,7 +36,6 @@ http:
 ##############################################
 api:
 default_config:
-breaking_changes:
 ############## Voice Assistant's ##############
 alexa: !include alexa.yaml
 homekit:
