@@ -1,0 +1,24 @@
+    - platform: mqtt
+      name: "Main Floor Elevator Door"
+      state_topic: "tele/RF_Bridge/RESULT"
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: "47EA0A"
+      payload_off: "47EA0E"
+      device_class: Door
+      qos: 1
+    - platform: mqtt
+      name: "Second Floor Elevator Door"
+      state_topic: "tele/RF_Bridge/RESULT"
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: "B0080A"
+      payload_off: "B0080E"
+      device_class: Door
+      qos: 1
+    - platform: mqtt
+      name: "Basement Elevator Door"
+      state_topic: "tele/RF_Bridge/RESULT"
+      value_template: '{{value_json.RfReceived.Data}}'
+      payload_on: "323A0A"
+      payload_off: "323A0E"
+      device_class: Door
+      qos: 1
