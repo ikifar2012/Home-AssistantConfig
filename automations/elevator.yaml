@@ -9,6 +9,7 @@
   action:
     - service: input_select.select_option
       data:
+        entity_id: input_select.elevator_location
         option: 'Second Floor'
 - id: 'f8b30409-4a43-4c1e-969e-3aeca1b8e9ad'
   alias: Elevator Location Main Floor
@@ -21,6 +22,7 @@
   action:
     - service: input_select.select_option
       data:
+        entity_id: input_select.elevator_location
         option: 'Main Floor'
 - id: '32019087-c2a8-42bc-b495-07042b180957'
   alias: Elevator Location Basement
@@ -33,6 +35,7 @@
   action:
     - service: input_select.select_option
       data:
+        entity_id: input_select.elevator_location
         option: 'Basement'
 - id: 'ad116e53-32a9-41fd-9adf-8da663e629f5'
   alias: Elevator Basement
