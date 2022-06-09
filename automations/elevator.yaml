@@ -56,7 +56,7 @@
       to: 'Second Floor'
   condition:
     - condition: state
-      entity_id: scene.going_to_bed
+      entity_id: script.going_to_bed
       state: 'on'
   action:
     - parallel:
