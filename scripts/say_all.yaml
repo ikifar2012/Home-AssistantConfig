@@ -1,4 +1,5 @@
 say_all:
+  mode: parallel
   sequence:
     - condition: or
       conditions:
