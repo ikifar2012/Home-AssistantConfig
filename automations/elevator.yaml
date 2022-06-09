@@ -1,0 +1,71 @@
+- id: '94c6d3c9-e027-4eee-aead-4907432d7306'
+  alias: Elevator Location Second Floor
+  mode: single
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.second_floor_elevator_door
+      to: 'on'
+  action:
+    - service: input_select.select_option
+      data:
+        option: 'Second Floor'
+- id: 'f8b30409-4a43-4c1e-969e-3aeca1b8e9ad'
+  alias: Elevator Location Main Floor
+  mode: single
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.main_floor_elevator_door
+      to: 'on'
+  action:
+    - service: input_select.select_option
+      data:
+        option: 'Main Floor'
+- id: '32019087-c2a8-42bc-b495-07042b180957'
+  alias: Elevator Location Basement
+  mode: single
+  trigger:
+    - platform: state
+      entity_id:
+        - binary_sensor.basement_elevator_door
+      to: 'on'
+  action:
+    - service: input_select.select_option
+      data:
+        option: 'Basement'
+- id: 'ad116e53-32a9-41fd-9adf-8da663e629f5'
+  alias: Elevator Basement
+  mode: single
+  trigger:
+    - platform: state
+      entity_id:
+        - input_select.elevator_location
+      to: 'Basement'
+  action:
+    - service: switch.turn_on
+      target:
+        entity_id: switch.basement_hallway
+- id: 'cb3eb1e0-fe0e-445f-b8ec-10dedbbf004a'
+  alias: Going to Bed Elevator
+  mode: single
+  trigger:
+    - platform: state
+      entity_id:
+        - input_select.elevator_location
+      to: Second Floor
+  condition:
+    - condition: state
+      entity_id: scene.going_to_bed
+      state: 'on'
+  action:
+    - parallel:
+        - service: scene.turn_on
+          target:
+            entity_id: scene.going_to_bed
+        - service: scene.turn_on
+          target:
+            entity_id: scene.light_upstairs
+        - service: homeassistant.turn_on
+          target:
+            entity_id: input_boolean.night

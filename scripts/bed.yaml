@@ -4,13 +4,13 @@ going_to_bed:
  - service: script.lock_script
  - service: homeassistant.turn_on
    entity_id: input_boolean.tv_off
- - service: scene.turn_on
-   entity_id: scene.light_upstairs
- - delay: 00:02:00
- - service: scene.turn_on
-   entity_id: scene.going_to_bed
- - service: homeassistant.turn_on
-   entity_id: input_boolean.night
+#  - service: scene.turn_on
+#    entity_id: scene.light_upstairs
+#  - delay: 00:02:00
+#  - service: scene.turn_on
+#    entity_id: scene.going_to_bed
+#  - service: homeassistant.turn_on
+#    entity_id: input_boolean.night
 #  - service: script.say_sonos
 #    data:
 #      entity_id: media_player.main_floor
