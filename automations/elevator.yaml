@@ -53,7 +53,7 @@
     - platform: state
       entity_id:
         - input_select.elevator_location
-      to: Second Floor
+      to: 'Second Floor'
   condition:
     - condition: state
       entity_id: scene.going_to_bed
