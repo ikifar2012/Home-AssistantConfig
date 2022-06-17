@@ -4,9 +4,10 @@
     - platform: state
       entity_id: sensor.dark_sky_precip
       to: 'rain'
-  action: 
-    - service: script.say_sonos
-      data_template:
-        message: "The weather condition has changed to {{ states('sensor.dark_sky_summary') }}, so I have turned on the lights"
-    - service: homeassistant.turn_on
-      entity_id: group.main_floor
+  action:
+    - parallel:
+        - service: script.say_sonos
+          data_template:
+            message: "The weather condition has changed to {{ states('sensor.dark_sky_summary') }}, so I have turned on the lights"
+        - service: homeassistant.turn_on
+          entity_id: group.main_floor

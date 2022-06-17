@@ -9,12 +9,13 @@
       entity_id: input_select.home_status
       state: 'Home'
   action:
-    - service: script.say_sonos
-      data_template:
-        message: "It's getting dark outside, so I have turned on the lights"
-    - service: homeassistant.turn_on
-      data:
-        entity_id: group.main_floor
+    - parallel:
+        - service: script.say_sonos
+          data_template:
+            message: "It's getting dark outside, so I have turned on the lights"
+        - service: homeassistant.turn_on
+          data:
+            entity_id: group.main_floor
 
 - id: 'e6b28867-bad7-4f40-b2a8-e224ea463e8f'
   alias: 'Sunset Outdoor Winter or Autumn'
@@ -31,12 +32,13 @@
         entity_id: sensor.season
         state: 'autumn'
   action:
-    - service: script.say_sonos
-      data_template:
-        message: "The sun has set and now I have turned on the Outside Landscaping Lights"
-    - service: homeassistant.turn_on
-      data:
-        entity_id: group.front_lighting
+    - parallel:
+        - service: script.say_sonos
+          data_template:
+            message: "The sun has set and now I have turned on the Outside Landscaping Lights"
+        - service: homeassistant.turn_on
+          data:
+            entity_id: group.front_lighting
 
 - id: '5e78d3b3-06ac-46b9-87bf-348542065c3a'
   alias: 'Sunset Outdoor Not Winter'
@@ -53,15 +55,16 @@
         entity_id: sensor.season
         state: 'autumn'
   action:
-    - service: script.say_sonos
-      data_template:
-        message: "The sun has set and now I have turned on the Outside Lights"
-    - service: homeassistant.turn_on
-      data:
-        entity_id: switch.front_door
-    - service: homeassistant.turn_off
-      data:
-        entity_id: switch.outdoor_landscaping
+    - parallel:
+        - service: script.say_sonos
+          data_template:
+            message: "The sun has set and now I have turned on the Outside Lights"
+        - service: homeassistant.turn_on
+          data:
+            entity_id: switch.front_door
+        - service: homeassistant.turn_off
+          data:
+            entity_id: switch.outdoor_landscaping
 
 - id: '73468163-9d41-4475-a5e4-b3a8540b34d7'
   alias: 'Sunrise Front Lighting Off'

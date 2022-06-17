@@ -98,3 +98,20 @@
         entity_id:
           - switch.theatre_front
           - switch.basement_hallway
+
+- id: '739b7994-fb40-443c-9ba2-9e7ca3d877a1'
+  alias: 'Movie Time Off Elevator Trigger'
+  trigger: 
+    platform: state 
+    entity_id: input_select.elevator_location
+    from: 'Basement'
+    to: 'Main Floor'
+  condition:
+    - condition: state
+      entity_id: input_boolean.movie_time
+      state: 'on'
+  action: 
+    - service: homeassistant.turn_off
+      target:
+        entity_id:
+          - input_boolean.movie_time
