@@ -19,7 +19,7 @@
           state: "summer"
   action:
     - service: script.fan_on
-    - service: notify.mobile_app_mathesons_iphone_13_pro_max
+    - service: notify.mobile_app_matheson_s_iphone
       data: 
         message: "The current temperature is {{ states.sensor.mathesons_bedroom_temperature.state }}°C. The fan has been enabled for 8 hours. Would you like to set the temperature to 23°C?"
         data:

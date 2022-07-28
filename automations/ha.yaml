@@ -7,6 +7,6 @@
     - service: notify.html5_matheson_pc
       data_template:
         message: "Home Assistant Started"
-    - service: notify.mobile_app_mathesons_iphone_13_pro_max
+    - service: notify.mobile_app_matheson_s_iphone
       data_template:
         message: "Home Assistant Started"

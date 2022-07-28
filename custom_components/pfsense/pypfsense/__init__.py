@@ -1,3 +1,8 @@
+"""
+note that the xmlrpc api only allows a single request to be handled at a time
+likely via some sort of mutex.
+"""
+
 import json
 import socket
 import ssl
@@ -92,6 +97,43 @@ $toreturn["real"] = json_encode($toreturn_real);
         response = json.loads(response["real"])
         return response
 
+    def _exec_php_no_timeout(self, script):
+        script = """
+ini_set('display_errors', 0);
+
+{}
+
+// wrapping this in json_encode and then unwrapping in python prevents funny XMLRPC NULL encoding errors
+// https://github.com/travisghansen/hass-pfsense/issues/35
+$toreturn_real = $toreturn;
+$toreturn = [];
+$toreturn["real"] = json_encode($toreturn_real);
+""".format(
+            script
+        )
+        response = self._get_proxy().pfsense.exec_php(script)
+        response = json.loads(response["real"])
+        return response
+
+    def _exec_command(self, command, background=False):
+        script = """
+$data = json_decode('{}', true);
+if ($data["background"]) {{
+    $ret = mwexec_bg($data["command"]);    
+}}
+else {{
+    $ret = mwexec($data["command"]);
+}}
+
+$toreturn = [
+  "data" => $ret,
+];
+""".format(
+            json.dumps({"command": command, "background": background})
+        )
+        response = self._exec_php(script)
+        return response["data"]
+
     @_apply_timeout
     def get_host_firmware_version(self):
         return self._get_proxy().pfsense.host_firmware_version(1, 60)
@@ -104,6 +146,13 @@ $toreturn["real"] = json_encode($toreturn_real);
         rm /var/run/pfSense_version*
         """
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+//unlock_force("xmlrpc");
+
 require_once '/etc/inc/pkg-utils.inc';
 
 $toreturn = [
@@ -117,8 +166,42 @@ $toreturn = [
         response = self._exec_php(script)
         return response["data"]
 
+    def upgrade_firmware(self):
+        script = """
+$ret = mwexec_bg("pfSense-upgrade -y -l /tmp/hass-upgrade.log -p /tmp/hass-upgrade.sock");
+$toreturn = [
+  "data" => $ret,
+];
+"""
+        response = self._exec_php(script)
+        return response["data"]
+
+    def pid_is_running(self, pid):
+        script = """
+$data = json_decode('{}', true);
+$running = posix_kill($data["pid"],0);
+$toreturn = [
+  "data" => $running,
+];
+""".format(
+            json.dumps(
+                {
+                    "pid": pid,
+                }
+            )
+        )
+
+        response = self._exec_php(script)
+        return response["data"]
+
     def get_system_serial(self):
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 $toreturn = [
   "data" => system_get_serial(),
 ];
@@ -138,6 +221,12 @@ $toreturn = [
     def get_system_info(self):
         # TODO: add bios details here
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 global $config;
 
 $toreturn = [
@@ -153,6 +242,12 @@ $toreturn = [
 
     def get_config(self):
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 global $config;
 
 $toreturn = [
@@ -246,6 +341,12 @@ $toreturn = [
 
     def get_configured_interface_descriptions(self):
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 $toreturn = [
   "data" => get_configured_interface_with_descr(),
 ];
@@ -256,6 +357,12 @@ $toreturn = [
     def get_gateways(self):
         # {'GW_WAN': {'interface': '<if>', 'gateway': '<ip>', 'name': 'GW_WAN', 'weight': '1', 'ipprotocol': 'inet', 'interval': '', 'descr': 'Interface wan Gateway', 'monitor': '<ip>', 'friendlyiface': 'wan', 'friendlyifdescr': 'WAN', 'isdefaultgw': True, 'attribute': 0, 'tiername': 'Default (IPv4)'}}
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 $toreturn = [
   "data" => return_gateways_array(),
 ];
@@ -272,6 +379,12 @@ $toreturn = [
     def get_gateways_status(self):
         # {'GW_WAN': {'monitorip': '<ip>', 'srcip': '<ip>', 'name': 'GW_WAN', 'delay': '0.387ms', 'stddev': '0.097ms', 'loss': '0.0%', 'status': 'online', 'substatus': 'none'}}
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 $toreturn = [
   // function return_gateways_status($byname = false, $gways = false)
   "data" => return_gateways_status(true),
@@ -289,6 +402,11 @@ $toreturn = [
     def get_arp_table(self, resolve_hostnames=False):
         # [{'hostname': '?', 'ip-address': '<ip>', 'mac-address': '<mac>', 'interface': 'em0', 'expires': 1199, 'type': 'ethernet'}, ...]
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
 
 $data = json_decode('{}', true);
 $resolve_hostnames = $data["resolve_hostnames"];
@@ -305,10 +423,58 @@ $toreturn = [
         response = self._exec_php(script)
         return response["data"]
 
+    def set_default_gateway(self, gateway, ip_version="4"):
+        ipVersion = str(ip_version)
+        key = "defaultgw4"
+        if "4" in ipVersion:
+            key = "defaultgw4"
+        if "6" in ipVersion:
+            key = "defaultgw6"
+
+        script = """
+require_once '/etc/inc/config.inc';
+global $config;
+
+$data = json_decode('{}', true);
+$key = $data["key"];
+$config['gateways'][$key] = $data["gateway"];
+
+mark_subsystem_dirty('staticroutes');
+write_config("System - Gateways: save default gateway");
+
+$retval = 0;
+                    
+$retval |= system_routing_configure();
+$retval |= system_resolvconf_generate();
+$retval |= filter_configure();
+/* reconfigure our gateway monitor */
+setup_gateways_monitor();
+/* Dynamic DNS on gw groups may have changed */
+send_event("service reload dyndnsall");
+
+if ($retval == 0) {{
+  clear_subsystem_dirty('staticroutes');
+}}
+
+$toreturn = [
+  "data" => $retval
+];
+""".format(
+            json.dumps({"key": key, "gateway": gateway})
+        )
+
+        self._exec_php(script)
+
     def get_services(self):
         # function get_services()
         # ["",{"name":"nut","rcfile":"nut.sh","executable":"upsmon","description":"UPS monitoring daemon"},{"name":"iperf","executable":"iperf3","description":"iperf Network Performance Testing Daemon/Client","stopcmd":"mwexec(\"/usr/bin/killall iperf3\");"},{"name":"telegraf","rcfile":"telegraf.sh","executable":"telegraf","description":"Telegraf daemon"},{"name":"vnstatd","rcfile":"vnstatd.sh","executable":"vnstatd","description":"Status Traffic Totals data collection daemon"},{"name":"wireguard","rcfile":"wireguardd","executable":"php_wg","description":"WireGuard"},{"name":"FRR zebra","rcfile":"frr.sh","executable":"zebra","description":"FRR core/abstraction daemon"},{"name":"FRR staticd","rcfile":"frr.sh","executable":"staticd","description":"FRR static route daemon"},{"name":"FRR bfdd","rcfile":"frr.sh","executable":"bfdd","description":"FRR BFD daemon"},{"name":"FRR bgpd","rcfile":"frr.sh","executable":"bgpd","description":"FRR BGP routing daemon"},{"name":"FRR ospfd","rcfile":"frr.sh","executable":"ospfd","description":"FRR OSPF routing daemon"},{"name":"FRR ospf6d","rcfile":"frr.sh","executable":"ospf6d","description":"FRR OSPF6 routing daemon"},{"name":"FRR watchfrr","rcfile":"frr.sh","executable":"watchfrr","description":"FRR watchfrr watchdog daemon"},{"name":"haproxy","rcfile":"haproxy.sh","executable":"haproxy","description":"TCP/HTTP(S) Load Balancer"},{"name":"unbound","description":"DNS Resolver","enabled":true,"status":true},{"name":"pcscd","description":"PC/SC Smart Card Daemon","enabled":true,"status":true},{"name":"ntpd","description":"NTP clock sync","enabled":true,"status":true},{"name":"syslogd","description":"System Logger Daemon","enabled":true,"status":true},{"name":"dhcpd","description":"DHCP Service","enabled":true,"status":true},{"name":"dpinger","description":"Gateway Monitoring Daemon","enabled":true,"status":true},{"name":"miniupnpd","description":"UPnP Service","enabled":true,"status":true},{"name":"ipsec","description":"IPsec VPN","enabled":true,"status":true},{"name":"sshd","description":"Secure Shell Daemon","enabled":true,"status":true},{"name":"openvpn","mode":"server","id":0,"vpnid":"1","description":"OpenVPN server: primary vpn","enabled":true,"status":true}]
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 require_once '/etc/inc/service-utils.inc';
 // only returns enabled services currently
 $s = get_services();
@@ -338,6 +504,12 @@ $toreturn = [
     def get_service_is_enabled(self, service_name):
         # function is_service_enabled($service_name)
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 require_once '/etc/inc/service-utils.inc';
 
 $data = json_decode('{}', true);
@@ -359,6 +531,12 @@ $toreturn = [
     def get_service_is_running(self, service_name):
         # function is_service_running($service, $ps = "")
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 require_once '/etc/inc/service-utils.inc';
 
 $data = json_decode('{}', true);
@@ -474,6 +652,12 @@ $toreturn = [
         # {'lease': [], 'failover': []}
         # {"lease":[{"ip":"<ip>","type":"static","mac":"<mac>","if":"lan","starts":"","ends":"","hostname":"<hostname>","descr":"","act":"static","online":"online","staticmap_array_index":48} ...
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 $toreturn = [
   "data" => system_get_dhcpleases(),
 ];
@@ -483,6 +667,12 @@ $toreturn = [
 
     def get_virtual_ips(self):
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 global $config;
 
 $vips = [];
@@ -502,6 +692,12 @@ $toreturn = [
         # readonly attribute, cannot be set directly
         # function get_carp_status()
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 $toreturn = [
   "data" => get_carp_status(),
 ];
@@ -512,6 +708,12 @@ $toreturn = [
     def get_carp_interface_status(self, uniqueid):
         # function get_carp_interface_status($carpid)
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 $data = json_decode('{}', true);
 $uniqueid = $data["uniqueid"];
 $carp_if = "_vip{{$uniqueid}}";
@@ -531,6 +733,12 @@ $toreturn = [
 
     def get_carp_interfaces(self):
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 global $config;
 
 $vips = [];
@@ -575,6 +783,12 @@ $toreturn = [
     def arp_get_mac_by_ip(self, ip, do_ping=True):
         """function arp_get_mac_by_ip($ip, $do_ping = true)"""
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 $data = json_decode('{}', true);
 $ip = $data["ip"];
 $do_ping = $data["do_ping"];
@@ -691,6 +905,12 @@ $toreturn = [
 
     def get_telemetry(self):
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 require_once '/usr/local/www/includes/functions.inc.php';
 require_once '/etc/inc/config.inc';
 require_once '/etc/inc/pfsense-utils.inc';
@@ -851,6 +1071,12 @@ foreach ($ovpn_servers as $server) {
         $category appears to be ignored currently
         """
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 $data = json_decode('{}', true);
 $category = $data["category"];
 $toreturn = [
@@ -869,6 +1095,12 @@ $toreturn = [
 
     def get_notices(self, category="all"):
         script = """
+// release the mutex immediately so other api calls can go through
+// as this one can take a minute
+require_once '/etc/inc/util.inc';
+global $xmlrpclockkey;
+unlock($xmlrpclockkey);
+
 $data = json_decode('{}', true);
 $category = $data["category"];
 $value = get_notices($category);

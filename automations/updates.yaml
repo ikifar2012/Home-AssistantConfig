@@ -6,7 +6,7 @@
       from: 'No'
       to: 'Yes'
   action: 
-    - service: notify.mobile_app_mathesons_iphone_13_pro_max
+    - service: notify.mobile_app_matheson_s_iphone
       data_template:
         message: "Update Available!!"
     - service: notify.html5_matheson_pc

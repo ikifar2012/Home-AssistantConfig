@@ -8,7 +8,7 @@
         - service: script.say_all
           data_template:
             message: "Time to Feed the Dog!"
-        - service: notify.mobile_app_mathesons_iphone_13_pro_max
+        - service: notify.mobile_app_matheson_s_iphone
           data_template:
             message: "Time to Feed the Dog!!!"
         - service: notify.html5_matheson_pc
