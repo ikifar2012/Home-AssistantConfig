@@ -194,14 +194,14 @@ tplink:
     - host: 192.168.0.26
     - host: 192.168.0.21
 ########### InfluxDB ##########
-influxdb:
-  host: a0d7b954-influxdb
-  port: 8086
-  database: homeassistant
-  username: !secret influxdb_user
-  password: !secret influxdb_pw
-  max_retries: 3
-  default_measurement: state
+# influxdb:
+#   host: a0d7b954-influxdb
+#   port: 8086
+#   database: homeassistant
+#   username: !secret influxdb_user
+#   password: !secret influxdb_pw
+#   max_retries: 3
+#   default_measurement: state
 ###############################
 # default_config:
 my:
