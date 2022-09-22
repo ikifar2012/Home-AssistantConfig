@@ -12,7 +12,7 @@
   alias: 'CO2 Off'
   trigger: 
     - platform: time
-      at: '20:00'
+      at: '19:00'
   action:
     - service: switch.turn_off
       data:
