@@ -1,5 +1,4 @@
-    - platform: mqtt
-      name: "Patio Door"
+    - name: "Patio Door"
       state_topic: "tele/RF_Bridge/RESULT"
       value_template: '{{value_json.RfReceived.Data}}'
       payload_on: "331F0A"

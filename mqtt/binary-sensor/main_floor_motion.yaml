@@ -1,13 +1,11 @@
-    - platform: mqtt
-      name: "Main Floor Back Motion"
+    - name: "Main Floor Back Motion"
       state_topic: "tele/RF_Bridge/RESULT"
       value_template: '{{value_json.RfReceived.Data}}'
       payload_on: "E79EBE"
       off_delay: "300"
       device_class: motion
       qos: 1
-    - platform: mqtt
-      name: "Main Floor Front Motion"
+    - name: "Main Floor Front Motion"
       state_topic: "tele/RF_Bridge/RESULT"
       value_template: '{{value_json.RfReceived.Data}}'
       payload_on: "E805CE"
