@@ -1,0 +1,47 @@
+- id: '9b9a9d6a-ea59-4264-8503-7e8648f4ffeb'
+  alias: 'Wash Starting Say'
+  trigger:
+   - platform: state
+     entity_id: sensor.washer_washer_machine_state
+     from: 'stop'
+     to: 'run'
+  action:
+    - service: script.say_all
+      data_template:
+        message: 'The Wash has started with an estimated completion time of {{ ((as_timestamp(states.sensor.washer_washer_completion_time.state) - as_timestamp(now()))  // 60) | replace(".0","") }} minutes.'
+
+- id: '69d8a081-2088-4066-a66f-d0bd736cdb9f'
+  alias: 'Wash Done Say'
+  trigger:
+   - platform: state
+     entity_id: sensor.washer_washer_machine_state
+     from: 'run'
+     to: 'stop'
+  action:
+    - service: script.say_all
+      data_template:
+        message: "The Washer is finished"
+
+- id: '9b9a9d6a-ea59-4264-8503-7e8648f4ffeb'
+  alias: 'Dryer Starting Say'
+  trigger:
+   - platform: state
+     entity_id: sensor.dryer_dryer_machine_state
+     from: 'stop'
+     to: 'run'
+  action:
+    - service: script.say_all
+      data_template:
+        message: 'The Dryer has started with an estimated completion time of {{ ((as_timestamp(states.sensor.dryer_dryer_completion_time.state) - as_timestamp(now()))  // 60) | replace(".0","") }} minutes.'
+
+- id: '69d8a081-2088-4066-a66f-d0bd736cdb9f'
+  alias: 'Dryer Done Say'
+  trigger:
+   - platform: state
+     entity_id: sensor.dryer_dryer_machine_state
+     from: 'run'
+     to: 'stop'
+  action:
+    - service: script.say_all
+      data_template:
+        message: "The Dryer is finished"
