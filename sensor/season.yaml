@@ -1,2 +1,2 @@
-- platform: season
-  type: meteorological
+# - platform: season
+#   type: meteorological
