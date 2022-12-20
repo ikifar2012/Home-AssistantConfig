@@ -7,7 +7,7 @@
   action:
     - service: script.say_all_doorbell
       data_template:
-        message: 'There is Someone at the Door!!'
+        message: 'There is Someone at the Door!'
 
 - id: '92f63845-4d25-48fb-a389-81a78bffd394'
   alias: 'Show Front Door Camera'
