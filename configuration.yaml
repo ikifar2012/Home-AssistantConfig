@@ -2,7 +2,7 @@ homeassistant:
   name: Home
   latitude: !secret latitude
   longitude: !secret longitude
-  country_code: CA
+  country: CA
   elevation: 223
   unit_system: metric
   time_zone: America/Toronto
